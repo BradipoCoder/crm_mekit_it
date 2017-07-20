@@ -6,3 +6,6 @@
         </a>
     </div>
 {{/if}}
+
+{*INCLUDE THE ORIGINAL HEADER (BUTTON BAR)*}
+{{include file="include/DetailView/header.tpl"}}

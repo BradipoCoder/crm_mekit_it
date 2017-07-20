@@ -45,40 +45,6 @@ class AccountsViewDetail extends ViewDetail {
         parent::__construct();
     }
     
-    public function preDisplay() {
-        $metadataFile = $this->getMetaDataFile();
-        $template = get_custom_file_if_exists('include/DetailView/DetailView.tpl');
-        
-        global $current_user;
-        //print_r($current_user);
-        //        include_once('modules/ACLRoles/ACLRole.php');
-        //        $roles = getUserRoleNames($current_user->id);
-        //        print_r($roles);
-        
-        
-        //set up detail view so it loads 'defs' from metadataFile
-        $this->dv = new DetailView2($this->module, $template);
-        $this->dv->ss =&  $this->ss;
-        $this->dv->setup($this->module, $this->bean, $metadataFile, $template);
-        $defs = $this->dv->defs;
-        
-        //modify $defs conditionally
-        //$defs = $this->removePanel($defs, 'LBL_EDITVIEW_PANEL1');
-        
-        //feed $defs back to DetailView2
-        $this->dv->defs = $defs;
-    }
-    
-    /**
-     * @param $defs
-     * @param $panelName
-     */
-    protected function removePanel($defs, $panelName) {
-        unset($defs['templateMeta']['tabDefs'][strtoupper($panelName)]);
-        unset($defs['panels'][strtolower($panelName)]);
-        return $defs;
-    }
-    
     /**
      * display
      * Override the display method to support customization for the buttons that display
@@ -87,7 +53,8 @@ class AccountsViewDetail extends ViewDetail {
      * include/SugarFields/Fields/Address/DetailView.tpl (default).  If it's a English U.S.
      * locale then it'll use file include/SugarFields/Fields/Address/en_us.DetailView.tpl.
      */
-    function display(){
+    function display()
+    {
         
         if(empty($this->bean->id)){
             global $app_strings;
@@ -98,6 +65,7 @@ class AccountsViewDetail extends ViewDetail {
         formLetter::DVPopupHtml('Accounts');
         
         $this->dv->process();
+        
         global $mod_strings;
         if(ACLController::checkAccess('Contacts', 'edit', true)) {
             $push_billing = '<input class="button" title="' . $mod_strings['LBL_PUSH_CONTACTS_BUTTON_LABEL'] .

@@ -7,7 +7,6 @@ array (
     array (
       'form' =>
       array (
-          'headerTpl' => 'custom/modules/Accounts/include/DetailViewHeader.tpl',
         'buttons' =>
         array (
           0 => 'EDIT',
@@ -19,7 +18,7 @@ array (
             'customCode' => '<input type="button" class="button" onClick="showPopup();" value="{$APP.LBL_GENERATE_LETTER}">',
           ),
         ),
-        
+        'headerTpl' => 'custom/modules/Accounts/include/DetailViewHeader.tpl',
       ),
       'maxColumns' => '2',
       'widths' =>
