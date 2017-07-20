@@ -12,7 +12,7 @@ custom/application/Ext/*
 custom/blowfish/*
 custom/modulebuilder/*
 custom/modules/unified_search_modules_display.php
-# custom/modules/*/Ext/*
+custom/modules/*/Ext/*
 custom/history/*
 custom/working/*
 
