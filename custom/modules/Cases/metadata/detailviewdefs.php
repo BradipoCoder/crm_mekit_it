@@ -139,9 +139,8 @@ array (
         array (
           0 => 
           array (
-            'name' => 'internal_tag_number_c',
-            'studio' => 'visible',
-            'label' => 'LBL_INTERNAL_TAG_NUMBER',
+            'name' => 'numerotag_c',
+            'label' => 'LBL_NUMEROTAG',
           ),
         ),
       ),

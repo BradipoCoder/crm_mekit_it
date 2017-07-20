@@ -8,12 +8,11 @@ array (
     'link' => true,
     'default' => true,
   ),
-  'INTERNAL_TAG_NUMBER_C' => 
+  'NUMEROTAG_C' => 
   array (
-    'type' => 'enum',
+    'type' => 'varchar',
     'default' => true,
-    'studio' => 'visible',
-    'label' => 'LBL_INTERNAL_TAG_NUMBER',
+    'label' => 'LBL_NUMEROTAG',
     'width' => '10%',
   ),
   'DATE_ENTERED' => 

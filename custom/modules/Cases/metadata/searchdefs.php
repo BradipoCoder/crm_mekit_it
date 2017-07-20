@@ -63,6 +63,14 @@ array (
         'width' => '10%',
         'name' => 'ref_part_unique_number_c',
       ),
+      'numerotag_c' => 
+      array (
+        'type' => 'varchar',
+        'default' => true,
+        'label' => 'LBL_NUMEROTAG',
+        'width' => '10%',
+        'name' => 'numerotag_c',
+      ),
     ),
     'advanced_search' => 
     array (
@@ -102,14 +110,13 @@ array (
         'default' => true,
         'name' => 'type',
       ),
-      'internal_tag_number_c' => 
+      'numerotag_c' => 
       array (
-        'type' => 'enum',
+        'type' => 'varchar',
         'default' => true,
-        'studio' => 'visible',
-        'label' => 'LBL_INTERNAL_TAG_NUMBER',
+        'label' => 'LBL_NUMEROTAG',
         'width' => '10%',
-        'name' => 'internal_tag_number_c',
+        'name' => 'numerotag_c',
       ),
       'status' => 
       array (

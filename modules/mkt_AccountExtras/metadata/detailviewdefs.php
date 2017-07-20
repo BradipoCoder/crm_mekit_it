@@ -71,6 +71,42 @@ array (
             'label' => 'LBL_DATI_CLIENTE',
           ),
         ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'current_month',
+            'studio' => 'visible',
+            'label' => 'LBL_CURRENT_MONTH',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'deadlines',
+            'studio' => 'visible',
+            'label' => 'LBL_DEADLINES',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'products_recent_buys',
+            'studio' => 'visible',
+            'label' => 'LBL_PRODUCTS_RECENT_BUYS',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
+            'name' => 'products_recent_non_buys',
+            'studio' => 'visible',
+            'label' => 'LBL_PRODUCTS_RECENT_NON_BUYS',
+          ),
+        ),
       ),
       'lbl_detailview_panel1' => 
       array (

@@ -129,6 +129,12 @@ $dictionary['Case']['fields']['jjwg_maps_lat_c']['inline_edit']=1;
 
  
 
+ // created: 2017-07-20 13:30:53
+$dictionary['Case']['fields']['numerotag_c']['inline_edit']='1';
+$dictionary['Case']['fields']['numerotag_c']['labelValue']='Numero Tag';
+
+ 
+
  // created: 2016-02-12 14:55:41
 $dictionary['Case']['fields']['case_area_c']['inline_edit']='1';
 $dictionary['Case']['fields']['case_area_c']['labelValue']='Area di Interesse MEKIT';

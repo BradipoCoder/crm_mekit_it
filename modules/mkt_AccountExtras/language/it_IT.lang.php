@@ -76,4 +76,8 @@ $mod_strings = array (
   'LBL_DETAILVIEW_PANEL1' => 'Altri Dati',
   'LBL_ACCOUNT_ACCOUNT_ID' => 'Azienda (relativo Aziende ID)',
   'LBL_ACCOUNT' => 'Azienda',
+  'LBL_CURRENT_MONTH' => 'Mese in corso',
+  'LBL_DEADLINES' => 'Scadenze',
+  'LBL_PRODUCTS_RECENT_BUYS' => 'Articoli acquistati recentemente',
+  'LBL_PRODUCTS_RECENT_NON_BUYS' => 'Articoli non acquistati recentemente',
 );
