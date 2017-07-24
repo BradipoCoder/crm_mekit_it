@@ -21,17 +21,6 @@ array (
         'default' => true,
         'width' => '10%',
       ),
-      'account' => 
-      array (
-        'type' => 'relate',
-        'studio' => 'visible',
-        'label' => 'LBL_ACCOUNT',
-        'link' => true,
-        'width' => '10%',
-        'default' => true,
-        'id' => 'ACCOUNT_ID_C',
-        'name' => 'account',
-      ),
     ),
   ),
   'templateMeta' => 

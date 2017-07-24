@@ -14,7 +14,7 @@
 			<input type="text" id="search_field_sortable1" name="search" placeholder="{$APP_STRINGS.LBL_SEARCH}" style="margin-left:10px;width:170px">
 			<ul id="conf_sortableD1" class="connectedSortable">{$AVAILABLE}
 {foreach name=tabAvailable from=$tabAvailable key=tabColkey item=tabAvailableData}
-					<li id= '{$tabAvailableData.field}' class='ui-state-highlight'>{$tabAvailableData.label}</li>
+					<li id= '{$tabAvailableData.field}' class='ui-state-highlight'>{$tabAvailableData.label}{if $showfields}<span class="field_label" style="font-size:smaller;"><br>({$tabAvailableData.field})</span>{/if}</li>
 {/foreach}
 			</ul>
 		</div>
@@ -25,7 +25,7 @@
 			<input type="text" id="search_field_sortable2" name="search" placeholder="{$APP_STRINGS.LBL_SEARCH}" style="margin-left:10px;width:170px">
 			<ul id="conf_sortableD2" class="connectedSortable">{$HIDDEN}
 {foreach name=tabCom from=$tabHidden key=tabColkey item=tabHiddenData}
-					<li id= '{$tabHiddenData.field}' class='ui-state-default'>{$tabHiddenData.label}</li>
+					<li id= '{$tabHiddenData.field}' class='ui-state-default'>{$tabHiddenData.label}{if $showfields}<span class="field_label" style="font-size:smaller;"><br>({$tabHiddenData.field})</span>{/if}</li>
 {/foreach}
 			</ul>
 		</div>
@@ -73,8 +73,13 @@ $(function() {
         })
     });
 });
-	//$('#conf_sortableD1').sortable().sortable("refresh");
-	//$('#conf_sortableD2').sortable().sortable("refresh");
-//console.log('loaded script')
+$(document).ready(function(){
+    def = $("#colorfield option:selected").val();
+    def2 = $("#colorfield option:selected").val();
+});
+
+$( "#colorfield").change(function(){
+    def2 = $("#colorfield option:selected").val();
+});
 </script>
 {/literal}

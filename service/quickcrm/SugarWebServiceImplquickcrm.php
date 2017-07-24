@@ -63,25 +63,50 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
         self::$helperObject = new SugarWebServiceUtilquickcrm();
     }
 
-    public function login($user_auth, $application, $name_value_list = array()){
+    public function login($user_auth, $application = null, $name_value_list = array()){
 		global $db,$sugar_config;
+		
+		// force LDAP or Sugar Authentification if default authentication is SAML as SAML does not support REST API
+		if (isset($GLOBALS['sugar_config']['authenticationClass']) && $GLOBALS['sugar_config']['authenticationClass'] == 'SAMLAuthenticate'){
+			if (isset($sugar_config['quickcrm_authenticate'])){
+				$autClass = $sugar_config['quickcrm_authenticate'];
+			}
+			else {
+				$autClass = 'SugarAuthenticate';
+			}
+			$GLOBALS['sugar_config']['authenticationClass'] = $autClass; 	
+		}
+		
 		$res=parent::login($user_auth, $application, $name_value_list);
 		if ($res && isset($res['name_value_list']) && isset($_SESSION['user_id'])){
 			$user_id= $_SESSION['user_id'];
 
 
+	if (($sugar_config['sugar_version']>='6.5') && isset($sugar_config['quickcrm_server_version'])) {
 
 			$qry="select id from qcrm_users where user_id = '$user_id'";
 			$authorized = $db->getOne($qry);
 
 
+	}
+	else {
+		$stored_users= explode(",", $sugar_config['quickcrm_users']);
+		$authorized = in_array($user_id,$stored_users);
+	}
 
 			if ($authorized){
+				$res['name_value_list']['mx'] = $sugar_config['quickcrm_max'];				
 				$res['name_value_list']['fulluser'] = true;
 				require_once("modules/ACLRoles/ACLRole.php");
 				$acl_role_obj = new ACLRole();
-				$res['name_value_list']['roles'] = $acl_role_obj->getUserRoles($user_id,True); // grab a list of the current user's roles
-				if (file_exists('modules/SecurityGroups/SecurityGroup.php')){
+				$roles = $acl_role_obj->getUserRoles($user_id,False);
+				$res['name_value_list']['roles'] = array(); 
+				$res['name_value_list']['role_ids'] = array(); 
+				foreach ($roles as $role){
+					$res['name_value_list']['roles'][] = $role->name; 
+					$res['name_value_list']['role_ids'][] = $role->id; 
+				}
+				if (isset($sugar_config['securitysuite_version'])){
 					require_once('modules/SecurityGroups/SecurityGroup.php');
 					$group= new SecurityGroup();
 					$res['name_value_list']['teams'] = $group->getUserSecurityGroups($user_id);				
@@ -95,14 +120,244 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
 				$res['name_value_list']['roles'] = false;
 				$res['name_value_list']['teams'] = false;
 			}
+			$res['name_value_list']['fdow'] = $GLOBALS['current_user']->get_first_day_of_week();
 		}
 		return $res;
 	}
 	
+    function search_by_module($session, $search_string, $modules, $offset, $max_results,$assigned_user_id = '', $select_fields = array(), $unified_search_only = TRUE, $favorites = FALSE){
+		// fix access rights verification in unified search
+		// fix bug with ProjectTask
+    	$GLOBALS['log']->info('Begin: SugarWebServiceImpl->search_by_module');
+    	global  $beanList, $beanFiles;
+    	global $sugar_config,$current_language;
+
+    	$error = new SoapError();
+    	$output_list = array();
+    	if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', '', '', '', $error)) {
+    		$error->set_error('invalid_login');
+    		$GLOBALS['log']->error('End: SugarWebServiceImpl->search_by_module - FAILED on checkSessionAndModuleAccess');
+    		return;
+    	}
+    	global $current_user;
+    	if($max_results > 0){
+    		$sugar_config['list_max_entries_per_page'] = $max_results;
+    	}
+
+    	require_once('modules/Home/UnifiedSearchAdvanced.php');
+    	require_once 'include/utils.php';
+    	$usa = new UnifiedSearchAdvanced();
+        if(!file_exists($cachefile = sugar_cached('modules/unified_search_modules.php'))) {
+            $usa->buildCache();
+        }
+
+    	include $cachefile;
+    	$modules_to_search = array();
+    	$unified_search_modules['Users'] =   array('fields' => array());
+
+        //If we are ignoring the unified search flag within the vardef we need to re-create the search fields.  This allows us to search
+        //against a specific module even though it is not enabled for the unified search within the application.
+        if( !$unified_search_only )
+        {
+            foreach ($modules as $singleModule)
+            {
+                if( !isset($unified_search_modules[$singleModule]) )
+                {
+                    $newSearchFields = array('fields' => self::$helperObject->generateUnifiedSearchFields($singleModule) );
+                    $unified_search_modules[$singleModule] = $newSearchFields;
+                }
+            }
+        }
+
+
+        foreach($unified_search_modules as $module=>$data) {
+        	if (in_array($module, $modules)) {
+            	$modules_to_search[$module] = $beanList[$module];
+        	} // if
+        } // foreach
+
+        $GLOBALS['log']->info('SugarWebServiceImpl->search_by_module - search string = ' . $search_string);
+
+    	if(!empty($search_string) && isset($search_string)) {
+    		$search_string = trim($GLOBALS['db']->quote(securexss(from_html(clean_string($search_string, 'UNIFIED_SEARCH')))));
+        	foreach($modules_to_search as $name => $beanName) {
+        		$where_clauses_array = array();
+    			$unifiedSearchFields = array () ;
+    			foreach ($unified_search_modules[$name]['fields'] as $field=>$def ) {
+    				$unifiedSearchFields[$name] [ $field ] = $def ;
+    				$unifiedSearchFields[$name] [ $field ]['value'] = $search_string;
+    			}
+
+    			require_once $beanFiles[$beanName] ;
+    			$seed = new $beanName();
+    			require_once 'include/SearchForm/SearchForm2.php' ;
+    			if ($beanName == "User"
+//    			    || $beanName == "ProjectTask"
+    			    ) {
+    				if(!self::$helperObject->check_modules_access($current_user, $seed->module_dir, 'read')){
+    					continue;
+    				} // if
+    				if(!$seed->ACLAccess('ListView')) {
+    					continue;
+    				} // if
+    			}
+
+    			if ($beanName != "User"
+//    			    && $beanName != "ProjectTask"
+    			    ) {
+
+    				require_once 'include/SearchForm/SearchForm2.php' ;
+    				$searchForm = new SearchForm ($seed, $name ) ;
+
+    				$searchForm->setup(array ($name => array()) ,$unifiedSearchFields , '' , 'saved_views' /* hack to avoid setup doing further unwanted processing */ ) ;
+    				$where_clauses = $searchForm->generateSearchWhere() ;
+    				$emailQuery = false;
+
+    				$where = '';
+    				if (count($where_clauses) > 0 ) {
+    					$where = '('. implode(' ) OR ( ', $where_clauses) . ')';
+    				}
+
+					if($seed->bean_implements('ACL')){
+						if(ACLController::requireOwner($seed->module_dir, 'list')){
+							if(!empty($where)){
+								$where = "($where) AND ";
+							}
+							$where .= $seed->getOwnerWhere($current_user->id);
+						}
+						if (isset($sugar_config['securitysuite_version'])){
+						/* BEGIN - SECURITY GROUPS */
+							if(ACLController::requireSecurityGroup($seed->module_dir, 'list') )
+							{
+								require_once('modules/SecurityGroups/SecurityGroup.php');
+								$owner_where = $seed->getOwnerWhere($current_user->id);
+								$group_where = SecurityGroup::getGroupWhere($seed->table_name,$seed->module_dir,$current_user->id);
+								if(!empty($owner_where)) {
+									if(empty($where))
+										{
+											$where = " (".  $owner_where." or ".$group_where.")";
+										} else {
+											$where = "($where) AND (".  $owner_where." or ".$group_where.")";
+										}
+								} else {
+									if(!empty($where)){
+										$where .= ' AND ';
+									}
+									$where .= $group_where;
+								}
+							}
+							/* END - SECURITY GROUPS */
+						}
+					}
+
+    				$mod_strings = return_module_language($current_language, $seed->module_dir);
+
+    				if(count($select_fields) > 0)
+    				    $filterFields = $select_fields;
+    				else {
+    				    if(file_exists('custom/modules/'.$seed->module_dir.'/metadata/listviewdefs.php'))
+    					   require_once('custom/modules/'.$seed->module_dir.'/metadata/listviewdefs.php');
+        				else
+        					require_once('modules/'.$seed->module_dir.'/metadata/listviewdefs.php');
+
+        				$filterFields = array();
+        				foreach($listViewDefs[$seed->module_dir] as $colName => $param) {
+        	                if(!empty($param['default']) && $param['default'] == true)
+        	                    $filterFields[] = strtolower($colName);
+        	            }
+        	            if (!in_array('id', $filterFields))
+        	            	$filterFields[] = 'id';
+    				}
+
+    				//Pull in any db fields used for the unified search query so the correct joins will be added
+    				$selectOnlyQueryFields = array();
+    				foreach ($unifiedSearchFields[$name] as $field => $def){
+    				    if( isset($def['db_field']) && !in_array($field,$filterFields) ){
+    				        $filterFields[] = $field;
+    				        $selectOnlyQueryFields[] = $field;
+    				    }
+    				}
+
+    	            //Add the assigned user filter if applicable
+    	            if (!empty($assigned_user_id) && isset( $seed->field_defs['assigned_user_id']) ) {
+    	               $ownerWhere = $seed->getOwnerWhere($assigned_user_id);
+    	               $where = "($where) AND $ownerWhere";
+    	            }
+
+    	            if( $beanName == "Employee" )
+    	            {
+    	                $where = "($where) AND users.deleted = 0 AND users.is_group = 0 AND users.employee_status = 'Active'";
+    	            }
+
+    	            $list_params = array();
+
+    				$ret_array = $seed->create_new_list_query('', $where, $filterFields, $list_params, 0, '', true, $seed, true);
+    		        if(empty($params) or !is_array($params)) $params = array();
+    		        if(!isset($params['custom_select'])) $params['custom_select'] = '';
+    		        if(!isset($params['custom_from'])) $params['custom_from'] = '';
+    		        if(!isset($params['custom_where'])) $params['custom_where'] = '';
+    		        if(!isset($params['custom_order_by'])) $params['custom_order_by'] = '';
+    				$main_query = $ret_array['select'] . $params['custom_select'] . $ret_array['from'] . $params['custom_from'] . $ret_array['where'] . $params['custom_where'] . $ret_array['order_by'] . $params['custom_order_by'];
+    			} else {
+    				if ($beanName == "User") {
+    					$filterFields = array('id', 'user_name', 'first_name', 'last_name', 'email_address');
+    					$main_query = "select users.id, ea.email_address, users.user_name, first_name, last_name from users ";
+    					$main_query = $main_query . " LEFT JOIN email_addr_bean_rel eabl ON eabl.bean_module = '{$seed->module_dir}'
+    LEFT JOIN email_addresses ea ON (ea.id = eabl.email_address_id) ";
+    					$main_query = $main_query . "where ((users.first_name like '{$search_string}') or (users.last_name like '{$search_string}') or (users.user_name like '{$search_string}') or (ea.email_address like '{$search_string}')) and users.deleted = 0 and users.is_group = 0 and users.employee_status = 'Active'";
+    				} // if
+/*
+    				if ($beanName == "ProjectTask") {
+    					$filterFields = array('id', 'name', 'project_id', 'project_name');
+    					$main_query = "select {$seed->table_name}.project_task_id id,{$seed->table_name}.project_id, {$seed->table_name}.name, project.name project_name from {$seed->table_name} ";
+    					$seed->add_team_security_where_clause($main_query);
+    					$main_query .= "LEFT JOIN teams ON $seed->table_name.team_id=teams.id AND (teams.deleted=0) ";
+    		            $main_query .= "LEFT JOIN project ON $seed->table_name.project_id = project.id ";
+    		            $main_query .= "where {$seed->table_name}.name like '{$search_string}%'";
+    				} // if
+*/
+    			} // else
+
+    			$GLOBALS['log']->info('SugarWebServiceImpl->search_by_module - query = ' . $main_query);
+    	   		if($max_results < -1) {
+    				$result = $seed->db->query($main_query);
+    			}
+    			else {
+    				if($max_results == -1) {
+    					$limit = $sugar_config['list_max_entries_per_page'];
+    	            } else {
+    	            	$limit = $max_results;
+    	            }
+    	            $result = $seed->db->limitQuery($main_query, $offset, $limit + 1);
+    			}
+
+    			$rowArray = array();
+    			while($row = $seed->db->fetchByAssoc($result)) {
+    				$nameValueArray = array();
+    				foreach ($filterFields as $field) {
+    				    if(in_array($field, $selectOnlyQueryFields))
+    				        continue;
+    					$nameValue = array();
+    					if (isset($row[$field])) {
+    						$nameValueArray[$field] = self::$helperObject->get_name_value($field, $row[$field]);
+    					} // if
+    				} // foreach
+    				$rowArray[] = $nameValueArray;
+    			} // while
+    			$output_list[] = array('name' => $name, 'records' => $rowArray);
+        	} // foreach
+
+    	$GLOBALS['log']->info('End: SugarWebServiceImpl->search_by_module');
+    	return array('entry_list'=>$output_list);
+    	} // if
+    	return array('entry_list'=>$output_list);
+    } // fn
+
     function get_entry_list($session, $module_name, $query, $order_by,$offset, $select_fields, $link_name_to_fields_array, $max_results, $deleted, $favorites = false ){
 
         $GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_entry_list');
         global  $beanList, $beanFiles;
+        global $sugar_config;
         $error = new SoapError();
         $using_cp = false;
         if($module_name == 'CampaignProspects'){
@@ -114,14 +369,13 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
             return;
         } // if
 
-        if (!self::$helperObject->checkQuery($error, $query, $order_by)) {
+        if (!self::$helperObject->checkQuery($error, $query, $order_by,true)) { // Allow subqueries in special configurations
     		$GLOBALS['log']->info('End: SugarWebServiceImpl->get_entry_list');
         	return;
         } // if
 
         // If the maximum number of entries per page was specified, override the configuration value.
         if($max_results > 0){
-            global $sugar_config;
             $sugar_config['list_max_entries_per_page'] = $max_results;
         } // if
 
@@ -147,8 +401,8 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
             $response = $seed->retrieveTargetList($query, $select_fields, $offset,-1,-1,$deleted);
         }else
         {
-            // tweak for low performance servers
-			if (isset($sugar_config['quickcrm_norelatesearch']) && $sugar_config['quickcrm_norelatesearch']==true){
+            // tweak for mssql or low performance servers
+			if ($sugar_config['dbconfig']['db_type'] =='mssql' || (isset($sugar_config['quickcrm_norelatesearch']) && $sugar_config['quickcrm_norelatesearch']==true)){
 				$response = self::$helperObject->get_data_list($seed,$order_by, $query, $offset,-1,-1,$deleted,$favorites);
 			}
 			else {
@@ -201,6 +455,7 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
 
         $GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_entry_list');
         global  $beanList, $beanFiles;
+        global $sugar_config;
         $error = new SoapError();
         $using_cp = false;
         if($module_name == 'CampaignProspects'){
@@ -212,14 +467,13 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
             return;
         } // if
 
-        if (!self::$helperObject->checkQuery($error, $query, $order_by)) {
+        if (!self::$helperObject->checkQuery($error, $query, $order_by,true)) { // Allow subqueries in special configurations
     		$GLOBALS['log']->info('End: SugarWebServiceImpl->get_entry_list');
         	return;
         } // if
 
         // If the maximum number of entries per page was specified, override the configuration value.
         if($max_results > 0){
-            global $sugar_config;
             $sugar_config['list_max_entries_per_page'] = $max_results;
         } // if
 
@@ -245,8 +499,8 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
             $response = $seed->retrieveTargetList($query, $select_fields, $offset,-1,-1,$deleted);
         }else
         {
-            // tweak for low performance servers
-			if (isset($sugar_config['quickcrm_norelatesearch']) && $sugar_config['quickcrm_norelatesearch']==true){
+            // tweak for mssql or low performance servers
+			if ($sugar_config['dbconfig']['db_type'] =='mssql' || (isset($sugar_config['quickcrm_norelatesearch']) && $sugar_config['quickcrm_norelatesearch']==true)){
 				$response = self::$helperObject->get_data_list($seed,$order_by, $query, $offset,-1,-1,$deleted,$favorites);
 			}
 			else {
@@ -307,6 +561,20 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
         return array('result_count'=>sizeof($output_list), 'total_count' => $totalRecordCount, 'next_offset'=>$next_offset, 'entry_list'=>$output_list, 'relationship_list' => $returnRelationshipList);
     } // fn
 
+    function get_entry($session, $module_name, $id,$select_fields, $link_name_to_fields_array,$track_view = FALSE)
+    {
+        // return edit right
+        $res = self::get_entries($session, $module_name, array($id), $select_fields, $link_name_to_fields_array, $track_view);
+		if ($id != '' && $res && isset($res['entry_list'])){
+			$focus = BeanFactory::getBean($module_name, $id);
+			if($focus->id != '') {
+				$res['entry_list'][0]['name_value_list']['edit_access'] = $focus->ACLAccess("EditView");
+				$res['entry_list'][0]['name_value_list']['delete_access'] = $focus->ACLAccess("Delete");
+			}
+		}
+		return $res;
+	}
+
     function AOSget_entry($session, $module_name, $id,$select_fields, $link_name_to_fields_array,$track_view = FALSE)
     {
         $GLOBALS['log']->info('Begin: SugarWebServiceImpl->AOSget_entry');
@@ -317,6 +585,7 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
 			if($focus->id != '') {
 				$res['entry_list'][0]['name_value_list']['lineitems']=$details['lineitems'];
 				$res['entry_list'][0]['name_value_list']['groups']=$details['groups'];
+				$res['entry_list'][0]['name_value_list']['edit_access'] = $focus->ACLAccess("Save");
 			}
 		}
 		
@@ -339,10 +608,15 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
         } // if
 		
 		// fix bug with logic hooks manipulating date/time
-		
+		// store current preferences
+		$dateFormat = $current_user->getUserDateTimePreferences();
+        $datef = $dateFormat['date'];
+        $timef = $dateFormat['time'];
+        
 		$_SESSION[$current_user->user_name.'_PREFERENCES']['global']['datef'] = 'Y-m-d';		
 		$_SESSION[$current_user->user_name.'_PREFERENCES']['global']['timef'] = 'H:i';		
 		
+		$previous_user_id = '';
         $class_name = $beanList[$module_name];
         require_once($beanFiles[$class_name]);
         $seed = new $class_name();
@@ -350,10 +624,12 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
             if(is_array($value) &&  $value['name'] == 'id'){
 				if (isset($value['name'])){
 					$seed->retrieve($value['value']);
+					$previous_user_id = $seed->assigned_user_id;
 					break;
 				}
             }else if($name === 'id' ){
                 $seed->retrieve($value);
+				$previous_user_id = $seed->assigned_user_id;
             }
         }
 
@@ -373,7 +649,7 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
                 $return_fields[] = $name;
             }else{
 				if (isset($value['name'])){
-					$seed->$value['name'] = $value['value'];
+					$seed->{$value['name']} = $value['value'];
 					$return_fields[] = $value['name'];
 					// manage security suite Inherit parent
 					if ($value['name'] =='parent_type') {
@@ -385,7 +661,6 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
 				}
             }
         }
-		global $sugar_config;
 		if (empty($seed->id) && isset($sugar_config['securitysuite_inherit_parent']) && $sugar_config['securitysuite_inherit_parent'] == true && $parent_id != '' && $parent_type != ''){
 			$_REQUEST['relate_to']=$parent_type;
 			$_REQUEST['relate_id']=$parent_id;
@@ -396,10 +671,25 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
         } // if
 // FIX NS-TEAM
 // ADD NOTIFICATION SUPPORT
-		if (substr($module_name,0,4) != 'QCRM_') 
-			$seed->notify_inworkflow = true;
+		if (isset($name_value_list['assigned_user_id']) && isset($name_value_list['assigned_user_id']['value']) &&($module_name == 'Meetings' || $module_name == 'Calls')){
+			$_REQUEST['assigned_user_id'] = $name_value_list['assigned_user_id']['value'];
+		}
+		
+		$notify = self::$helperObject->checkSaveOnNotify();
+		if (substr($module_name,0,4) != 'QCRM_'){
+			if (isset($name_value_list['assigned_user_id']) && isset($name_value_list['assigned_user_id']['value']) && ($name_value_list['assigned_user_id']['value'] != $current_user->id)){
+				if ($name_value_list['assigned_user_id']['value'] != $previous_user_id){
+						$notify = true;
+				}
+			}
+			//$seed->notify_inworkflow = true;
+		}		
+		if (isset($sugar_config['quickcrm_debug']) && $sugar_config['quickcrm_debug']){
+            $GLOBALS['log']->fatal("QuickCRM Notification $module_name : " .($notify ?"YES":"NO"));
+		}
 // END FIX NS-TEAM
-        $seed->save(self::$helperObject->checkSaveOnNotify());
+
+        $seed->save($notify);
 
         $return_entry_list = self::$helperObject->get_name_value_list_for_fields($seed, $return_fields );
 
@@ -410,6 +700,10 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
         if($track_view){
             self::$helperObject->trackView($seed, 'editview');
         }
+        
+        // restore prererences
+		$_SESSION[$current_user->user_name.'_PREFERENCES']['global']['datef'] = $datef;		
+		$_SESSION[$current_user->user_name.'_PREFERENCES']['global']['timef'] = $timef;		
 
         $GLOBALS['log']->info('End: SugarWebServiceImpl->set_entry');
         return array('id'=>$seed->id, 'entry_list' => $return_entry_list);
@@ -524,7 +818,7 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
 	
     function get_relationships($session, $module_name, $module_id, $link_field_name, $related_module_query, $related_fields, $related_module_link_name_to_fields_array, $deleted, $order_by = '', $offset = 0, $limit = false)
     {
-        // FIXES ISSUES WITH EMAILS AND SORT ORDER
+        // FIXES ISSUES WITH EMAILS , ACCESS RIGHTS AND SORT ORDER
 		$GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_relationships '.$link_field_name);
         //self::$helperObject = new SugarWebServiceUtilv4_1();
         global  $beanList, $beanFiles, $sugar_config, $current_user;
@@ -571,35 +865,17 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
 
     		$list = $result['rows'];
     		$filterFields = $result['fields_set_on_rows'];
-			$check_group = false; 
 			
 			if (sizeof($list) > 0) {
     			$submodulename = $mod->$link_field_name->getRelatedModuleName();
                 $submoduletemp = BeanFactory::getBean($submodulename);
 				
-				if (isset($sugar_config['securitysuite_version'])){
-					// getBean doesn't manage Security Groups. We need to filter results
-					if(ACLController::requireSecurityGroup($submodulename, 'view')){
-						$check_group = true;
-						$allowed = array();
-
-						// rebuild list so that security group is taken into account
-						$list_ids = array();
-						foreach($list as $row) {
-							$list_ids[] = $row['id'];
-						}	
-						$query =  $submoduletemp->table_name . ".id IN ('" .implode("','",$list_ids). "')";
-						$response = self::$helperObject->get_data_list($submoduletemp,"", $query, 0,-1,-1,$deleted,false);
-						if ($response && isset($response['list'])){
-							foreach($response['list'] as $value) {
-								$allowed[] = $value->id;
-							} 
-						}
-					}	
-				}
-			
     			foreach($list as $row) {
-					if ($check_group && !in_array($row['id'],$allowed)) continue;
+   					$submoduleobject = @clone($submoduletemp);
+					$submoduleobject->retrieve($row['id']);
+					
+					if (!$submoduleobject->ACLAccess('DetailView')) continue;
+
                 	$total_count++;
 					if ($link_field_name != 'emails'){ // for emails, offset and limit are managed in the app
 						if ($total_count < $offset+1) continue;
@@ -607,13 +883,16 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
 					}
 					$added++;
 					
-   					$submoduleobject = @clone($submoduletemp);
     				// set all the database data to this object
     				foreach ($filterFields as $field) {
     					$submoduleobject->$field = $row[$field];
     				} // foreach
     				if (isset($row['id'])) {
     					$submoduleobject->id = $row['id'];
+    				}
+    				if (isset($row['edit_access'])) {
+    					$submoduleobject->edit_access = $row['edit_access'];
+    					$submoduleobject->delete_access = $row['delete_access'];
     				}
     				$output_list[] = self::$helperObject->get_return_value_for_fields($submoduleobject, $submodulename, $filterFields);
     				if (!empty($related_module_link_name_to_fields_array)) {
@@ -742,7 +1021,8 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
     function get_report($session, $id, $offset, $max_results,$language="")
     {
 		$GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_report');
-		global $current_language,$app_list_strings,$beanList;
+		global $current_language,$app_list_strings,$beanList,$sugar_config;
+		$after_75 = version_compare($sugar_config['suitecrm_version'], '7.5', '>=');
 		if ($language=="") $language=$current_language;
 		else $current_language=$language;
 		$app_list_strings = return_app_list_strings_language($language); // required for AOR. They are not initializez with web services.
@@ -816,13 +1096,14 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
             $label = str_replace(' ','_',$field->label).$i;
             $fields[$label]['field'] = $field->field;
             $fields[$label]['label'] = $field->label;
-            $fields[$label]['display'] = $field->display && !$field->group_display;
+            $fields[$label]['display'] = $field->display;
             $fields[$label]['function'] = $field->field_function;
             $fields[$label]['module'] = $field_module;
             $fields[$label]['alias'] = $field_alias;
             $fields[$label]['link'] = $field->link;
             $fields[$label]['total'] = $field->total;
 
+            if ($after_75) $fields[$label]['params'] = $field->format;
 
             if($fields[$label]['display']){
 				$header[]=$field->label;
@@ -847,15 +1128,13 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
 
                     $currency_id = isset($row[$att['alias'].'_currency_id']) ? $row[$att['alias'].'_currency_id'] : '';
 
-                    switch ($att['function']){
-                        case 'COUNT':
-                        //case 'SUM':
-							$table_row[]=$row[$name];
-                            break;
-                        default:
-							//$table_row[]=$row[$name];
-                            $table_row[]= getModuleField($att['module'], $att['field'], $att['field'], 'DetailView',$row[$name],'',$currency_id);
-                            break;
+                    $show_raw_field = ($att['function'] == 'COUNT');
+                    if ($after_75) $show_raw_field = $show_raw_field || !empty($att['params']);
+                    if ($show_raw_field) {
+                        $table_row[]= $row[$name];
+                    } else {
+                        $table_row[]= getModuleField($att['module'], $att['field'], $att['field'], 'DetailView', $row[$name],
+                            '', $currency_id);
                     }
                     if($att['total']){
                         $totals[$name][] = $row[$name];
@@ -865,9 +1144,39 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
             }
 			$values[]=$table_row;
         }
-        // $html .= $report->getTotalHtml($fields,$totals);
+		$has_total=false;
+        if (version_compare($sugar_config['suitecrm_version'], '7.2', '>=')) {
+	        //$html .= $report->getTotalHtml($fields,$totals);
+			$table_row=array();
+	        foreach($fields as $label => $field){
+    	        if(!$field['display']){
+        	        continue;
+            	}
+            	if($field['total']){
+                	$table_row[]= $field['label'] ." ".$app_list_strings['aor_total_options'][$field['total']];
+					$has_total=true;
+            	}else{
+                	$table_row[] = "";
+            	}
+        	}
+        	if ($has_total){
+				$values[]=$table_row;
+				$table_row=array();
+    	    	foreach($fields as $label => $field){
+        	    	if(!$field['display']){
+            	    	continue;
+            		}
+            		if($field['total'] && isset($totals[$label])){
+                		$table_row[]= $report->calculateTotal($field['total'],$totals[$label]);
+            		}else{
+                		$table_row[] = "";
+            		}
+        		}
+				$values[]=$table_row;
+			}
+        }
 			
-		return array('entry_list'=>array('name'=> $report->name,'previous_offset' => $previous_offset,'next_offset' => $next_offset,'last_offset' => $last_offset,'values' => $values,'header' => $header,'count' => $total_rows), 'relationship_list' => array());
+		return array('entry_list'=>array('name'=> $report->name,'previous_offset' => $previous_offset,'next_offset' => $next_offset,'last_offset' => $last_offset,'values' => $values,'header' => $header,'count' => $total_rows,'total' => $has_total), 'relationship_list' => array());
         $GLOBALS['log']->info('end: SugarWebServiceImpl->get_report');
     }
 
@@ -934,10 +1243,14 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
 			//Need to remove the stuff at the beginning of the string
 			$drawing = substr($drawing, strpos($drawing, ",")+1);
 			$drawing = base64_decode($drawing);
-			$imgRes = imagecreatefromstring($drawing);
+			
+			// we know this is an image file, as it is coming from camera or photo library
+			
+			file_put_contents($filename,$drawing);
+			//$imgRes = imagecreatefromstring($drawing);
 
-			if ($imgRes === false || imagepng($imgRes, $filename) !== true)
-				$filename = '';
+			//if ($imgRes === false || imagepng($imgRes, $filename) !== true)
+			//	$filename = '';
 		}
 		else {
 			if (file_exists($filename)) {
@@ -994,6 +1307,82 @@ class SugarWebServiceImplquickcrm extends SugarWebServiceImplv4_1
 	function get_photo($session,$module_name,$id,$field,$name="") {
 		global $sugar_config;		
 		return self::get_image_file($session,$module_name,$id,$field,$sugar_config['cache_dir'].'images/'.$id.'_'.$name);
+	} // fn
+	
+	function get_file_contents($session,$module_name,$id) {
+		// return file contents for custom modules based on file template
+		global $sugar_config;		
+		$GLOBALS['log']->info('Begin: SugarWebServiceImpl->get_file_contents');
+		$error = new SoapError();
+		if (!self::$helperObject->checkSessionAndModuleAccess($session, 'invalid_session', $module_name, 'read', 'no_access', $error)) {
+			$GLOBALS['log']->error('End: SugarWebServiceImpl->get_image_file - FAILED on checkACLAccess');
+			return;
+		} // if
+	
+		$local_location =  "upload://{$id}";
+		$fileExists=true;
+
+		if(!file_exists( $local_location )) {
+			$fileExists=false;
+			$res= "";
+		}
+		else $res= base64_encode(file_get_contents($local_location,true));
+
+		$GLOBALS['log']->info('End: SugarWebServiceImpl->get_file_contents');
+		return array('file_contents'=>array('fileExists'=> $fileExists,'file' => $res));
+
+	} // fn
+	
+	function generate_pdf($session,$module_name,$id,$template_id) {
+		global $sugar_config,$current_user;
+		
+		$GLOBALS['disable_date_format']= false;
+
+		$name='';
+		$contents=false;
+		$file = 'generate_pdf.php';
+		$dir = 'custom/QuickCRM/';
+		
+		// check for customizations
+		if (file_exists($dir . 'custom' . $file)) $file = 'custom' . $file;
+		require_once($dir . $file);
+		
+		$tmpl = new QCRM_gen_pdf();
+		$res = $tmpl->gen_pdf($module_name,$id,$template_id);
+		if ($res) {
+			$contents = base64_encode($res['contents']);
+			$name = $res['name'];
+		}
+
+		$GLOBALS['disable_date_format'] =true;
+		
+		return array('entry_list'=>array('name' => $name,'contents' => $contents));
+	} // fn
+
+	function generate_pdf_letter($session,$module_name,$id,$template_id) {
+		global $sugar_config,$current_user;
+		
+		$GLOBALS['disable_date_format']= false;
+
+		$name='';
+		$contents=false;
+		$file = 'formLetterPdf.php';
+		$dir = 'custom/QuickCRM/';
+		
+		// check for customizations
+		if (file_exists($dir . 'custom' . $file)) $file = 'custom' . $file;
+		require_once($dir . $file);
+		
+		$tmpl = new QCRM_gen_pdf_letter();
+		$res = $tmpl->gen_pdf($module_name,$id,$template_id);
+		if ($res) {
+			$contents = base64_encode($res['contents']);
+			$name = $res['name'];
+		}
+		
+		$GLOBALS['disable_date_format']= true;
+
+		return array('entry_list'=>array('name' => $name,'contents' => $contents));
 	} // fn
 
 }

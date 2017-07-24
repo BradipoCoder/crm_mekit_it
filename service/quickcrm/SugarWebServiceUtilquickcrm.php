@@ -82,6 +82,82 @@ function Qorder_beans($beans, $field_name)
 
 class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 {
+	function get_name_value_list_for_fields($value, $fields) {
+		// add support for function fields (currently aop_case_updates_threaded only)
+		$GLOBALS['log']->info('Begin: SoapHelperWebServices->get_name_value_list_for_fields');
+		global $app_list_strings;
+		global $invalid_contact_fields;
+
+		$list = array();
+		if(!empty($value->field_defs)){
+			if(empty($fields))$fields = array_keys($value->field_defs);
+			if(isset($value->assigned_user_name) && in_array('assigned_user_name', $fields)) {
+				$list['assigned_user_name'] = $this->get_name_value('assigned_user_name', $value->assigned_user_name);
+			}
+			if(isset($value->modified_by_name) && in_array('modified_by_name', $fields)) {
+				$list['modified_by_name'] = $this->get_name_value('modified_by_name', $value->modified_by_name);
+			}
+			if(isset($value->created_by_name) && in_array('created_by_name', $fields)) {
+				$list['created_by_name'] = $this->get_name_value('created_by_name', $value->created_by_name);
+			}
+
+			$filterFields = $this->filter_fields($value, $fields);
+
+
+			foreach($filterFields as $field){
+				if ($field == 'edit_access' || $field == 'delete_access'){
+					$list[$field] = $this->get_name_value($field, $value->$field);
+					continue;
+				}
+				$var = $value->field_defs[$field];
+				if(isset($value->{$var['name']})){
+					$val = $value->{$var['name']};
+					$type = $var['type'];
+
+					if(strcmp($type, 'date') == 0){
+						$val = substr($val, 0, 10);
+					}elseif(strcmp($type, 'enum') == 0 && !empty($var['options'])){
+						//$val = $app_list_strings[$var['options']][$val];
+					}
+					if ($var['name'] == 'aop_case_updates_threaded' && isset($var['function']) && !empty($var['function']['returns']) && $var['function']['returns'] == 'html')
+						{
+							$function = $var['function']['name'];
+							require_once('custom/QuickCRM/Case_Updates.php');
+							$_REQUEST[$var['name']] = $value;
+							$val = $function($value, $var['name'], '', 'DetailView');
+						}
+					
+					$list[$var['name']] = $this->get_name_value($var['name'], $val);
+				} // if
+			} // foreach
+		} // if
+		$GLOBALS['log']->info('End: SoapHelperWebServices->get_name_value_list_for_fields');
+		if ($this->isLogLevelDebug()) {
+			$GLOBALS['log']->debug('SoapHelperWebServices->get_name_value_list_for_fields - return data = ' . var_export($list, true));
+		} // if
+		return $list;
+
+	} // fn
+
+	function checkQuery($errorObject, $query, $order_by = '', $allow_subqueries = false)
+    {
+        global $sugar_config;
+        if ($allow_subqueries && isset($sugar_config['quickcrm_allqueries']) && $sugar_config['quickcrm_allqueries'] == true){
+			// !!!
+			// !!! USE THAT AT YOUR OWN RISKS
+			// !!!
+			// !!! SOME CUSTOMIZATIONS REQUIRE COMPLEX WHERE STATEMENTS WITH SUBQUERIES
+			// !!! SUBQUERIES ARE PROHIBITED BY include/SugarSQLValidate.php
+			// !!! EXCEPT FOR A LIST OF TABLES SUCH AS email_addr_bean_rel
+			// !!!
+			// !!! SETTING THIS CONFIGURATION VARIABLE WILL ALLOW ANY WHERE CONDITION
+			// !!! BUT ONLY IN get_entry_list FUNCTION
+			// !!!
+        	return true;
+    	}
+        return parent::checkQuery($errorObject, $query, $order_by);
+    }
+
     function filter_fields($value, $fields)
     {
         // fix bug with many2one relationship fields not returned
@@ -157,7 +233,7 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 			$link_field_name = $link_name_value_fields['name'];
 			$link_module_fields = $link_name_value_fields['value'];
 			if (is_array($link_module_fields) && !empty($link_module_fields)) {
-				$result = $this->getRelationshipResults($bean, $link_field_name, $link_module_fields);
+				$result = $this->getRelationshipResults($bean, $link_field_name, $link_module_fields,'', '', 0, '', false);// do not return access rights
 				if (!$result) {
 					$link_output[] = array('name' => $link_field_name, 'records' => array());
 					continue;
@@ -210,8 +286,8 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 
 			foreach($filterFields as $field){
 				$var = $value->field_defs[$field];
-				if(isset($value->$var['name'])){
-					$val = $value->$var['name'];
+				if(isset($value->{$var['name']})){
+					$val = $value->{$var['name']};
 					$type = $var['type'];
 
 					if(strcmp($type, 'date') == 0){
@@ -275,6 +351,10 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 		}
 
 		$query = $seed->create_new_list_query($order_by, $where,array(),$params, $show_deleted);
+
+		if ($seed->module_name == 'Meetings' && strpos($where, 'm_u.') !== false) // Allow searching participants
+			$query = str_replace ('FROM meetings','FROM meetings LEFT JOIN  meetings_users m_u on m_u.meeting_id = meetings.id',$query);
+		
 		return $seed->process_list_query($query, $row_offset, $limit, $max, $where);
 	}
 	
@@ -292,8 +372,10 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 		}
 			   
 		$filter=array();
-		foreach ($select_fields as $key=>$value_array) {
-			$filter[$value_array]=true;
+		if (is_array ($select_fields)){
+			foreach ($select_fields as $key=>$value_array) {
+				$filter[$value_array]=true;
+			}
 		}
 		
 		$params = array('distinct'=>true);
@@ -303,9 +385,10 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 		
 		if ($seed->module_name == 'Users' || $seed->module_name == 'Employees') $query = $seed->create_new_list_query($order_by, $where,array(),$params, $show_deleted);
 		else $query = $seed->create_new_list_query($order_by, $where,$filter,$params, $show_deleted, '', false, null, true);
-		if ($seed->module_name == 'Meetings') // Allow searching participants
-			$query = str_replace ('FROM meetings','FROM meetings LEFT JOIN  meetings_users m_u on  m_u.meeting_id = meetings.id',$query);
 		
+		if ($seed->module_name == 'Meetings' && strpos($where, 'm_u.') !== false) // Allow searching participants
+			$query = str_replace ('FROM meetings','FROM meetings LEFT JOIN  meetings_users m_u on m_u.meeting_id = meetings.id',$query);
+
 		return $seed->process_list_query($query, $row_offset, $limit, $max, $where);
 	}
 
@@ -446,6 +529,10 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
                         $row[$field] = "";
                     }
                 }
+				$row['edit_access']= $bean->ACLAccess("EditView");
+				$row['delete_access']= $bean->ACLAccess("Delete");
+				$filterFields[] = 'edit_access';
+				$filterFields[] = 'delete_access';
                 //Users can't see other user's hashes
                 if(is_a($bean, 'User') && $current_user->id != $bean->id && isset($row['user_hash'])) {
                     $row['user_hash'] = "";
@@ -460,7 +547,7 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 
 	} // fn
 	
-    function getRelationshipResults($bean, $link_field_name, $link_module_fields, $optional_where = '', $order_by = '', $offset = 0, $limit = '') {
+    function getRelationshipResults($bean, $link_field_name, $link_module_fields, $optional_where = '', $order_by = '', $offset = 0, $limit = '', $with_access_rights=true) {
 		// fix bug with sort order and offset
         $GLOBALS['log']->info('Begin: SoapHelperWebServices->getRelationshipResults');
 		require_once('include/TimeDate.php');
@@ -522,6 +609,13 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
                         $row[$field] = "";
                     }
                 }
+                if ($with_access_rights){
+                	// Not needed during Offline Sync
+					$row['edit_access']= $bean->ACLAccess("EditView");
+					$row['delete_access']= $bean->ACLAccess("Delete");
+					$filterFields[] = 'edit_access';
+					$filterFields[] = 'delete_access';
+				}
                 //Users can't see other user's hashes
                 if(is_a($bean, 'User') && $current_user->id != $bean->id && isset($row['user_hash'])) {
                     $row['user_hash'] = "";
@@ -613,8 +707,90 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 
 	} // fn
 	
+    public function buildChartImage($chart, array $reportData, array $fields,$asDataURI = true, $generateImageMapId = false){
+        global $current_user;
+        require_once 'modules/AOR_Charts/lib/pChart/pChart.php';
+
+        if($generateImageMapId !== false){
+            $generateImageMapId = $current_user->id."-".$generateImageMapId;
+        }
+
+        $html = '';
+        if(!in_array($chart->type, array('bar','line','pie','radar','rose', 'grouped_bar', 'stacked_bar'))){
+            return $html;
+        }
+        $x = $fields[$chart->x_field];
+        $y = $fields[$chart->y_field];
+        if(!$x || !$y){
+            //Malformed chart object - missing an axis field
+            return '';
+        }
+        $xName = str_replace(' ','_',$x->label) . $chart->x_field;
+        $yName = str_replace(' ','_',$y->label) . $chart->y_field;
+
+        $chartData = new pData();
+        $chartData->loadPalette("modules/AOR_Charts/lib/pChart/palettes/navy.color", TRUE);
+        $labels = array();
+        foreach($reportData as $row){
+            $chartData->addPoints($row[$yName],'data');
+            $chartData->addPoints($row[$xName],'Labels');
+            $labels[] = $row[$xName];
+        }
+
+        $chartData->setSerieDescription("Months","Month");
+        $chartData->setAbscissa("Labels");
+
+        $imageHeight = 700;
+        $imageWidth = 700;
+
+        $chartPicture = new pImage($imageWidth,$imageHeight,$chartData);
+        if($generateImageMapId){
+            $imageMapDir = create_cache_directory('modules/AOR_Charts/ImageMap/'.$current_user->id.'/');
+            $chartPicture->initialiseImageMap($generateImageMapId,IMAGE_MAP_STORAGE_FILE,$generateImageMapId,$imageMapDir);
+        }
+
+        $chartPicture->Antialias = True;
+
+        $chartPicture->drawFilledRectangle(0,0,$imageWidth-1,$imageHeight-1,array("R"=>240,"G"=>240,"B"=>240,"BorderR"=>0,"BorderG"=>0,"BorderB"=>0,));
+
+        $chartPicture->setFontProperties(array("FontName"=>"modules/AOR_Charts/lib/pChart/fonts/verdana.ttf","FontSize"=>14));
+
+        $chartPicture->drawText($imageWidth/2,20,$chart->name,array("R"=>0,"G"=>0,"B"=>0,'Align'=>TEXT_ALIGN_TOPMIDDLE));
+        $chartPicture->setFontProperties(array("FontName"=>"modules/AOR_Charts/lib/pChart/fonts/verdana.ttf","FontSize"=>6));
+
+        $chartPicture->setGraphArea(60,60,$imageWidth-60,$imageHeight-100);
+
+        switch($chart->type){
+            case 'radar':
+                $chart->buildChartImageRadar($chartPicture, $chartData, !empty($generateImageMapId));
+                break;
+            case 'pie':
+                $chart->buildChartImagePie($chartPicture,$chartData, $reportData,$imageHeight, $imageWidth, $xName, !empty($generateImageMapId));
+                break;
+            case 'line':
+                $chart->buildChartImageLine($chartPicture, !empty($generateImageMapId));
+                break;
+            case 'bar':
+            default:
+                $chart->buildChartImageBar($chartPicture, !empty($generateImageMapId));
+                break;
+        }
+        if($generateImageMapId) {
+            $chartPicture->replaceImageMapTitle("data", $labels);
+        }
+        ob_start();
+        // BUG in SuiteCRM
+        $chartPicture->render(NULL);
+        $img = ob_get_clean();
+        if($asDataURI){
+            return 'data:image/png;base64,'.base64_encode($img);
+        }else{
+            return $img;
+        }
+    }
+
     function buildChartHTMLPChart($chart,array $reportData, array $fields,$index = 0){
-        $imgUri = $chart->buildChartImage($reportData,$fields,true,$index);
+        $imgUri = $this->buildChartImage($chart,$reportData,$fields,true,$index);
         $img = "<img id='{$chart->id}_img' src='{$imgUri}'>";
         return $img;
     }

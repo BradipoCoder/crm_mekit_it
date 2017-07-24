@@ -31,6 +31,10 @@ $mod_strings['LBL_ENABLED_MODULE'] = 'Schakel Module in';
 
 $mod_strings['LBL_GENERAL'] = 'Algemeen';
 $mod_strings['LBL_ROWSPERPAGE'] = 'Regels per pagina';
+$mod_strings['LBL_ROWSPERDASHLET'] ="Regels per Dashlet";
+$mod_strings['LBL_ROWSPERSUBPANEL'] ="Regels per Subpanel";
+$mod_strings['LBL_OFFLINE_MAX'] = 'Maximale Offline duur (dagen)';
+$mod_strings['LBL_AUDIONOTES'] = 'Audio Notities';
 
 $mod_strings['LBL_DISPLAYED_FIELDS_TITLE'] = 'Weergegeven velden';
 $mod_strings['LBL_AVAILABLE_FIELDS'] = 'Beschikbaar';

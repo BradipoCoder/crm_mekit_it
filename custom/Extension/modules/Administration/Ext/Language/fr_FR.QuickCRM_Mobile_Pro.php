@@ -31,6 +31,10 @@ $mod_strings['LBL_ENABLED_MODULE'] = 'Module Actif';
 
 $mod_strings['LBL_GENERAL'] = 'Général';
 $mod_strings['LBL_ROWSPERPAGE'] = 'Lignes par page';
+$mod_strings['LBL_ROWSPERDASHLET'] = 'Lignes par dashlet';
+$mod_strings['LBL_ROWSPERSUBPANEL'] = 'Lignes par subpanel';
+$mod_strings['LBL_OFFLINE_MAX'] = 'Durée maximum Offline (jours)';
+$mod_strings['LBL_AUDIONOTES'] = 'Notes Audio';
 $mod_strings['LBL_ADD_JAVASCRIPT'] = 'Fichier Javascript supplémentaire';
 
 $mod_strings['LBL_DISPLAYED_FIELDS_TITLE'] = 'Champs affichés';

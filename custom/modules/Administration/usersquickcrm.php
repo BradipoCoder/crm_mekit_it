@@ -1,10 +1,10 @@
 <?php
 /*********************************************************************************
  * This file is part of QuickCRM Mobile Full.
- * QuickCRM Mobile Full is a mobile client for SugarCRM
+ * QuickCRM Mobile Full is a mobile client for Sugar/SuiteCRM
  *
  * Author : NS-Team (http://www.ns-team.fr)
- * All rights (c) 2011-2016 by NS-Team
+ * All rights (c) 2011-2017 by NS-Team
  *
  * This Version of the QuickCRM Mobile Full is licensed software and may only be used in
  * alignment with the License Agreement received with this Software.
@@ -20,6 +20,15 @@ global $mod_strings;
 global $app_strings;
 global $sugar_config;
 global $db;
+
+echo getClassicModuleTitle(
+    "Administration",
+    array(
+        "<a href='index.php?module=Administration&action=index'>".translate('LBL_MODULE_NAME','Administration')."</a>",
+        $mod_strings['LBL_USERS_QUICKCRM_TITLE'],
+    ),
+    false
+);
 
 require_once('modules/Administration/Administration.php');
 require_once('custom/modules/Administration/QuickCRM_utils.php');
@@ -78,15 +87,13 @@ foreach ($stored_users as $saved) {
 $check='';
 $displayLimitDate='';
 $checkKey=false;
-if (isset($sugar_config['quickcrm_max']) && ($sugar_config['quickcrm_max']>0) ){
-    $check .= <<<EOQ
-	if (button.form.authorized.value=="") { alert ('{$mod_strings['LBL_NO_USER']}'); return false;}
-	var nb=button.form.authorized.value.split(',').length;
-	if (nb > {$sugar_config['quickcrm_max']}) { alert ('{$mod_strings['LBL_TOOMANYUSERS']}'); return false;}
-EOQ;
-}
+$current_code="";
 
-if ($sugar_config['quickcrm_trial'] == false) {
+
+
+    if (isset($administration->settings['QuickCRM_key'])){
+        $current_code=$administration->settings['QuickCRM_key'];
+    }
     if (!isset($administration->settings['QuickCRM_keyverified']) || $administration->settings['QuickCRM_keyverified']==''){
         $checkKey=true;
         if (isset($administration->settings['QuickCRM_InDt'])) {
@@ -98,24 +105,37 @@ if ($sugar_config['quickcrm_trial'] == false) {
             }
         }
     }
+    elseif ($current_code !='') {
+			$res = QCRMMaxUsers($current_code);
+			if ($res != -1) $sugar_config['quickcrm_max'] = $res;
+    }
     if ($checkKey) {
         $check .= <<<EOQ
 		if (button.form.trial_code.value=="") { alert ('{$mod_strings['LBL_NOCODE']}'); return false;}
 EOQ;
     }
+
+
+if (isset($sugar_config['quickcrm_max']) && ($sugar_config['quickcrm_max']>0) ){
+    $check .= <<<EOQ
+	if (button.form.authorized.value=="") { alert ('{$mod_strings['LBL_NO_USER']}'); return false;}
+	var nb=button.form.authorized.value.split(',').length;
+	if (nb > {$sugar_config['quickcrm_max']}) { alert ('{$mod_strings['LBL_TOOMANYUSERS']}'); return false;}
+EOQ;
 }
+
 if(!function_exists("curl_init")) {
     echo "<span style='color:red'>ERROR: curl PHP extension must be enabled prior to QuickCRM settings</span><br><br>";
 }
 
 $the_form = "";
 
-if ($sugar_config['sugar_version']<'6.5'){
+if ($sugar_config['sugar_version']<'6.5.16'){
     $the_form .= <<<EOQ
 	<script type="text/javascript" src="custom/QuickCRM/lib/js/jquery-1.7.2.min.js"></script>
 EOQ;
 }
-if (!suitecrmVersion() || suitecrmVersion() < '7.2') {
+if (!suitecrmVersion() || !suitecrmVersionisAtLeast('7.2')) {
     $the_form .= <<<EOQ
 	<script type="text/javascript" src="custom/QuickCRM/lib/js/jquery-ui-1.8.21.custom.min.js"></script>
 EOQ;
@@ -167,23 +187,14 @@ $the_form .= <<<EOQ
 		<input title='{$app_strings['LBL_CANCEL_BUTTON_TITLE']}' accessKey='X' class='button' onclick="location.href='index.php?module=Administration&action=index';" type='button' name='button' value='  {$app_strings['LBL_CANCEL_BUTTON_TITLE']}  '>
 EOQ;
 
-$current_code='';
 $dt='';
 $keyverified=false;
-if ($sugar_config['quickcrm_trial'] != false) {
-    if (isset($sugar_config['quickcrm_trialcode'])){
-        $current_code=$sugar_config['quickcrm_trialcode'];
-    }
-}
-else {
-    if (isset($administration->settings['QuickCRM_key'])){
-        $current_code=$administration->settings['QuickCRM_key'];
-    }
+
     if (isset($administration->settings['QuickCRM_keyverified'])){
         $dt=$administration->settings['QuickCRM_keyverified'];
         if ($dt!=='') $keyverified=true;
     }
-}
+
 
 if ($keyverified){
     $the_form .= <<<EOQ

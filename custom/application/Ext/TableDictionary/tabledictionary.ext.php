@@ -8,6 +8,11 @@ include('custom/metadata/mkt_worklogs_casesMetaData.php');
 
  
  //WARNING: The contents of this file are auto-generated
+include('custom/metadata/mkt_accountextras_accountsMetaData.php');
+
+
+ 
+ //WARNING: The contents of this file are auto-generated
 include('custom/metadata/mkt_commercial_zones_accountsMetaData.php');
 
 

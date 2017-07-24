@@ -1,10 +1,10 @@
 <?php
 /*********************************************************************************
  * This file is part of QuickCRM Mobile Full.
- * QuickCRM Mobile Full is a mobile client for SugarCRM
+ * QuickCRM Mobile Full is a mobile client for Sugar/SuiteCRM
  * 
  * Author : NS-Team (http://www.ns-team.fr)
- * All rights (c) 2011-2016 by NS-Team
+ * All rights (c) 2011-2017 by NS-Team
  *
  * This Version of the QuickCRM Mobile Full is licensed software and may only be used in 
  * alignment with the License Agreement received with this Software.
@@ -57,6 +57,12 @@ foreach ($qutils->server_config['search'][$module] as $field => $data ){
 }
 
 $ss->assign('tabHidden', $hidden_fields);
+
+$show_fields = false;
+if (isset($sugar_config['quickcrm_show_fieldname'])){
+	$show_fields = $sugar_config['quickcrm_show_fieldname'];
+}
+$ss->assign('showfields', $show_fields);
 
 $ss->display('custom/modules/Administration/tpls/QCRMSearch.tpl');
 

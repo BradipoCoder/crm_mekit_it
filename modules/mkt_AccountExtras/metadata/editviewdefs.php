@@ -37,12 +37,6 @@ array (
         0 => 
         array (
           0 => 'name',
-          1 => 
-          array (
-            'name' => 'account',
-            'studio' => 'visible',
-            'label' => 'LBL_ACCOUNT',
-          ),
         ),
         1 => 
         array (
@@ -51,6 +45,17 @@ array (
             'name' => 'dati_cliente',
             'studio' => 'visible',
             'label' => 'LBL_DATI_CLIENTE',
+          ),
+          1 => 
+          array (
+            'name' => 'mkt_accountextras_accounts_name',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'mkt_accountextras_accounts_name',
           ),
         ),
       ),

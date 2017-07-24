@@ -49,15 +49,6 @@ array (
     array (
       'default' => 
       array (
-        0 => 
-        array (
-          0 => 
-          array (
-            'name' => 'account',
-            'studio' => 'visible',
-            'label' => 'LBL_ACCOUNT',
-          ),
-        ),
         1 => 
         array (
           0 => 'date_modified',
@@ -97,14 +88,16 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_PRODUCTS_RECENT_BUYS',
           ),
+          1 => 
+          array (
+            'name' => 'mkt_accountextras_accounts_name',
+          ),
         ),
         6 => 
         array (
           0 => 
           array (
-            'name' => 'products_recent_non_buys',
-            'studio' => 'visible',
-            'label' => 'LBL_PRODUCTS_RECENT_NON_BUYS',
+            'name' => 'mkt_accountextras_accounts_name',
           ),
         ),
       ),

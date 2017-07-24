@@ -30,6 +30,10 @@ $mod_strings['LBL_DEVGUIDE_QUICKCRM'] = "Advanced JavaScript customizations";
 $mod_strings['LBL_ENABLED_MODULE'] = 'Módulo habilitado';
 $mod_strings['LBL_GENERAL'] = 'General';
 $mod_strings['LBL_ROWSPERPAGE'] = 'Filas por página';
+$mod_strings['LBL_ROWSPERDASHLET'] ="Elementos por Dashlet";
+$mod_strings['LBL_ROWSPERSUBPANEL'] ="Elementos por Subpaneles";
+$mod_strings['LBL_OFFLINE_MAX'] = 'Duración sin conexión máxima (días)';
+$mod_strings['LBL_AUDIONOTES'] = 'Notas de audio';
 
 $mod_strings['LBL_DISPLAYED_FIELDS_TITLE'] = 'Campos mostrados';
 $mod_strings['LBL_AVAILABLE_FIELDS'] = 'Disponible';

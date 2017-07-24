@@ -74,7 +74,6 @@ $mod_strings = array (
   'LBL_NEW_FORM_TITLE' => 'Nuovo Specchietto Cliente',
   'LBL_DATI_CLIENTE' => 'Dati Cliente',
   'LBL_DETAILVIEW_PANEL1' => 'Altri Dati',
-  'LBL_ACCOUNT_ACCOUNT_ID' => 'Azienda (relativo Aziende ID)',
   'LBL_ACCOUNT' => 'Azienda',
   'LBL_CURRENT_MONTH' => 'Mese in corso',
   'LBL_DEADLINES' => 'Scadenze',

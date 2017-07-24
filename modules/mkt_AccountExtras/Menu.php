@@ -50,3 +50,6 @@ if(ACLController::checkAccess('mkt_AccountExtras', 'edit', true)){
 if(ACLController::checkAccess('mkt_AccountExtras', 'list', true)){
     $module_menu[]=array('index.php?module=mkt_AccountExtras&action=index&return_module=mkt_AccountExtras&return_action=DetailView', $mod_strings['LNK_LIST'],'View', 'mkt_AccountExtras');
 }
+if(ACLController::checkAccess('mkt_AccountExtras', 'import', true)){
+    $module_menu[]=array('index.php?module=Import&action=Step1&import_module=mkt_AccountExtras&return_module=mkt_AccountExtras&return_action=index', $app_strings['LBL_IMPORT'], 'Import', 'mkt_AccountExtras');
+}

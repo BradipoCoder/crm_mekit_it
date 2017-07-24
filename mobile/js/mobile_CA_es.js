@@ -68,7 +68,7 @@ var RES_MOBILE='Mòbil',
 	RES_GO_ONLINE='Connectar-se',
 	RES_GO_OFFLINE='Desconnectar-se',
 	RES_SYNC='Sincronitzar',
-	RES_OFFLINE_ERR_CANCEL='No es pot connectar a SugarCRM.\nIgnorar els canvis i tornar en línia';
+	RES_OFFLINE_ERR_CANCEL='No es pot connectar a Sugar/SuiteCRM.\nIgnorar els canvis i tornar en línia';
 // 3.1
 var RES_DEF_LOCK='Establir codi',
 	RES_ENTER_LOCK='Introdueixi la seva contrasenya',

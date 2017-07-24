@@ -1,10 +1,10 @@
 <?php
 /*********************************************************************************
  * This file is part of QuickCRM Mobile Full.
- * QuickCRM Mobile Full is a mobile client for SugarCRM
+ * QuickCRM Mobile Full is a mobile client for Sugar/SuiteCRM
  * 
  * Author : NS-Team (http://www.ns-team.fr)
- * All rights (c) 2011-2016 by NS-Team
+ * All rights (c) 2011-2017 by NS-Team
  *
  * This Version of the QuickCRM Mobile Full is licensed software and may only be used in 
  * alignment with the License Agreement received with this Software.
@@ -42,29 +42,46 @@ $ss->assign('TITLE', $app_list_strings["moduleList"][$module] . ' - ' . $MBmod_s
 
 if (!isset($qutils->mobile['detail']) ||!isset($qutils->mobile['detail'][$module]) || $qutils->mobile['detail'][$module] == False){
 	$ss->assign('HIDEFIELDS', "style='display:none;'");
-	$ss->assign('IS_SYNCED', $MBmod_strings['LBL_SYNC_TO_DETAILVIEW_NOTICE']);
+
+	// label doe not exist on old Sugar versions
+	$sync_label = (isset($MBmod_strings['LBL_SYNC_TO_DETAILVIEW_NOTICE'])?$MBmod_strings['LBL_SYNC_TO_DETAILVIEW_NOTICE']:'Detail view is synced with Edit View');
+
+	$ss->assign('IS_SYNCED', $sync_label);
+	$displayed=array();
+	$synced =true;
 }
-else
+else {
 	$displayed = $qutils->mobile['detail'][$module];
+	$synced=false;
+}
 
 $available_fields=array();
-foreach ($displayed as $field){
-	$label = $qutils->getFieldLabel ($module,$field);
-	$available_fields[]=array('field'=>$field,'label'=>$label);
-}
-$ss->assign('tabAvailable', $available_fields);
-
 $hidden_fields=array();
-$preset_fields = $qutils->QgetPresetModuleFields();
-if (isset($preset_fields[$module])) $preset_fields = $preset_fields[$module];
-else $preset_fields = array();
 
-foreach ($qutils->server_config['fields'][$module] as $field => $data ){
-	if (!in_array($field,$displayed) && !in_array($field,$preset_fields)){
-		$hidden_fields[]=array('field'=>$field,'label'=>$data['label']);
+if (!$synced){
+	foreach ($displayed as $field){
+		$label = $qutils->getFieldLabel ($module,$field);
+		$available_fields[]=array('field'=>$field,'label'=>$label);
+	}
+
+	$preset_fields = $qutils->QgetPresetModuleFields();
+	if (isset($preset_fields[$module])) $preset_fields = $preset_fields[$module];
+	else $preset_fields = array();
+
+	foreach ($qutils->server_config['fields'][$module] as $field => $data ){
+		if (!in_array($field,$displayed) && !in_array($field,$preset_fields)){
+			$hidden_fields[]=array('field'=>$field,'label'=>$data['label']);
+		}
 	}
 }
+$ss->assign('tabAvailable', $available_fields);
 $ss->assign('tabHidden', $hidden_fields);
+
+$show_fields = false;
+if (isset($sugar_config['quickcrm_show_fieldname'])){
+	$show_fields = $sugar_config['quickcrm_show_fieldname'];
+}
+$ss->assign('showfields', $show_fields);
 
 $ss->display('custom/modules/Administration/tpls/QCRMDetail.tpl');
 

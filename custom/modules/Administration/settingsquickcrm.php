@@ -1,10 +1,10 @@
 <?php
 /*********************************************************************************
  * This file is part of QuickCRM Mobile Full.
- * QuickCRM Mobile Full is a mobile client for SugarCRM
+ * QuickCRM Mobile Full is a mobile client for Sugar/SuiteCRM
  * 
  * Author : NS-Team (http://www.ns-team.fr)
- * All rights (c) 2011-2016 by NS-Team
+ * All rights (c) 2011-2017 by NS-Team
  *
  * This Version of the QuickCRM Mobile Full is licensed software and may only be used in 
  * alignment with the License Agreement received with this Software.
@@ -40,20 +40,29 @@ if ($sugar_config['quickcrm_trial'] == false) {
 
 
 echo '<script>ajaxStatus.hideStatus();</script>';
+echo getClassicModuleTitle(
+    "Administration",
+    array(
+        "<a href='index.php?module=Administration&action=index'>".translate('LBL_MODULE_NAME','Administration')."</a>",
+        $mod_strings['LBL_SETTINGS_QUICKCRM_TITLE'],
+    ),
+    false
+);
 require_once('custom/modules/Administration/QuickCRM_utils.php');
 $qutils=new QUtils();
 $qutils->LoadMobileConfig(!isset($_REQUEST['conf_module'])); // refresh first open only
 
 $groupusers_checked=($qutils->mobile['groupusers']?' checked="checked"':'');
 $groupusers_title= $Usersmod_strings['LBL_GROUP_USER'];
-$users_dropdown_checked=((!isset($qutils->mobile['users_dropdown']) || $qutils->mobile['users_dropdown'])?' checked="checked"':'');
-$users_dropdown_title = $app_list_strings["moduleList"]['Users'].": ".$MBmod_strings['fieldTypes']['enum'];
 $native_cal_checked=((!isset($qutils->mobile['native_cal']) || $qutils->mobile['native_cal'])?' checked="checked"':'');
 $native_cal_title = $mod_strings['LBL_NATIVE_CAL'];
 $force_lock_checked=((!isset($qutils->mobile['force_lock']) || $qutils->mobile['force_lock'])?' checked="checked"':'');
 $force_lock_title = $mod_strings['LBL_FORCE_LOCK'];
 $documents_sync_checked=((!isset($qutils->mobile['documents_sync']) || $qutils->mobile['documents_sync'])?' checked="checked"':'');
 $documents_sync_title = $app_list_strings["moduleList"]["Documents"] . ': ' . $app_list_strings["moduleList"]["Sync"];
+$audio_notes_checked=((!isset($qutils->mobile['audio_notes']) || $qutils->mobile['audio_notes'])?' checked="checked"':'');
+$audio_notes_title = $mod_strings['LBL_AUDIONOTES'];
+
 if ($suitecrm){
 	$AOSmod_strings=return_module_language($current_language, 'AOS_Products');
 	if (!isset($qutils->mobile['productimage'])) $qutils->mobile['productimage'] =true;
@@ -92,11 +101,35 @@ echo <<<EOQ
 						</td>	
 					</tr>
 					<tr>
+						<td id="rowspersubpanel_label" width="10%" valign="top" scope="col">
+						<label for="rowspersubpanel">{$mod_strings['LBL_ROWSPERSUBPANEL']}</label>
+						</td>
+						<td width="40%" valign="top">
+						<input id="rowspersubpanel" type="text" tabindex="0" title="" value="{$qutils->mobile['rowspersubpanel']}" size="10" name="rowspersubpanel"/>
+						</td>	
+					</tr>
+					<tr>
+						<td id="rowsperdashlet_label" width="10%" valign="top" scope="col">
+						<label for="rowsperdashlet">{$mod_strings['LBL_ROWSPERDASHLET']}</label>
+						</td>
+						<td width="40%" valign="top">
+						<input id="rowsperdashlet" type="text" tabindex="0" title="" value="{$qutils->mobile['rowsperdashlet']}" size="10" name="rowsperdashlet"/>
+						</td>	
+					</tr>
+					<tr>
 						<td id="native_cal_label" width="10%" valign="top" scope="col">
 						<label for="native_cal">{$native_cal_title}</label>
 						</td>
 						<td width="40%" valign="top">
 						<input id="native_cal" type="checkbox" {$native_cal_checked} title="" name="native_cal">
+						</td>	
+					</tr>
+					<tr>
+						<td id="offline_max_days_label" width="10%" valign="top" scope="col">
+						<label for="offline_max_days">{$mod_strings['LBL_OFFLINE_MAX']}</label>
+						</td>
+						<td width="40%" valign="top">
+						<input id="offline_max_days" type="text" tabindex="0" title="" value="{$qutils->mobile['offline_max_days']}" size="10" name="offline_max_days"/>
 						</td>	
 					</tr>
 					<tr>
@@ -108,19 +141,19 @@ echo <<<EOQ
 						</td>	
 					</tr>
 					<tr>
+						<td id="audio_notes_label" width="10%" valign="top" scope="col">
+						<label for="audio_notes">{$audio_notes_title}</label>
+						</td>
+						<td width="40%" valign="top">
+						<input id="audio_notes" type="checkbox" {$audio_notes_checked} title="" name="audio_notes">
+						</td>	
+					</tr>
+					<tr>
 						<td id="force_lock_label" width="10%" valign="top" scope="col">
 						<label for="force_lock">{$force_lock_title}</label>
 						</td>
 						<td width="40%" valign="top">
 						<input id="force_lock" type="checkbox" {$force_lock_checked} title="" name="force_lock">
-						</td>	
-					</tr>
-					<tr>
-						<td id="users_dropdown_label" width="10%" valign="top" scope="col">
-						<label for="users_dropdown">{$users_dropdown_title}</label>
-						</td>
-						<td width="40%" valign="top">
-						<input id="users_dropdown" type="checkbox" {$users_dropdown_checked} title="" name="users_dropdown">
 						</td>	
 					</tr>
 					<tr>

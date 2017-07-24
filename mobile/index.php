@@ -5,13 +5,13 @@
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 		<meta name="apple-itunes-app" content="app-id=593452214">
         <link rel="apple-touch-icon" href="images/QuickCRM-Pro.png"/>
-        <script type="text/javascript" src="lib/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-1.8.2.min.js"></script>
         <script src="https://www.google.com/jsapi"></script>
         <link rel="stylesheet" href="lib/jquerymobile/jquery.mobile-1.4.5.min.css" />
         <link rel="stylesheet" href="lib/jquerymobile/quickcrm.min.css" />
         <link rel="stylesheet" href="lib/jquerymobile/icon-pack-custom.css" />
         <link rel="stylesheet" href="lib/mobiscroll/css/mobiscroll.custom-2.17.1.min.css" />
-        <link rel="stylesheet" href="css/quickcrm5.0.css" />
+        <link rel="stylesheet" href="css/quickcrm5.5.css" />
         <script src="lib/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
 
 
@@ -20,7 +20,7 @@
         <script src="lib/drawing/jquery.jqscribble.js"></script>
         <script src="lib/drawing/jqscribble.extrabrushes.js"></script>
         <script src="lib/drawing/Drawing_utils.js"></script>
-        <script type="text/javascript" src="js/quickcrm-webutils-5.2.0.min.js"></script>
+        <script type="text/javascript" src="js/quickcrm-webutils-5.5.0.min.js"></script>
         <script type="text/javascript" src="lib/json2.min.js"></script>
 		
 		<script type="text/javascript" language="Javascript">
@@ -85,6 +85,7 @@ function cachedScript (url, options) {
 				catch(err){}
 			}
 			catch(err){
+					console.log(err);
 			}
 		});
 };
@@ -111,7 +112,7 @@ function InitApp(err) {
 	}
 	else {
 		var msg;
-		if (err===1) msg='Please select mobile users in SugarCRM';
+		if (err===1) msg='Please select mobile users in Sugar/SuiteCRM';
 		else msg='An error occured. Please check your configuration';
 		$('#LoginLoading').html(msg);
 	}
@@ -206,7 +207,7 @@ function LoadScripts() {
 			$.cachedScript(QuickCRMAddress+"/js/mobile_"+webL+".js?v="+quickcrm_upd_time);
 
 
-			$.cachedScript("js/quickcrm-web-5.2.2.min.js").done(function(script, textStatus) {
+			$.cachedScript("js/quickcrm-web-5.7.0.min.js").done(function(script, textStatus) {
 
 
 
@@ -273,7 +274,7 @@ function LoadScriptsOld() {
 
 			removeOldScripts(quickcrm_upd_time);
 
-			proxy_url=(QuickCRMAddress+(QuickCRMAddress.substr(-1)==="/"?"":"/"))+(mobile_app?"REST":"../service/v"+(sugar_version >= '6.5'?'4_1':(sugar_version >= '6.2'?'4':'2')))+"/rest.php";
+			proxy_url=(QuickCRMAddress+(QuickCRMAddress.substr(-1)==="/"?"":"/"))+(mobile_app?"REST":"../service/v"+(sugar_version >= '6.5'?'4_1':(sugar_version >= '6.2'?'4':(sugar_version >= '6.1'?'3':'2'))))+"/rest.php";
 			//cachedScript(QuickCRMAddress+"/fielddefs/fields.js",{});
 			var q_language = getSugarLanguage(sugar_languages,default_language);
 			cachedScript(QuickCRMAddress+"/fielddefs/modules_"+q_language+".js",{});
@@ -283,7 +284,7 @@ function LoadScriptsOld() {
 			$.cachedScript(QuickCRMAddress+"/js/mobile_"+webL+".js?v="+quickcrm_upd_time);
 
 
-			$.cachedScript("js/quickcrm-web-5.2.2.min.js").done(function(script, textStatus) {
+			$.cachedScript("js/quickcrm-web-5.7.0.min.js").done(function(script, textStatus) {
 
 
 				if (jjwg_installed) {
@@ -375,7 +376,6 @@ EOQ;
 		}
 		?>
 		<!-- Mobile language file and UI -->
-        <link rel="stylesheet" href="css/quickcrm5.0.css" />
         <title>QuickCRM</title>
     </head>
     <body>
@@ -396,15 +396,14 @@ EOQ;
 				</div>
 				<div id="LoginForm" style="display: none;">
                 <p id="LoginPageMessage"></p>
-				<fieldset data-role="controlgroup" data-mini="true">
+				<div class="ui-field-contain" >
 					<label id="SettingsUsernameLabel" for="SettingsUsername"></label>
 					<input id="SettingsUsername" type="text" />
-				</fieldset>
-                
-				<fieldset data-role="controlgroup" data-mini="true">
+				</div>                
+				<div class="ui-field-contain">
 					<label id="SettingsPasswordLabel" for="SettingsPassword"></label>
 					<input id="SettingsPassword" type="password" />
-				</fieldset>
+				</div>
 				<div id="AdvancedParam" data-role="collapsible" data-mini="true" data-collapsed="true" data-theme="c" >
 					<h4 id="OptAdvanced"></h4>
 					<div>
@@ -469,7 +468,7 @@ EOQ;
             </div>
             <div role="main" id="HomePageMain" data-theme="d" class="ui-content">
 				<div >
-					<ul id="PanelSearchDiv" style="margin-top:0" data-role="listview" data-inset="true" data-theme="c" data-filter="false" />
+					<ul id="PanelSearchDiv" style="margin-top:0" data-role="listview" data-inset="true" data-theme="c" data-filter="false" ></ul>
 				</div>
 				<div id="HomeTop" style="clear: both">
 					<div id="HomeWarning">
@@ -479,6 +478,8 @@ EOQ;
 					<div id="Favorites" class="IconWrapper">
 					</div>
 					<div id="Creates" class="IconWrapper">
+					</div>
+					<div id="HomeNoIcon" class="IconWrapper">
 					</div>
 					<ul class="IconWrapper" id="HomeMenu">
 					</ul>
@@ -495,12 +496,12 @@ EOQ;
 			<div data-role="popup" data-history="false" id="HomeNotify">
 				<a href="#HomePage" data-direction="reverse" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left"></a>
 				<div>
-                <ul id="NotifyListDiv" style="padding-top:10px" data-role="listview" data-mini="true" data-split-theme="c"  data-theme="c" data-inset="true" data-filter="false" />
+                <ul id="NotifyListDiv" style="padding-top:10px" data-role="listview" data-mini="true" data-split-theme="c"  data-theme="c" data-inset="true" data-filter="false"></ul>
 				</div>
 				<a id="NotifyClear" href="javascript:ClearLastModified();" class="QCRMLinks"  data-theme="c"></a>
 			</div>
 			<div id="AllModulesPopup" data-history="false" style="margin-top:20px" data-role="popup" >
-					<ul id="AllModulesPopupDiv" data-role="listview" data-theme="c" data-split-theme="c" data-filter="false" />
+					<ul id="AllModulesPopupDiv" data-role="listview" data-theme="c" data-split-theme="c" data-filter="false"></ul>
 			</div>
         </div>
 
@@ -511,7 +512,7 @@ EOQ;
             </div>
             <div role="main" class="ui-content">
 				<div id="ActivitiesListPageSubMenu">
-					<ul id="AllActivitiesListDiv" data-role="listview" data-split-theme="c" data-filter="false" />
+					<ul id="AllActivitiesListDiv" data-role="listview" data-split-theme="c" data-filter="false"></ul>
 				</div>
 				<div id="calendar" class="ui-grid-a my-breakpoint">
 					<div id="calendarLEFT" class="ui-block-a">
@@ -569,7 +570,7 @@ EOQ;
                 <h1 id="LastViewedListPageTitle"></h1>
             </div>
             <div role="main" class="ui-content">
-                <ul id="LastViewedListDiv" data-role="listview" data-split-theme="b" data-filter="false" />
+                <ul id="LastViewedListDiv" data-role="listview" data-split-theme="b" data-filter="false"></ul>
             </div>
         </div>
 
@@ -578,7 +579,7 @@ EOQ;
                 <h1 id="GSPageTitle"></h1>
             </div>
             <div role="main" class="ui-content">
-                <ul id="GSListDiv" data-role="listview" data-split-theme="c" data-filter="false" />
+                <ul id="GSListDiv" data-role="listview" data-split-theme="c" data-filter="false"></ul>
             </div>
             <div data-role="footer" data-position="fixed" data-theme="d">
 				<div data-role="navbar">
@@ -598,7 +599,7 @@ EOQ;
                 <h1 id="AllModulesListPageTitle"></h1>
             </div>
             <div role="main" class="ui-content">
-                <ul id="AllModulesListDiv" data-role="listview" data-split-theme="c" data-filter="false" />
+                <ul id="AllModulesListDiv" data-role="listview" data-split-theme="c" data-filter="false"></ul>
             </div>
         </div>
 
@@ -741,7 +742,7 @@ EOQ;
 						</fieldset>
 				</div>
 				<div class="ui-field-contain">
-					<fieldset id="OptHomeIcons" data-role="controlgroup"  data-mini="true"/>
+					<fieldset id="OptHomeIcons" data-role="controlgroup"  data-mini="true"></fieldset>
 				</div>
             </div>
             </div>
@@ -753,7 +754,7 @@ EOQ;
                 <h1 id="OptionsSortOrderTitle"></h1>
             </div>
             <div role="main" class="ui-content">
-					<ul id="ModulesListSort" data-role="listview" data-theme="c" data-filter="false" />
+					<ul id="ModulesListSort" data-role="listview" data-theme="c" data-filter="false"></ul>
             </div>
         </div>
 	
@@ -765,7 +766,7 @@ EOQ;
             <div role="main" class="ui-content">
 					<div id="FilterOldDiv">
 					</div>
-					<fieldset id="ModulesListOld" data-role="controlgroup"  data-mini="true"/>
+					<fieldset id="ModulesListOld" data-role="controlgroup"  data-mini="true"></fieldset>
             </div>
         </div>
 	
@@ -817,7 +818,7 @@ EOQ;
                 <h1 id="GlobalSearchTitle"></h1>
             </div>
             <div role="main" class="ui-content">
-					<input id="GSSearchText" type="text"></input>
+					<input id="GSSearchText" type="text">
 					<a id="GSSubmit" href="javascript:GlobalSearch('GSSearchText','GSListDiv','GSListPage',40);" data-mini="true" data-role="button" data-theme="c"></a>  
 			</div>
 		</div>
@@ -825,10 +826,10 @@ EOQ;
 		<div id="InlineEdit" data-role="page" data-theme="c">
             <div role="main" class="ui-content">
 				<div>
-					<input id="IEModule" type="hidden"></input>
-					<input id="IERefresh" type="hidden"></input>
-					<input id="IEId" type="hidden"></input>
-					<input id="IEFields" type="hidden"></input>
+					<input id="IEModule" type="hidden">
+					<input id="IERefresh" type="hidden">
+					<input id="IEId" type="hidden">
+					<input id="IEFields" type="hidden">
 					<div id="IENew" >
 					</div>
 				</div>
@@ -846,18 +847,18 @@ EOQ;
             </div>
             <div role="main" class="ui-content">
 				<div>
-					<input id="CSFromModule" type="hidden"></input>
-					<input id="CSFromId" type="hidden"></input>
-					<input id="CSToModule" type="hidden"></input>
-					<input id="CSLnk" type="hidden"></input>
-					<input id="CSWhere" type="hidden"></input>
-					<input id="CS_LinkedId" type="hidden"></input>
+					<input id="CSFromModule" type="hidden">
+					<input id="CSFromId" type="hidden">
+					<input id="CSToModule" type="hidden">
+					<input id="CSLnk" type="hidden">
+					<input id="CSWhere" type="hidden">
+					<input id="CS_LinkedId" type="hidden">
 					<fieldset data-role="controlgroup">
-						<input id="CS_SearchText" type="text" ></input>
+						<input id="CS_SearchText" type="text" >
 					</fieldset>
 				</div>
 				<div>
-					<ul id="CS_SearchTextL" data-role="listview" data-filter="false" />
+					<ul id="CS_SearchTextL" data-role="listview" data-filter="false"></ul>
 				</div>
 <!--
 				<div class="ui-grid-a" style="padding-top:15px">
@@ -879,11 +880,11 @@ EOQ;
             </div>
             <div role="main" class="ui-content">
 				<div>
-					<input id="RenInitText" type="hidden"></input>
-					<input id="RenInitModule" type="hidden"></input>
-					<input id="RenInitId" type="hidden"></input>
+					<input id="RenInitText" type="hidden">
+					<input id="RenInitModule" type="hidden">
+					<input id="RenInitId" type="hidden">
 					<fieldset data-role="controlgroup">
-						<input id="RenNewText" type="text" ></input>
+						<input id="RenNewText" type="text" >
 					</fieldset>
 				</div>
 			</div>
@@ -1006,7 +1007,7 @@ EOQ;
 					</div>
 					<div>
 						<ul id="CLLeads_contact_nameL" data-role="listview" data-theme="d" data-filter="false" ></ul>
-						<input id="CLLeads_contact_id" type="hidden" ></input>
+						<input id="CLLeads_contact_id" type="hidden" >
 						<br/><br/>
 					</div>
 				</div>

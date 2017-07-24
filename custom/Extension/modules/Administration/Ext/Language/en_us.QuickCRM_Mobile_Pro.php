@@ -31,6 +31,11 @@ $mod_strings['LBL_ENABLED_MODULE'] = 'Enable Module';
 
 $mod_strings['LBL_GENERAL'] = 'General';
 $mod_strings['LBL_ROWSPERPAGE'] = 'Rows Per Page';
+$mod_strings['LBL_ROWSPERDASHLET'] = 'Rows Per Dashlet';
+$mod_strings['LBL_ROWSPERSUBPANEL'] = 'Rows Per Subpanel';
+$mod_strings['LBL_OFFLINE_MAX'] = 'Maximum Offline duration (days)';
+
+$mod_strings['LBL_AUDIONOTES'] = 'Audio Notes';
 
 $mod_strings['LBL_DISPLAYED_FIELDS_TITLE'] = 'Displayed fields';
 $mod_strings['LBL_AVAILABLE_FIELDS'] = 'Available';

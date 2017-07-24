@@ -16,16 +16,6 @@ array (
     'width' => '10%',
     'default' => true,
   ),
-  'ACCOUNT' => 
-  array (
-    'type' => 'relate',
-    'studio' => 'visible',
-    'label' => 'LBL_ACCOUNT',
-    'id' => 'ACCOUNT_ID_C',
-    'link' => true,
-    'width' => '10%',
-    'default' => true,
-  ),
   'ASSIGNED_USER_NAME' => 
   array (
     'width' => '9%',

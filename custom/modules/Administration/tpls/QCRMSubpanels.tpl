@@ -66,8 +66,6 @@ $(function() {
         })
     });
 });
-	//$('#conf_sortableD1').sortable().sortable("refresh");
-	//$('#conf_sortableD2').sortable().sortable("refresh");
-//console.log('loaded script')
+
 </script>
 {/literal}

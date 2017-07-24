@@ -1,10 +1,10 @@
 <?php
 /*********************************************************************************
  * This file is part of QuickCRM Mobile Full.
- * QuickCRM Mobile Full is a mobile client for SugarCRM
+ * QuickCRM Mobile Full is a mobile client for Sugar/SuiteCRM
  * 
  * Author : NS-Team (http://www.ns-team.fr)
- * All rights (c) 2011-2016 by NS-Team
+ * All rights (c) 2011-2017 by NS-Team
  *
  * This Version of the QuickCRM Mobile Full is licensed software and may only be used in 
  * alignment with the License Agreement received with this Software.
@@ -21,50 +21,35 @@ if(!isset($_REQUEST['authorized']))
 
 global $sugar_config, $mod_strings, $db;
 
+require_once('custom/modules/Administration/QuickCRM_utils.php');
 require_once('modules/Administration/Administration.php');
 $administration = new Administration();
 $administration->retrieveSettings('QuickCRM');
 require_once 'modules/Configurator/Configurator.php';
 
 $configurator = new Configurator();
-$configurator->loadConfig(); // it will load existing configuration in config variable of object
+$configurator->loadConfig(true); // it will load existing configuration in config variable of object
 $users_list=str_replace('u_',"",$_REQUEST['authorized']);
-$configurator->config['quickcrm_users'] = $users_list;
 $nn=isset($sugar_config['quickcrm_max'])?$sugar_config['quickcrm_max']:5;
 
 $status=true;
-if ($sugar_config['quickcrm_trial'] != false) {
-	$configurator->config['quickcrm_trialcode'] = trim($_REQUEST['trial_code']);
-}
-else {
+
+
 	$keyverified=false;
 	if (isset($administration->settings['QuickCRM_keyverified'])){
 		$dt=$administration->settings['QuickCRM_keyverified'];
 		if ($dt!=='') $keyverified=true;
 	}
 	$status=$keyverified;
-	if (trim($_REQUEST['trial_code']) !=''){//- && !$keyverified){
+	if (isset($_REQUEST['trial_code']) && trim($_REQUEST['trial_code']) !=''){//- && !$keyverified){
 		$administration->saveSetting('QuickCRM', 'key', trim($_REQUEST['trial_code']));
 		
 		if (!isset($sugar_config['quickcrm_nocheck'])) {
-			$ch = curl_init();
-			$url = "https://monssl.com/www.ns-team.fr/QuickCRM/licenses/getcode.php?key=".base64_encode(trim($_REQUEST['trial_code']))."&url=".$sugar_config['site_url'];
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 200);
-			curl_setopt($ch, CURLOPT_TIMEOUT,2000);
-			curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1");
-			$content = curl_exec($ch);
-			if ($content!='') {
-				$arr=explode(";",$content);
-				$content=$arr[0];
-				if (isset($arr[1]) && is_numeric($arr[1])){
-					$configurator->config['quickcrm_max'] = $arr[1];
-				}
+			$res = QCRMMaxUsers($_REQUEST['trial_code']);
+			$content = '';
+			if ($res != -1) {
+				$configurator->config['quickcrm_max'] = $res;
+				$content = $res;
 			}
 		}
 		else {  // SPECIFIC CONFIGURATION FOR SERVERS WHERE FIREWALL IS CONFIGURED TO DISABLE EXTERNAL ACCESS
@@ -74,8 +59,6 @@ else {
 		$administration->saveSetting('QuickCRM', 'keyverified', $content);
 		$status=($content!='');
 	}
-}
-$configurator->saveConfig();	
 
 $fieldDefs = array(
                 'id' => array (
@@ -118,6 +101,9 @@ if ($table_store) {
 	$sql = "DELETE FROM qcrm_users";
 	$db->query($sql);
 }
+else {
+	$configurator->config['quickcrm_users'] = $users_list;
+}
 
 foreach($authorized as $usr){
 	$licensed_user=substr ($usr ,2);
@@ -133,6 +119,7 @@ foreach($authorized as $usr){
 $str.='];';
 
 $administration->saveSetting('QuickCRM', ($sugar_config['quickcrm_trial'] != false?'trial':'').'users', base64_encode($str));
+$configurator->saveConfig();	
 
 $saveDir = create_cache_directory('mobile_js/');
 if($fh = @fopen($saveDir . 'QuickCRMusers.js', "w")){
@@ -141,9 +128,16 @@ if($fh = @fopen($saveDir . 'QuickCRMusers.js', "w")){
 }
 
 
-require_once('custom/modules/Administration/genProfromSugar.php');
+require_once('custom/modules/Administration/QuickCRM_utils.php');
+$qutils=new QUtils();
+$qutils->LoadMobileConfig(false); 
+
+$lst_mod = $qutils->mobile['modules'];
+$aos = (in_array('AOS_Quotes',$lst_mod) || in_array('AOS_Invoices',$lst_mod));
+
 $mobile = new mobile_jsLanguage();
-$mobile->createSugarConfig(false);
+$mobile->createSugarConfig(array_merge($lst_mod,$qutils->QuickCRM_simple_modules),$aos);
+
 header("Location: index.php?module=Administration&action=usersquickcrm&keyok=".($status?"1":"0"));
 
 ?>

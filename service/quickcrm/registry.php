@@ -109,6 +109,11 @@ class registry_quickcrm extends registry_v4_1 {
 		    array('return'=>'tns:get_entry_result_version2'));
 
 		$this->serviceClass->registerFunction(
+		    'get_file_contents',
+		    array('session'=>'xsd:string', 'module_name'=>'xsd:string',  'id'=>'xsd:string'),
+		    array('return'=>'tns:new_return_note_attachment'));
+
+		$this->serviceClass->registerFunction(
 		    'AOSget_entry',
 		    array('session'=>'xsd:string', 'module_name'=>'xsd:string', 'id'=>'xsd:string', 'select_fields'=>'tns:select_fields','link_name_to_fields_array'=>'tns:link_names_to_fields_array','track_view'=>'xsd:boolean'),
 		    array('return'=>'tns:get_entry_result_version2'));
@@ -123,6 +128,16 @@ class registry_quickcrm extends registry_v4_1 {
 		    array('session'=>'xsd:string', 'module_name'=>'xsd:string',  'name_value_list'=>'tns:name_value_list'),
 		    array('return'=>'tns:new_set_entry_result'));
 			
+		$this->serviceClass->registerFunction(
+		    'generate_pdf',
+		    array('session'=>'xsd:string', 'module_name'=>'xsd:string',  'id'=>'xsd:string',  'template_id'=>'xsd:string'),
+		    array('return'=>'tns:get_entry_result_version2'));
+
+		$this->serviceClass->registerFunction(
+		    'generate_pdf_letter',
+		    array('session'=>'xsd:string', 'module_name'=>'xsd:string',  'id'=>'xsd:string',  'template_id'=>'xsd:string'),
+		    array('return'=>'tns:get_entry_result_version2'));
+
 	}
 
 }
