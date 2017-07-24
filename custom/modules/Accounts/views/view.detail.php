@@ -93,12 +93,14 @@ class AccountsViewDetail extends ViewDetail {
         
         $this->ss->assign("custom_code_billing", $push_billing);
         $this->ss->assign("custom_code_shipping", $push_shipping);
-        
-        $accountExtraId = $this->getAccountExtraIdForAccount($this->bean->id);
+    
         $link_to_account_extras = null;
+        /*
+        $accountExtraId = $this->getAccountExtraIdForAccount($this->bean->id);
         if($accountExtraId) {
             $link_to_account_extras = "/index.php?module=mkt_AccountExtras&action=DetailView&record=${accountExtraId}";
         }
+        */
         $this->ss->assign("link_to_account_extras", $link_to_account_extras);
         
         
