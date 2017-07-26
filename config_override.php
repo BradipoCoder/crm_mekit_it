@@ -8,5 +8,5 @@ $sugar_config['default_theme'] = 'SuiteP';
 $sugar_config['disabled_themes'] = ',';
 $sugar_config['developerMode'] = false;
 $sugar_config['hide_subpanels'] = false;
-$sugar_config['quickcrm_server_version'] = '4.9.6';
+$sugar_config['quickcrm_server_version'] = '4.9.7';
 /***CONFIGURATOR***/

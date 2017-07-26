@@ -504,7 +504,7 @@ EOQ;
 		
         $json = getJSONobj();
 
-		$str = "var mobile_edition = 'Pro',QServer='4.9.6', Q_API='5.0', module_access={}, sugar_mod_fields={},";
+		$str = "var mobile_edition = 'Pro',QServer='4.9.7', Q_API='5.0', module_access={}, sugar_mod_fields={},";
         $str .= " RES_OLD_VERSION = 'Please update your app to latest version on App Store or Google Play',"; // STRING MISSING IN VERSIONS 4.0.0 and lower
         $str .= ' sugar_version = "'.$sugar_config['sugar_version'].'",';
         $str .= ' sugar_name = "'.$administration->settings['system_name'].'",';

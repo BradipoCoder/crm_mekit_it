@@ -972,7 +972,7 @@ class QUtils {
 		$administration = new Administration();
 		//$administration->saveSetting('QuickCRM', ($sugar_config['quickcrm_trial'] != false?'trial':'').'mobile_config', base64_encode($str));
 		//$administration->saveSetting('QuickCRM', ($sugar_config['quickcrm_trial'] != false?'trial':'').'mobileconfig', base64_encode($json->encode($this->mobile)));
-		$administration->saveSetting('QuickCRM', ($sugar_config['quickcrm_trial'] != false?'trial':'').'server_version', "4.9.6");
+		$administration->saveSetting('QuickCRM', ($sugar_config['quickcrm_trial'] != false?'trial':'').'server_version', "4.9.7");
 
 		// save app data
 		if($fh = @fopen($saveDirApp .'/' .  $saveFileApp, "w")){

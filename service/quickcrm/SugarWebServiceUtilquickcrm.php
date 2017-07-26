@@ -160,7 +160,7 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 
     function filter_fields($value, $fields)
     {
-        // fix bug with many2one relationship fields not returned
+        // fix bug with one2one or many2one relationship fields not returned
         $GLOBALS['log']->info('Begin: SoapHelperWebServices->filter_fields');
         global $invalid_contact_fields;
         $filterFields = array();
@@ -177,7 +177,7 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
             {
                 $var = $value->field_defs[$field];
                 //if($var['type'] == 'link') continue;
-                if($var['type'] == 'link' && (!isset($var['side']) || $var['side'] != 'right')) continue;
+                if($var['type'] == 'link' && !isset($var['side'])) continue;
                 if( isset($var['source'])
                     && ($var['source'] != 'db' && $var['source'] != 'custom_fields' && $var['source'] != 'non-db')
                     && $var['name'] != 'email1' && $var['name'] != 'email2'
@@ -344,6 +344,12 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 		if ($sugar_version < '6.5.15') {
 			$order_by=$seed->process_order_by($order_by, null);
 		}
+		else {
+			if (!empty($order_by)){
+				// fix issue where order by date fields does not always return records in the same order for equal dates
+				$order_by .= ',id';
+			}
+		}
 
 		$params = array();
 		if(!empty($favorites)) {
@@ -369,6 +375,12 @@ class SugarWebServiceUtilquickcrm extends SugarWebServiceUtilv4_1
 		// Fix bug with sort order in get_entry_list
 		if ($sugar_version < '6.5.15') {
 			$order_by=$seed->process_order_by($order_by, null);
+		}
+		else {
+			if (!empty($order_by)){
+				// fix issue where order by date fields does not always return records in the same order for equal dates
+				$order_by .= ',id';
+			}
 		}
 			   
 		$filter=array();
