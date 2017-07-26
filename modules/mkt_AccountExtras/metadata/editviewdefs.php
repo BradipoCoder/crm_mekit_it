@@ -42,13 +42,9 @@ array (
         array (
           0 => 
           array (
-            'name' => 'dati_cliente',
-            'studio' => 'visible',
-            'label' => 'LBL_DATI_CLIENTE',
-          ),
-          1 => 
-          array (
-            'name' => 'mkt_accountextras_accounts_name',
+            'name' => 'description',
+            'comment' => 'Full text of the note',
+            'label' => 'LBL_DESCRIPTION',
           ),
         ),
         2 => 

@@ -8,13 +8,13 @@ upload/*
 !upload/index.html
 
 # Ignore stuff in custom directory
-custom/application/Ext/*
-custom/blowfish/*
-custom/modulebuilder/*
-custom/modules/unified_search_modules_display.php
-custom/modules/*/Ext/*
-custom/history/*
-custom/working/*
+#/custom/application/Ext/*
+#/custom/modules/*/Ext/*
+/custom/blowfish/*
+/custom/modulebuilder/*
+/custom/modules/unified_search_modules_display.php
+/custom/history/*
+/custom/working/*
 
 # Ignore AOD indexes
 modules/AOD_Index/Index/*
