@@ -24,5 +24,22 @@ array (
     'id' => 'ASSIGNED_USER_ID',
     'default' => true,
   ),
+  'MKT_ACCOUNTEXTRAS_ACCOUNTS_NAME' => 
+  array (
+    'type' => 'relate',
+    'link' => true,
+    'label' => 'LBL_MKT_ACCOUNTEXTRAS_ACCOUNTS_FROM_ACCOUNTS_TITLE',
+    'id' => 'MKT_ACCOUNTEXTRAS_ACCOUNTSACCOUNTS_IDB',
+    'width' => '10%',
+    'default' => false,
+  ),
+  'DESCRIPTION' => 
+  array (
+    'type' => 'text',
+    'label' => 'LBL_DESCRIPTION',
+    'sortable' => false,
+    'width' => '10%',
+    'default' => false,
+  ),
 );
 ?>

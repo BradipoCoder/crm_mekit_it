@@ -64,9 +64,15 @@ array (
         array (
           0 => 
           array (
-            'name' => 'dati_cliente',
+            'name' => 'client_data',
             'studio' => 'visible',
-            'label' => 'LBL_DATI_CLIENTE',
+            'label' => 'LBL_CLIENT_DATA',
+          ),
+          1 => 
+          array (
+            'name' => 'client_data_txt',
+            'studio' => 'visible',
+            'label' => 'LBL_CLIENT_DATA_TXT',
           ),
         ),
         3 => 
@@ -77,6 +83,12 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_CURRENT_MONTH',
           ),
+          1 => 
+          array (
+            'name' => 'current_month_txt',
+            'studio' => 'visible',
+            'label' => 'LBL_CURRENT_MONTH_TXT',
+          ),
         ),
         4 => 
         array (
@@ -85,6 +97,12 @@ array (
             'name' => 'deadlines',
             'studio' => 'visible',
             'label' => 'LBL_DEADLINES',
+          ),
+          1 => 
+          array (
+            'name' => 'deadlines_txt',
+            'studio' => 'visible',
+            'label' => 'LBL_DEADLINES_TXT',
           ),
         ),
         5 => 
@@ -95,6 +113,12 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_PRODUCTS_RECENT_BUYS',
           ),
+          1 => 
+          array (
+            'name' => 'products_recent_buys_txt',
+            'studio' => 'visible',
+            'label' => 'LBL_PRODUCTS_RECENT_BUYS_TXT',
+          ),
         ),
         6 => 
         array (
@@ -103,6 +127,12 @@ array (
             'name' => 'products_recent_non_buys',
             'studio' => 'visible',
             'label' => 'LBL_PRODUCTS_RECENT_NON_BUYS',
+          ),
+          1 => 
+          array (
+            'name' => 'products_recent_non_buys_txt',
+            'studio' => 'visible',
+            'label' => 'LBL_PRODUCTS_RECENT_NON_BUYS_TXT',
           ),
         ),
       ),

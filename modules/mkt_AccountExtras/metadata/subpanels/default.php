@@ -23,15 +23,6 @@ $subpanel_layout = array (
       'width' => '45%',
       'default' => true,
     ),
-    'dati_cliente' => 
-    array (
-      'type' => 'text',
-      'studio' => 'visible',
-      'vname' => 'LBL_DATI_CLIENTE',
-      'sortable' => false,
-      'width' => '10%',
-      'default' => true,
-    ),
     'date_modified' => 
     array (
       'vname' => 'LBL_DATE_MODIFIED',

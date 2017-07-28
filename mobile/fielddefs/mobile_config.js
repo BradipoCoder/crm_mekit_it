@@ -88,7 +88,7 @@ Beans['AOK_KnowledgeBase'].CustomLinks = {'aok_knowledgebase_categories':{title:
 Beans['AOK_Knowledge_Base_Categories'].AdditionalFields = ['description','assigned_user_name'];
 Beans['AOK_Knowledge_Base_Categories'].SearchFields = ['description','assigned_user_name'];
 Beans['AOK_Knowledge_Base_Categories'].CustomLinks = {'aok_knowledgebase_categories':{title:'AOK_KnowledgeBase'}};
-Beans['mkt_AccountExtras'].AdditionalFields = ['mkt_accountextras_accounts_name','dati_cliente','deadlines','products_recent_buys','products_recent_non_buys','description','date_modified'];
+Beans['mkt_AccountExtras'].AdditionalFields = ['mkt_accountextras_accounts_name','dati_cliente','current_month','deadlines','products_recent_buys','products_recent_non_buys','description','date_modified'];
 Beans['mkt_AccountExtras'].CustomLinks = [];
 QCRM.ProfileMode='none';
 RowsPerPage=20;RowsPerDashlet=5;RowsPerSubPanel=5;

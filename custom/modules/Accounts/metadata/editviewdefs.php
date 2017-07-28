@@ -282,13 +282,6 @@ array (
             'name' => 'mkt_accountextras_accounts_name',
           ),
         ),
-        8 => 
-        array (
-          0 => 
-          array (
-            'name' => 'mkt_accountextras_accounts_name',
-          ),
-        ),
       ),
       'LBL_PANEL_ADVANCED' => 
       array (

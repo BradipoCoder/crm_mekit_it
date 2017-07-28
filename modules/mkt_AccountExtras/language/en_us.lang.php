@@ -78,4 +78,10 @@ $mod_strings = array (
   'LBL_DEADLINES' => 'Scadenze',
   'LBL_PRODUCTS_RECENT_BUYS' => 'Articoli acquistati recentemente',
   'LBL_PRODUCTS_RECENT_NON_BUYS' => 'Articoli non acquistati recentemente',
+  'LBL_CLIENT_DATA' => 'Dati Cliente',
+  'LBL_CLIENT_DATA_TXT' => 'Specchietto Cliente',
+  'LBL_CURRENT_MONTH_TXT' => 'Ordinato del mese',
+  'LBL_DEADLINES_TXT' => 'Scadenze',
+  'LBL_PRODUCTS_RECENT_BUYS_TXT' => 'Prodotti acquistati',
+  'LBL_PRODUCTS_RECENT_NON_BUYS_TXT' => 'Non più acquistati',
 );
