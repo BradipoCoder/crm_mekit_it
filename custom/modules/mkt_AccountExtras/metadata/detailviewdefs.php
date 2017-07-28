@@ -51,9 +51,16 @@ array (
       array (
         0 => 
         array (
-          0 => 'date_modified',
+          0 => 
+          array (
+            'name' => 'mkt_accountextras_accounts_name',
+          ),
         ),
         1 => 
+        array (
+          0 => 'date_modified',
+        ),
+        2 => 
         array (
           0 => 
           array (
@@ -62,7 +69,7 @@ array (
             'label' => 'LBL_DATI_CLIENTE',
           ),
         ),
-        2 => 
+        3 => 
         array (
           0 => 
           array (
@@ -71,7 +78,7 @@ array (
             'label' => 'LBL_CURRENT_MONTH',
           ),
         ),
-        3 => 
+        4 => 
         array (
           0 => 
           array (
@@ -80,7 +87,7 @@ array (
             'label' => 'LBL_DEADLINES',
           ),
         ),
-        4 => 
+        5 => 
         array (
           0 => 
           array (
@@ -89,20 +96,13 @@ array (
             'label' => 'LBL_PRODUCTS_RECENT_BUYS',
           ),
         ),
-        5 => 
+        6 => 
         array (
           0 => 
           array (
             'name' => 'products_recent_non_buys',
             'studio' => 'visible',
             'label' => 'LBL_PRODUCTS_RECENT_NON_BUYS',
-          ),
-        ),
-        6 => 
-        array (
-          0 => 
-          array (
-            'name' => 'mkt_accountextras_accounts_name',
           ),
         ),
       ),
@@ -114,8 +114,35 @@ array (
         ),
         1 => 
         array (
-          0 => 'date_entered',
-          1 => 'assigned_user_name',
+          0 => 
+          array (
+            'name' => 'description',
+            'comment' => 'Full text of the note',
+            'label' => 'LBL_DESCRIPTION',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'description_2_c',
+            'studio' => 'visible',
+            'label' => 'LBL_DESCRIPTION_2',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'description_3_c',
+            'studio' => 'visible',
+            'label' => 'LBL_DESCRIPTION_3',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 'assigned_user_name',
+          1 => 'date_entered',
         ),
       ),
     ),

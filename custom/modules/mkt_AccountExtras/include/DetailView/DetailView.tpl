@@ -7,7 +7,7 @@
 
 {sugar_include include=$includes}
 
-<h1 class="error">Work In Progress - non toccare - non usare ;)</h1>
+<h1 class="error">Work In Progress - non toccare - non usare ;) ({$deadlines})</h1>
 
 <div class="detail-view">
     <div class="mobile-pagination">{$PAGINATION}</div>

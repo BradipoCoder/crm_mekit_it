@@ -1,6 +1,6 @@
 <?php
-// created: 2017-07-20 14:30:29
+// created: 2017-07-26 13:19:43
 $mod_strings = array (
-  'LBL_PRODUCTS_RECENT_BUYS' => 'Articoli acq. recentemente',
-  'LBL_PRODUCTS_RECENT_NON_BUYS' => 'Articoli non acq. recentemente',
+  'LBL_DESCRIPTION_2' => 'Description 2',
+  'LBL_DESCRIPTION_3' => 'Descrizione 3',
 );
