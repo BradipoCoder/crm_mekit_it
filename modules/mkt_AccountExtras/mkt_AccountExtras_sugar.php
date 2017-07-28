@@ -68,9 +68,15 @@ class mkt_AccountExtras_sugar extends Basic {
 	var $assigned_user_name;
 	var $assigned_user_link;
 	var $SecurityGroups;
-	var $dati_cliente;
+    
 	var $account_id_c;
 	var $account;
+    
+    var $client_data;
+    var $client_data_txt;
+    
+    var $current_month;
+    var $current_month_txt;
 	
 	function __construct(){
 		parent::__construct();

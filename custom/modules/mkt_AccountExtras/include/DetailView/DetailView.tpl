@@ -1,9 +1,8 @@
-{*
-*}
 
-{*
-    sugar_include type="smarty" file=$headerTpl
-*}
+{*BUTTONS HERE*}
+{{sugar_include type="smarty" file=$headerTpl}}
+{*BUTTONS HERE*}
+
 
 {sugar_include include=$includes}
 
