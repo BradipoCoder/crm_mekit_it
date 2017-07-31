@@ -2,4 +2,6 @@
 {
     white-space: normal;
     overflow-wrap: break-word;
+    font-family: monospace, monospace;
+    font-size: 11px;
 }
