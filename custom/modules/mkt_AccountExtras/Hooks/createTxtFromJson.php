@@ -37,40 +37,42 @@ class createTxtFromJson
                 'PrezzoListino42',
                 'TotNettoRigaEuroRes',
                 'TotRigaListino42',
-                'TotRigaListino42Res'
+                'TotRigaListino42Res',
             ];
             $renameColumns = [
-                'CodArt' => 'Codice',
-                'DesArt' => 'Descrizione articolo',
-                'QtaGest' => 'Qtà DDT',
-                'QtaGestRes' => 'Qtà ORC',
+                'CodArt'              => 'Codice',
+                'DesArt'              => 'Descrizione articolo',
+                'QtaGest'             => 'Qtà DDT',
+                'QtaGestRes'          => 'Qtà ORC',
                 'PrezzoUnitNettoEuro' => 'Prezzo(€)',
-                'TotNettoRigaEuro' => 'Totale(€)',
-                'discount' => 'Sconto(%)',
+                'TotNettoRigaEuro'    => 'Totale(€)',
+                'discount'            => 'Sconto(%)',
             ];
             $bean->current_month_txt = self::createFixedLengthTxtTableFromData($data, $removeColumns, $renameColumns);
         }
-    
+        
         // DEADLINES - SCADENZE
         if ($data = unserialize(base64_decode($bean->deadlines)))
         {
             $data = self::calculationsDeadlines($data);
             $removeColumns = [
                 'TipoEffetto',
-                'Progressivo'
+                'Progressivo',
             ];
             $renameColumns = [
-                'DataScadenza' => 'Data scadenza',
-                'DataFattura' => 'Data fattura',
-                'AnnoDoc' => 'Anno',
-                'TipoDoc' => 'Tipo doc.',
-                'NumDoc' => 'Numero',
-                'ImportoScEuro' => 'Importo',
-                'DesTipoEffetto' => 'Tipo pag.'
+                'DataScadenza'   => 'Data scadenza',
+                'DataFattura'    => 'Data fattura',
+                'AnnoDoc'        => 'Anno',
+                'TipoDoc'        => 'Tipo doc.',
+                'NumDoc'         => 'Numero',
+                'ImportoScEuro'  => 'Importo',
+                'DesTipoEffetto' => 'Tipo pag.',
             ];
             $bean->deadlines_txt = self::createFixedLengthTxtTableFromData($data, $removeColumns, $renameColumns);
+            
+            $bean->deadlines_txt .= self::calculationsDeadlinesSummaryAdd($data);
         }
-    
+        
         // RECENT BUYS
         if ($data = unserialize(base64_decode($bean->products_recent_buys)))
         {
@@ -84,20 +86,21 @@ class createTxtFromJson
                 'TotRigaListino42Res',
                 'IdTesta',
                 'IdRiga',
-                'IdTestaUltimoAcq'
+                'IdTestaUltimoAcq',
             ];
             $renameColumns = [
-                'CodArt' => 'Codice',
-                'DesArt' => 'Descrizione articolo',
-                'QtaGest' => 'Qtà',
+                'CodArt'              => 'Codice',
+                'DesArt'              => 'Descrizione articolo',
+                'QtaGest'             => 'Qtà',
                 'PrezzoUnitNettoEuro' => 'Ult. prezzo',
-                'PrezzoListino42' => 'Listino 42',
-                'discount' => 'Sconto(%)',
+                'PrezzoListino42'     => 'Listino 42',
+                'discount'            => 'Sconto(%)',
+                'isInNotBoughtList'   => 'NPA',
             ];
             $bean->products_recent_buys_txt = self::createFixedLengthTxtTableFromData($data, $removeColumns,
-                                                                                   $renameColumns);
+                                                                                      $renameColumns);
         }
-    
+        
         // RECENT NON-BUYS
         if ($data = unserialize(base64_decode($bean->products_recent_non_buys)))
         {
@@ -105,16 +108,16 @@ class createTxtFromJson
             $removeColumns = [
             ];
             $renameColumns = [
-                'CodArt' => 'Codice',
-                'DesArt' => 'Descrizione articolo',
-                'TotQtaGest' => 'Qtà',
-                'DataUltimoAcq' => 'Ult. acq.',
+                'CodArt'                       => 'Codice',
+                'DesArt'                       => 'Descrizione articolo',
+                'TotQtaGest'                   => 'Qtà',
+                'DataUltimoAcq'                => 'Ult. acq.',
                 'PrezzoUnitNettoEuroUltimoAcq' => 'Prezzo',
-                'PrezzoListino42' => 'List. 42',
-                'discount' => 'Sconto(%)',
+                'PrezzoListino42'              => 'List. 42',
+                'discount'                     => 'Sconto(%)',
             ];
             $bean->products_recent_non_buys_txt = self::createFixedLengthTxtTableFromData($data, $removeColumns,
-                                                                                      $renameColumns);
+                                                                                          $renameColumns);
         }
         
     }
@@ -135,13 +138,13 @@ class createTxtFromJson
         array $removeColumns = [],
         array $renameColumns = [])
     {
-        $answer = "";
-    
+        $lines = [];
+        
+        
         //print 'ORIG:<pre>' . print_r($data, true) . '</pre>';
-    
+        
         $data = self::removeSpecificColumnByName($data, $removeColumns);
         //print 'REMOVED:<pre>' . print_r($data, true) . '</pre>';
-        
         
         $data = self::createRowForColumnNames($data, $renameColumns);
         $data = self::removeColumnNamesFromDataRows($data);
@@ -149,19 +152,20 @@ class createTxtFromJson
         
         $columnLengths = self::calculateMaxColumnLengths($data);
         //print 'LENGTHS:<pre>' . print_r($columnLengths, true) . '</pre>';
-        
-        
+    
+        $lineLength = 0;
         $minColPadding = 0;
         $paddingString = '&nbsp;';
         foreach ($data as $row)
         {
+            $line = "";
             $max = count($row);
-            for($i = 0; $i < $max; $i++)
+            for ($i = 0; $i < $max; $i++)
             {
                 $val = $row[$i];
                 $colWidth = $columnLengths[$i] + (2 * $minColPadding);
                 $valWidth = mb_strlen(strval($val), 'UTF-8');
-                if($valWidth % 2 != 0)
+                if ($valWidth % 2 != 0)
                 {
                     $val = $paddingString . $val;
                     $valWidth++;
@@ -172,14 +176,21 @@ class createTxtFromJson
                 
                 $padStr = str_repeat($paddingString, $colPadding);
     
-                $answer .= "|";
-                $answer .= $padStr . str_replace(' ', '&nbsp;', $val) . $padStr;
+                $line .= "|";
+                $line .= $padStr . str_replace(' ', '&nbsp;', $val) . $padStr;
             }
-            $answer .= "|";
-            $answer .= "\n";
+            $line .= "|";
+            $lineLength = mb_strlen(strval(str_replace('&nbsp;', ' ', $line)), 'UTF-8');
+            
+            array_push($lines, $line);
         }
         
-        print 'FINAL:<pre>' . $answer . '</pre>';
+        /*Top and Bottom dividers*/
+        $divider = str_repeat("-", $lineLength);
+        $lines = array_merge([$divider], $lines, [$divider]);
+        
+        $answer = implode("\n", $lines) . "\n";
+        //print 'FINAL:<pre>' . $answer . '</pre>';
         //die();
         
         return $answer;
@@ -196,15 +207,16 @@ class createTxtFromJson
         foreach ($data as $row)
         {
             $max = count($row);
-            for($i = 0; $i < $max; $i++)
+            for ($i = 0; $i < $max; $i++)
             {
                 $len = strlen($row[$i]);
-                if(!isset($answer[$i]) || $len > $answer[$i])
+                if (!isset($answer[$i]) || $len > $answer[$i])
                 {
                     $answer[$i] = $len;
                 }
             }
         }
+        
         return $answer;
     }
     
@@ -236,9 +248,10 @@ class createTxtFromJson
         $firstRow = $data[0];
         $columnNames = array_keys($firstRow);
         $max = count($columnNames);
-        for($i = 0; $i < $max; $i++)
+        for ($i = 0; $i < $max; $i++)
         {
-            if(array_key_exists($columnNames[$i], $renameColumns)){
+            if (array_key_exists($columnNames[$i], $renameColumns))
+            {
                 $k = $columnNames[$i];
                 $newColumnName = $renameColumns[$k];
                 $columnNames[$i] = $newColumnName;
@@ -253,12 +266,12 @@ class createTxtFromJson
     private static function removeSpecificColumnByName(array $data, array $removeColumns)
     {
         $answer = [];
-    
+        
         foreach ($data as $row)
         {
             foreach ($removeColumns as $columnName)
             {
-                if(array_key_exists($columnName, $row))
+                if (array_key_exists($columnName, $row))
                 {
                     unset($row[$columnName]);
                 }
@@ -280,9 +293,9 @@ class createTxtFromJson
         $answer = false;
         $columnNameRows = $data[0];
         $max = count($columnNameRows);
-        for($i = 0; $i < $max; $i++)
+        for ($i = 0; $i < $max; $i++)
         {
-            if($columnNameRows[$i] == $columnName)
+            if ($columnNameRows[$i] == $columnName)
             {
                 $answer = $i;
                 break;
@@ -324,8 +337,51 @@ class createTxtFromJson
         {
             $discount = (1 - floatval($row['PrezzoUnitNettoEuro']) / floatval($row['PrezzoListino42'])) * 100;
             $row['discount'] = number_format($discount, 2);
+            
+            //isInNotBoughtList
+            $row['isInNotBoughtList'] = intval($row['isInNotBoughtList']) == 1 ? "*" : "";
+            
             $answer[] = $row;
         }
+        
+        return $answer;
+    }
+    
+    /**
+     * Adds summary string at the end of the table
+     *
+     * @param array $data
+     *
+     * @return string
+     */
+    private static function calculationsDeadlinesSummaryAdd(array $data)
+    {
+        $answer = "";
+        
+        $total = 0;
+        $totalExpired = 0;
+        $totalWillExpire = 0;
+        
+        $now = new \DateTime();
+        
+        foreach ($data as $row)
+        {
+            $expiryDate = \DateTime::createFromFormat("Y-m-d", $row["DataScadenza"]);
+            $val = floatval($row["ImportoScEuro"]);
+            $total += $val;
+            if ($expiryDate >= $now)
+            {
+                $totalWillExpire += $val;
+            }
+            else
+            {
+                $totalExpired += $val;
+            }
+        }
+        
+        $answer .= "Totale scaduto(€): " . $totalExpired . "\n";
+        $answer .= "Totale a scadere(€): " . $totalWillExpire . "\n";
+        $answer .= "Totale esposizione(€): " . $total . "\n";
         
         return $answer;
     }
@@ -338,7 +394,7 @@ class createTxtFromJson
     private static function calculationsDeadlines(array $data)
     {
         $answer = [];
-    
+        
         foreach ($data as $row)
         {
             $answer[] = $row;
@@ -355,7 +411,7 @@ class createTxtFromJson
     private static function calculationsCurrentMonth(array $data)
     {
         $answer = [];
-    
+        
         foreach ($data as $row)
         {
             $discount = (1 - floatval($row['PrezzoUnitNettoEuro']) / floatval($row['PrezzoListino42'])) * 100;
