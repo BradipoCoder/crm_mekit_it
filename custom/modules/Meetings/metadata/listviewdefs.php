@@ -13,6 +13,13 @@ array (
       0 => 'status',
     ),
   ),
+  'RIUNIONE_MULTIDATA_C' => 
+  array (
+    'type' => 'bool',
+    'default' => true,
+    'label' => 'LBL_RIUNIONE_MULTIDATA',
+    'width' => '10%',
+  ),
   'NAME' => 
   array (
     'width' => '40%',
@@ -123,13 +130,6 @@ array (
     'default' => false,
     'studio' => 'visible',
     'label' => 'LBL_MOTIVAZIONE_NON_EFFETTUATA',
-    'width' => '10%',
-  ),
-  'RIUNIONE_MULTIDATA_C' => 
-  array (
-    'type' => 'bool',
-    'default' => false,
-    'label' => 'LBL_RIUNIONE_MULTIDATA',
     'width' => '10%',
   ),
 );
