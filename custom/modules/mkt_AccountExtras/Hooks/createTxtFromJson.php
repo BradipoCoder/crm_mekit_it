@@ -16,6 +16,8 @@ class createTxtFromJson
     public static function execute($bean, $event, $arguments)
     {
         
+        die("DISABLED!");
+        
         // CLIENT DATA
         if ($data = unserialize(base64_decode($bean->client_data)))
         {

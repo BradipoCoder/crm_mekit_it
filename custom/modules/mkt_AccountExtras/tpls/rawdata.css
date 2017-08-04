@@ -1,0 +1,59 @@
+body
+{
+    background: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    text-align: center;
+}
+
+.txt-right{text-align: right;}
+.txt-left{text-align: left;}
+
+table.datatable
+{
+    width:100%;
+    border-spacing: 0;
+    border-collapse: separate;
+    border-left: 1px solid #dedede;
+    border-top: 1px solid #dedede;
+    border-radius: 3px;
+    margin-bottom:25px;
+    font-size: 11px;
+}
+
+table.datatable td{
+    padding:5px;
+    border-right: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+}
+
+table.datatable th{
+    background: #adadad;
+    padding:0;
+}
+
+table.datatable tr.column_names th{
+    background: #dadada;
+    border-top: 1px solid #979797;
+    border-right: 1px solid #979797;
+    padding:5px;
+}
+
+table.datatable th h3
+{
+    display:inline-block;
+    width:100%;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+table.datatable td.key{
+    text-align: right;
+    width:30%;
+}
+
+table.datatable td.val{
+    text-align: left;
+}

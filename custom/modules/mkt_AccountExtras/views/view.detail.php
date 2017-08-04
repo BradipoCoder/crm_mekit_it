@@ -20,25 +20,23 @@ class mkt_AccountExtrasViewDetail extends ViewDetail {
     {
         parent::preDisplay();
     
-//        $deadlines = $this->bean->deadlines;
-//        $deadlines = '<code>' . '@@@-' . $deadlines . '-@@@' . '</code>';
-//        $this->bean->deadlines = $deadlines;
+        /**
+         * the 'rawdata_c' IFrame field - this is not executed on QuickCRM so we need to save url in db
+         * $iframeUrl = "http://crm2.mekit.it/index.php?module=mkt_AccountExtras&action=rawdata&record=" . $this->bean->id;
+         * $this->bean->rawdata_c = $iframeUrl;
+         */
+    
+        /**
+         * use this to set a custom tpl - will not work on mobile either:
+         * $this->dv->setup($this->module, $this->bean, $this->getMetaDataFile(), 'custom/modules/mkt_AccountExtras/include/DetailView/DetailView.tpl');
+         */
         
-        
-        $this->dv->setup($this->module, $this->bean, $this->getMetaDataFile(), 'custom/modules/mkt_AccountExtras/include/DetailView/DetailView.tpl');
     }
     
     
     public function display()
     {
         parent::display();
-        /*
-        if(empty($this->bean->id)){
-            sugar_die($GLOBALS['app_strings']['ERROR_NO_RECORD']);
-        }
-        $this->dv->process();
-        print $this->dv->display();
-        */
     }
     
 }
