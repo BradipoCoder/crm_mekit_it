@@ -44,74 +44,52 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         $this->addToSmartyClientData($ss);
         $this->addToSmartyCurrentMonth($ss);
         $this->addToSmartyDeadlines($ss);
-        $this->addToSmartyProductsRecentBuys($ss);
-        $this->addToSmartyProductsRecentNonBuys($ss);
+        $this->addToSmartyProducts($ss);
         
         $tplPath = 'custom/modules/mkt_AccountExtras/tpls/rawdata.tpl';
         $ss->display($tplPath);
     }
     
+    
     /**
      * @param \Sugar_Smarty $ss
      */
-    protected function addToSmartyProductsRecentNonBuys($ss)
+    protected function addToSmartyProducts($ss)
     {
-        $answer = [];
+        $answer_prod_acq = [];
+        $answer_prod_non_acq = [];
         
-        if ($data = unserialize(base64_decode($this->bean->products_recent_non_buys)))
-        {
-            $answer = $this->convertObjectToArray($data);
+        $data_prod_acq = unserialize(base64_decode($this->bean->products_recent_buys));
+        $data_prod_non_acq = unserialize(base64_decode($this->bean->products_recent_non_buys));
     
-            foreach ($answer as &$row)
+        if($data_prod_acq && $data_prod_non_acq)
+        {
+            $answer_prod_acq = $this->convertObjectToArray($data_prod_acq);
+            $answer_prod_non_acq = $this->convertObjectToArray($data_prod_non_acq);
+    
+            $answer_prod_acq = $this->removeNPAProducts($answer_prod_acq, $answer_prod_non_acq);
+            $answer_prod_acq = $this->recentBuysUniqueArticles($answer_prod_acq);
+    
+            //-------------------------------------------------------------------------------- PA ---
+            foreach ($answer_prod_acq as &$row)
             {
                 $discount = (1 - floatval($row['PrezzoUnitNettoEuro']) / floatval($row['PrezzoListino42'])) * 100;
                 $row['discount'] = number_format($discount, 2);
+                
+                //unisci DesArt + CodArt
+                $row["DesArt"] .= " [" . $row["CodArt"] . "]";
             }
             
-            //$removeKeys = [];
-            //$answer = $this->removeKeysMulti($answer, $removeKeys);
-            
-            //$orderedKeys = [];
-            //$answer = $this->reorderKeys($answer, $orderedKeys);
-            
-            $renameKeys = [
-                'CodArt'                       => 'Codice',
-                'DesArt'                       => 'Articolo',
-                'TotQtaGest'                   => 'Qtà',
-                'DataUltimoAcq'                => 'Ult. acq.',
-                'PrezzoUnitNettoEuroUltimoAcq' => 'Prezzo',
-                'PrezzoListino42'              => 'List. 42',
-                'discount'                     => 'Sconto(%)',
+            $formatKeys = [
+                "QtaGest",
+                "PrezzoUnitNettoEuro",
+                "PrezzoListino42",
+                "discount"
             ];
-            $answer = $this->renameKeysMulti($answer, $renameKeys);
-        }
-        
-        $ss->assign("products_recent_non_buys", $answer);
-    }
+            $answer_prod_acq = $this->reformatNumberMulti($answer_prod_acq, $formatKeys);
     
-    
-    /**
-     * @param \Sugar_Smarty $ss
-     */
-    protected function addToSmartyProductsRecentBuys($ss)
-    {
-        $answer = [];
-        
-        if ($data = unserialize(base64_decode($this->bean->products_recent_buys)))
-        {
-            $answer = $this->convertObjectToArray($data);
-    
-            foreach ($answer as &$row)
-            {
-                $discount = (1 - floatval($row['PrezzoUnitNettoEuro']) / floatval($row['PrezzoListino42'])) * 100;
-                $row['discount'] = number_format($discount, 2);
-        
-                //isInNotBoughtList
-                $row['isInNotBoughtList'] = intval($row['isInNotBoughtList']) == 1 ? "*" : "";
-            }
-            
             $removeKeys = [
-                'DataDoc',
+                'CodArt',
                 'QtaGestRes',
                 'TotNettoRigaEuro',
                 'TotNettoRigaEuroRes',
@@ -121,26 +99,118 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 'IdRiga',
                 'IdTestaUltimoAcq',
             ];
-            $answer = $this->removeKeysMulti($answer, $removeKeys);
-            
-            //$orderedKeys = [];
-            //$answer = $this->reorderKeys($answer, $orderedKeys);
+            $answer_prod_acq = $this->removeKeysMulti($answer_prod_acq, $removeKeys);
+    
+            $orderedKeys = ['CodArt', 'DesArt', 'DataDoc'];
+            $answer_prod_acq = $this->reorderKeysMulti($answer_prod_acq, $orderedKeys);
+    
+            $this->reorderByArticleColumn($answer_prod_acq);
             
             $renameKeys = [
                 'CodArt'              => 'Codice',
                 'DesArt'              => 'Articolo',
                 'QtaGest'             => 'Qtà',
                 'PrezzoUnitNettoEuro' => 'Ult. prezzo',
-                'PrezzoListino42'     => 'Listino 42',
+                'PrezzoListino42'     => 'Lst. 42',
                 'discount'            => 'Sconto(%)',
-                'isInNotBoughtList'   => 'NPA',
+                'DataDoc'             => 'Ult. acq.',
             ];
-            $answer = $this->renameKeysMulti($answer, $renameKeys);
+            $answer_prod_acq = $this->renameKeysMulti($answer_prod_acq, $renameKeys);
+            
+            //--------------------------------------------------------------------------------- NPA ---
+            foreach ($answer_prod_non_acq as &$row)
+            {
+                $discount = (1 - floatval($row['PrezzoUnitNettoEuroUltimoAcq']) / floatval($row['PrezzoListino42'])) * 100;
+                $row['discount'] = number_format($discount, 2);
+    
+                //unisci DesArt + CodArt
+                $row["DesArt"] .= " [" . $row["CodArt"] . "]";
+            }
+    
+            $formatKeys = [
+                "TotQtaGest",
+                "PrezzoUnitNettoEuroUltimoAcq",
+                "PrezzoListino42",
+                "discount"
+            ];
+            $answer_prod_non_acq = $this->reformatNumberMulti($answer_prod_non_acq, $formatKeys);
+    
+            $removeKeys = ['CodArt'];
+            $answer_prod_non_acq = $this->removeKeysMulti($answer_prod_non_acq, $removeKeys);
+    
+            //$orderedKeys = [];
+            //$answer_prod_non_acq = $this->reorderKeys($answer_prod_non_acq, $orderedKeys);
+    
+            $this->reorderByArticleColumn($answer_prod_non_acq);
+    
+            $renameKeys = [
+                'CodArt'                       => 'Codice',
+                'DesArt'                       => 'Articolo',
+                'TotQtaGest'                   => 'Qtà',
+                'DataUltimoAcq'                => 'Ult. acq.',
+                'PrezzoUnitNettoEuroUltimoAcq' => 'Prezzo',
+                'PrezzoListino42'              => 'Lst. 42',
+                'discount'                     => 'Sconto(%)',
+            ];
+            $answer_prod_non_acq = $this->renameKeysMulti($answer_prod_non_acq, $renameKeys);
         }
         
-        $ss->assign("products_recent_buys", $answer);
+        $ss->assign("products_recent_buys", $answer_prod_acq);
+        $ss->assign("products_recent_non_buys", $answer_prod_non_acq);
     }
     
+    
+    /**
+     * @param array $rows
+     *
+     * @return array
+     */
+    protected function recentBuysUniqueArticles($rows)
+    {
+        $answer = [];
+        
+        foreach ($rows as $row)
+        {
+            $code = $row["CodArt"];
+            if(!array_key_exists($code, $answer))
+            {
+                $answer[$code] = $row;
+            } else {
+                $currentRow = $answer[$code];
+                $currentRow["QtaGest"] += $row["QtaGest"];
+                $currentRow["QtaGestRes"] += $row["QtaGestRes"];
+                $answer[$code] = $currentRow;
+            }
+        }
+    
+        $answer = array_values($answer);
+        
+        return $answer;
+    }
+    
+    /**
+     * @param array $pa - prodotti acquistati
+     * @param array $npa - non più acquistati
+     *
+     * @return array
+     */
+    protected function removeNPAProducts($pa, $npa)
+    {
+        $answer = [];
+        $npaCodes = array_column($npa, 'CodArt');
+        
+        foreach ($pa as $row)
+        {
+            $code = $row["CodArt"];
+            if(!in_array($code, $npaCodes))
+            {
+                $answer[] = $row;
+            }
+        }
+        
+        return $answer;
+    }
+        
     /**
      * @param \Sugar_Smarty $ss
      */
@@ -151,9 +221,18 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         if ($data = unserialize(base64_decode($this->bean->deadlines)))
         {
             $answer = $this->convertObjectToArray($data);
-    
+                        
             $sums = $this->getDeadlinesSums($answer);
+            $formatKeys = [
+                "Totale scaduto(€)",
+                "Totale a scadere(€)",
+                "Totale esposizione(€)",
+            ];
+            $this->reformatNumbers($sums, $formatKeys);
             $ss->assign("deadlines_sums", $sums);
+    
+            
+            $answer = $this->reformatNumberMulti($answer, ["ImportoScEuro"]);
             
             $removeKeys = [
                 'TipoEffetto',
@@ -196,7 +275,7 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         
         foreach ($data as $row)
         {
-            $expiryDate = \DateTime::createFromFormat("Y-m-d", $row["DataScadenza"]);
+            $expiryDate = \DateTime::createFromFormat("d/m/Y", $row["DataScadenza"]);
             $val = floatval($row["ImportoScEuro"]);
             $total += $val;
             if ($expiryDate >= $now)
@@ -234,6 +313,8 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 $discount = (1 - floatval($row['PrezzoUnitNettoEuro']) / floatval($row['PrezzoListino42'])) * 100;
                 $row['discount'] = number_format($discount, 2);
             }
+    
+            $answer = $this->reformatNumberMulti($answer, ["PrezzoUnitNettoEuro", "TotNettoRigaEuro", "discount"]);
             
             $removeKeys = [
                 'DataDoc',
@@ -309,6 +390,64 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         $v = sha1(microtime());
         $path = "/custom/modules/mkt_AccountExtras/tpls/rawdata.css?v=$v";
         $ss->assign("css_path", $path);
+    }
+    
+    /**
+     * @param array $data
+     */
+    private function reorderByArticleColumn(&$data)
+    {
+        usort($data, function($a, $b) {
+            return strcmp(trim($a['DesArt']), trim($b['DesArt']));
+        });
+    }
+    
+    /**
+     * @param array $rows
+     * @param array $columns
+     *
+     * @return array
+     */
+    private function reformatNumberMulti($rows, $columns)
+    {
+        foreach($rows as &$row)
+        {
+            $this->reformatNumbers($row, $columns);
+        }
+        
+        return $rows;
+    }
+    
+    /**
+     * @param array $row
+     * @param array $columns
+     */
+    private function reformatNumbers(&$row, $columns)
+    {
+        foreach($columns as $key)
+        {
+            if(isset($row[$key]))
+            {
+                $row[$key] = str_replace(".", ",", $row[$key]);
+            }
+        }
+    }
+    
+    
+    /**
+     * @param array $data
+     * @param array $orderedKeys
+     *
+     * @return array
+     */
+    private function reorderKeysMulti($data, $orderedKeys)
+    {
+        foreach($data as &$row)
+        {
+            $row = $this->reorderKeys($row, $orderedKeys);
+        }
+        
+        return $data;
     }
     
     /**
