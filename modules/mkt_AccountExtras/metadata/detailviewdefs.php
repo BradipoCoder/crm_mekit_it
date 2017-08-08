@@ -53,56 +53,8 @@ array (
         array (
           0 => 
           array (
-            'name' => 'mkt_accountextras_accounts_name',
-          ),
-        ),
-        1 => 
-        array (
-          0 => 'date_modified',
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            'name' => 'client_data_txt',
-            'studio' => 'visible',
-            'label' => 'LBL_CLIENT_DATA_TXT',
-          ),
-        ),
-        3 => 
-        array (
-          0 => 
-          array (
-            'name' => 'current_month_txt',
-            'studio' => 'visible',
-            'label' => 'LBL_CURRENT_MONTH_TXT',
-          ),
-        ),
-        4 => 
-        array (
-          0 => 
-          array (
-            'name' => 'deadlines_txt',
-            'studio' => 'visible',
-            'label' => 'LBL_DEADLINES_TXT',
-          ),
-        ),
-        5 => 
-        array (
-          0 => 
-          array (
-            'name' => 'products_recent_buys_txt',
-            'studio' => 'visible',
-            'label' => 'LBL_PRODUCTS_RECENT_BUYS_TXT',
-          ),
-        ),
-        6 => 
-        array (
-          0 => 
-          array (
-            'name' => 'products_recent_non_buys_txt',
-            'studio' => 'visible',
-            'label' => 'LBL_PRODUCTS_RECENT_NON_BUYS_TXT',
+            'name' => 'iframe_1',
+            'label' => 'LBL_IFRAME_1',
           ),
         ),
       ),
@@ -111,8 +63,16 @@ array (
         0 => 
         array (
           0 => 'name',
+          1 => 
+          array (
+            'name' => 'mkt_accountextras_accounts_name',
+          ),
         ),
         1 => 
+        array (
+          0 => 'date_modified',
+        ),
+        2 => 
         array (
           0 => 'date_entered',
           1 => 'assigned_user_name',

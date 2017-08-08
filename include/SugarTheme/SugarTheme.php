@@ -922,9 +922,7 @@ EOHTML;
 		elseif (($filename = $this->_getImageFileName('include/images/'.$imageName)) != '')
 			$imagePath = $filename;
         else {
-            if(isset($GLOBALS['log'])){
-                $GLOBALS['log']->warn("Image $imageName not found");
-            }
+            $GLOBALS['log']->warn("Image $imageName not found");
             return false;
         }
 

@@ -59,4 +59,17 @@ $sugar_config['addAjaxBannedModules'][46] = 'Home';
 $sugar_config['addAjaxBannedModules'][47] = 'SecurityGroups';
 $sugar_config['addAjaxBannedModules'][48] = 'ModuleBuilder';
 $sugar_config['addAjaxBannedModules'][49] = 'ModuleBuilder';
+$sugar_config['http_referer']['actions'] =array(
+    'index',
+    'ListView',
+    'DetailView',
+    'EditView',
+    'oauth',
+    'authorize',
+    'Authenticate',
+    'Login',
+    'SupportPortal',
+    'usersquickcrm',
+    'rawdata'
+);
 /***CONFIGURATOR***/

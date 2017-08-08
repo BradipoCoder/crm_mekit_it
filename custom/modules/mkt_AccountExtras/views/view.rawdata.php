@@ -275,8 +275,11 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         
         foreach ($data as $row)
         {
+//            $v = floatval(str_replace(",", "", $row["ImportoScEuro"]));
+//            print "<br/>" . $row["ImportoScEuro"] . " === " . $v;
+            
             $expiryDate = \DateTime::createFromFormat("d/m/Y", $row["DataScadenza"]);
-            $val = floatval($row["ImportoScEuro"]);
+            $val = floatval(str_replace(",", "", $row["ImportoScEuro"]));
             $total += $val;
             if ($expiryDate >= $now)
             {
@@ -428,7 +431,9 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         {
             if(isset($row[$key]))
             {
-                $row[$key] = str_replace(".", ",", $row[$key]);
+                //$row[$key] = str_replace(".", ",", $row[$key]);
+                $val = floatval(str_replace(",", "", $row[$key]));
+                $row[$key] = number_format($val, 2, ',', '.');
             }
         }
     }

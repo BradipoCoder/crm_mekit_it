@@ -1408,7 +1408,7 @@ $dictionary['Account']['fields']['mkt_prev_di_fatt_50_c']['labelValue']='Mkt Pre
 
  
 
-// created: 2017-07-28 15:43:06
+// created: 2017-08-04 09:15:31
 $dictionary["Account"]["fields"]["mkt_accountextras_accounts"] = array (
   'name' => 'mkt_accountextras_accounts',
   'type' => 'link',

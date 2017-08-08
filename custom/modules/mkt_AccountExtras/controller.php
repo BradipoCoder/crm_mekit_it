@@ -14,7 +14,7 @@ class mkt_AccountExtrasController extends SugarController {
     }
     
     /**
-     * http://crm2.mekit.it/index.php?module=mkt_AccountExtras&action=rawdata&record=a00dd761-611a-6a67-f141-597b0b76c1a6
+     * http://crm.mekit.it/index.php?module=mkt_AccountExtras&action=rawdata&record=a00dd761-611a-6a67-f141-597b0b76c1a6
      */
     function action_rawdata() {
         $this->view = "rawdata";
