@@ -41,11 +41,6 @@ array (
       array (
         0 => 
         array (
-          0 => 'contact_name',
-          1 => 'parent_name',
-        ),
-        1 => 
-        array (
           0 => 
           array (
             'name' => 'name',
@@ -56,23 +51,8 @@ array (
               'required' => true,
             ),
           ),
-          1 => 
-          array (
-            'name' => 'assigned_user_name',
-            'label' => 'LBL_ASSIGNED_TO',
-          ),
         ),
-        2 => 
-        array (
-          0 => 'filename',
-          1 => 
-          array (
-            'name' => 'image_c',
-            'studio' => 'visible',
-            'label' => 'LBL_IMAGE',
-          ),
-        ),
-        3 => 
+        1 => 
         array (
           0 => 
           array (
@@ -83,6 +63,19 @@ array (
               'rows' => 6,
               'cols' => 75,
             ),
+          ),
+        ),
+        2 => 
+        array (
+          0 => 'contact_name',
+          1 => 'parent_name',
+        ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'assigned_user_name',
+            'label' => 'LBL_ASSIGNED_TO',
           ),
         ),
       ),

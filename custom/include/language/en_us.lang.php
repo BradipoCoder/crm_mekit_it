@@ -766,11 +766,6 @@ $GLOBALS['app_list_strings']['imp_ex_agent_code_list'] = array(
     'A5' => 'Vito Scilabra(A5)',
     'A14' => 'Fabrizio Zollet(A14)',
 );
-$GLOBALS['app_list_strings']['task_status_dom'] = array(
-    'In Progress' => 'In Progress',
-    'Completed'   => 'Completed',
-    'Waiting'     => 'On Hold',
-);
 $GLOBALS['app_list_strings']['inspection_smile_list'] = array(
     'good'    => ':-)',
     'neutral' => ':-|',
@@ -1201,4 +1196,17 @@ $GLOBALS['app_list_strings']['internal_tag_number_list']=array (
   23 => '23',
   24 => '24',
   25 => '25',
+);
+$GLOBALS['app_list_strings']['task_status_dom']=array (
+  'In Progress' => 'In Progress',
+  'Completed' => 'Completed',
+  'Waiting' => 'On Hold',
+  'ToBeVerified' => 'Da verificare',
+);
+
+$GLOBALS['app_list_strings']['task_priority_dom']=array (
+  'P1' => 'A - Urgente',
+  'P2' => 'B - Alta',
+  'P3' => 'C - Media',
+  'P4' => 'D - Bassa',
 );
