@@ -96,6 +96,13 @@ array (
       0 => 'contact_id',
     ),
   ),
+  'URGENCY_INDICATOR_1' => 
+  array (
+    'type' => 'varchar',
+    'default' => false,
+    'label' => 'LBL_URGENCY_INDICATOR_1',
+    'width' => '10%',
+  ),
   'DATE_MODIFIED' => 
   array (
     'type' => 'datetime',
