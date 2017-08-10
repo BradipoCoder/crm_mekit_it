@@ -40,7 +40,7 @@ class urgencyIndicatorHook
      */
     public static function execute($bean, $event, $arguments)
     {
-        
+        self::$messages = [];
         
         $indicator_1 = self::getIndicatorLevelComponent_1($bean);
         $indicator_2 = self::getIndicatorLevelComponent_2($bean);
@@ -121,9 +121,11 @@ class urgencyIndicatorHook
         $start_date = $bean->date_start;//2017-08-07 06:00:00
         
         if($start_date) {
-            $startDate = \DateTime::createFromFormat("Y-m-d H:i:s", $start_date);
             $today = new \DateTime();
-            $daysFromStart = $startDate->diff($today)->days;
+            $startDateTimestamp = strtotime($start_date);
+            $todayTimestamp = $today->format("U");
+            $secondsFromStart = $todayTimestamp - $startDateTimestamp;
+            $daysFromStart = round($secondsFromStart / 60 / 60 / 24);
             $daysFromStart = $daysFromStart < 0 ? 0 : $daysFromStart;
             
             //simple(linear) weighted level - $daysToCompleteTask
@@ -152,9 +154,11 @@ class urgencyIndicatorHook
         $due_date = $bean->date_due;//2017-08-07 06:00:00
     
         if($due_date) {
-            $dueDate = \DateTime::createFromFormat("Y-m-d H:i:s", $due_date);
             $today = new \DateTime();
-            $daysToDeadline = $today->diff($dueDate)->days;
+            $dueDateTimestamp = strtotime($due_date);
+            $todayTimestamp = $today->format("U");
+            $secondsToDeadline = $dueDateTimestamp - $todayTimestamp;
+            $daysToDeadline = round($secondsToDeadline / 60 / 60 / 24);
             $daysToDeadline = $daysToDeadline < 0 ? 0 : $daysToDeadline;
         
             //simple(linear) weighted level

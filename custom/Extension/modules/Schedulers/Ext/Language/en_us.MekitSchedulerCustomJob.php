@@ -6,3 +6,4 @@
  */
 
 $mod_strings['LBL_MEKITSCHEDULERCUSTOMJOB'] = 'Mekit Scheduler Custom Job';
+$mod_strings['LBL_TASKUPDATEURGENCYINDICATORS'] = 'TaskUpdateUrgencyIndicators';
