@@ -26,6 +26,13 @@ class urgencyIndicatorHook
     private static $factors = [1, 1, 1];
     
     /**
+     * When considering days passed from start date - we are using this as an upper limit
+     *
+     * @var int
+     */
+    private static $daysToCompleteTask = 30;
+    
+    /**
      *
      * @param \Task     $bean
      * @param string    $event
@@ -92,8 +99,8 @@ class urgencyIndicatorHook
         
         self::$messages[] = "Factored Level Sum: " . $answer;
     
-        $answer = floor($answer / $maxElements);
-        self::$messages[] = "Factored Level Sum: " . $answer;
+        $answer = round($answer / $maxElements);
+        self::$messages[] = "URGENCY LEVEL: " . $answer;
         
         
         return $answer;
@@ -101,6 +108,7 @@ class urgencyIndicatorHook
     
     /**
      * Componente 1 - Data inizio
+     * //@todo: implement logarithmic formula for this
      *
      * @param \Task $bean
      *
@@ -118,12 +126,11 @@ class urgencyIndicatorHook
             $daysFromStart = $startDate->diff($today)->days;
             $daysFromStart = $daysFromStart < 0 ? 0 : $daysFromStart;
             
-            
-            //@todo: implement logarithmic formula with max exec days param
-            $answer = $daysFromStart;
-    
+            //simple(linear) weighted level - $daysToCompleteTask
+            $answer = round(100 * $daysFromStart / self::$daysToCompleteTask);
      
-            self::$messages[] = "1 - START DATE LEVEL[DAYS DIFF:$daysFromStart]: " . $answer;
+            self::$messages[] = "1 - START DATE LEVEL[DIFF:$daysFromStart / MAX: "
+                . self::$daysToCompleteTask . "]: " . $answer;
         }
         
         return $answer;
@@ -132,6 +139,8 @@ class urgencyIndicatorHook
     /**
      * Componente 2 - Data scadenza
      *
+     * //@todo: implement logarithmic formula for this - control curvature - strech horizontally
+     *
      * @param \Task $bean
      *
      * @return int
@@ -139,7 +148,21 @@ class urgencyIndicatorHook
     protected function getIndicatorLevelComponent_2(\Task $bean)
     {
         $answer = 0;
+    
+        $due_date = $bean->date_due;//2017-08-07 06:00:00
+    
+        if($due_date) {
+            $dueDate = \DateTime::createFromFormat("Y-m-d H:i:s", $due_date);
+            $today = new \DateTime();
+            $daysToDeadline = $today->diff($dueDate)->days;
+            $daysToDeadline = $daysToDeadline < 0 ? 0 : $daysToDeadline;
         
+            //simple(linear) weighted level
+            $answer = round(100 / ($daysToDeadline + 1));
+        
+            self::$messages[] = "2 - DUE DATE LEVEL[DIFF:$daysToDeadline]: " . $answer;
+        }
+    
         return $answer;
     }
     
@@ -163,7 +186,7 @@ class urgencyIndicatorHook
         
         $answer = array_key_exists($priority, $priorityLevels) ? $priorityLevels[$priority] : 0;
         
-        self::$messages[] = "3 - PRIORITY LEVEL($priority): $answer";
+        self::$messages[] = "3 - PRIORITY LEVEL[$priority]: $answer";
         
         return $answer;
     }
