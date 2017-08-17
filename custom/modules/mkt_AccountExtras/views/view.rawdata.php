@@ -61,8 +61,9 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         
         $data_prod_acq = unserialize(base64_decode($this->bean->products_recent_buys));
         $data_prod_non_acq = unserialize(base64_decode($this->bean->products_recent_non_buys));
-    
-        if($data_prod_acq && $data_prod_non_acq)
+        
+        
+        if(true)//if($data_prod_acq && $data_prod_non_acq)
         {
             $answer_prod_acq = $this->convertObjectToArray($data_prod_acq);
             $answer_prod_non_acq = $this->convertObjectToArray($data_prod_non_acq);
