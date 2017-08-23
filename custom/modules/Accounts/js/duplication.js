@@ -43,7 +43,12 @@
                         default:
                             break;
                     }
+                }
 
+                // Add "COPIA" to name
+                if(fieldId == "name")
+                {
+                    $field.val($field.val() + " - COPIA");
                 }
             }
         });
