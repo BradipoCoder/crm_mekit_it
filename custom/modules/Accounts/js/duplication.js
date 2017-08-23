@@ -1,74 +1,62 @@
 /**
  * Created by jack on 23/08/17.
+ *
+ * Metodo utilizzato: identified utilizzato nell attributo 'title' (Testo di Aiuto) del campo
+ *
  */
 (function($)
 {
-
-    var bannedFields = [
-        /* DATI AVANZATI */
-        'imp_metodo_code_old_c',
-        'imp_metodo_client_code_c',
-        'imp_metodo_supplier_code_c',
-        'imp_metodo_invoice_client_c',
-        'imp_metodo_invoice_supplier_c',
-        'imp_metodo_notes_c',
-
-        'mekit_metodo_code_old_c',
-        'mekit_metodo_client_code_c',
-        'mekit_metodo_supplier_code_c',
-        'mekit_metodo_invoice_client_c',
-        'mekit_metodo_invoice_supplie_c',
-        'mekit_metodo_notes_c',
-
-        'metodo_last_update_time_c'
-    ];
+    var nonDuplicableFieldIdentifierTitle = "\\[ND\\]";
 
     var $form = $("form#EditView");
-
 
     /**
      * clear form field values which should not be duplicated
      */
     var clearBannedFormFields = function()
     {
-        var isDuplicationForm = $("input[name=duplicateSave]", $form).val() == "true";
+        var $field, fieldId, tagName, fieldTitle;
+        var $formfields = $(":input", $form);
+        var NDPattern = new RegExp(nonDuplicableFieldIdentifierTitle);
 
-        if (!isDuplicationForm) {
-            return;
-        }
+        console.log("working on non duplicable fields by expression: '" + nonDuplicableFieldIdentifierTitle + "'");
 
-
-        console.log("Duplicating...");
-
-        var $field, tagName;
-        $.each(bannedFields, function(i, fieldId)
+        $.each($formfields, function(i, el)
         {
-            $field = $("#" + fieldId, $form);
-
-            if($field.length == 1)
-            {
+            $field = $(el);
+            if($field.length == 1) {
+                fieldId = $field.prop("id");
                 tagName = $field.prop("tagName").toLowerCase();
-                //console.log("got field: " + fieldId + " : " + tagName);
+                fieldTitle = $field.prop("title");
 
-                switch(tagName)
-                {
-                    case "input":
-                        $field.val("");
-                        break;
-                    case "select":
-                        $field.val("");
-                        break;
-                    default:
-                        break;
+                if (fieldTitle.match(NDPattern)) {
+                    console.log("Non duplicable field[" + tagName + "]: " + fieldId + " - title: " + fieldTitle);
+
+                    switch(tagName)
+                    {
+                        case "input":
+                            $field.val("");
+                            break;
+                        case "select":
+                            $field.val("");
+                            break;
+                        default:
+                            break;
+                    }
+
                 }
             }
-        })
+        });
     };
-
 
     $(document).ready(function()
     {
-        clearBannedFormFields();
+        var isDuplicationForm = $("input[name=duplicateSave]", $form).val() == "true";
+
+        if (isDuplicationForm)
+        {
+            clearBannedFormFields();
+        }
     });
 
 })(jQuery);
