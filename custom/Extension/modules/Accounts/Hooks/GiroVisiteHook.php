@@ -46,15 +46,15 @@ class GiroVisiteHook
         $account->gv_cont_meetings_c = self::getCountOverallMeetings($account);
     
         /*
-        if ($account->id == "9e58390c-c9e3-96fa-01b7-561ec111846f")
+        if ($account->id == "5acae852-1d39-f090-39ef-531b45febb09")
         {
             print("<br />CNT-1: " . $account->gv_cont_1_c);
             print("<br />CNT-2: " . $account->gv_cont_2_c);
             print("<br />CNT-3: " . $account->gv_cont_3_c);
-            print("<br />CNT-X: " . $account->gv_cont_meetings);
+            print("<br />CNT-X: " . $account->gv_cont_meetings_c);
             die("\n<br />-");
-        }*/
-        
+        }
+        */
     }
     
     /**
@@ -133,7 +133,10 @@ class GiroVisiteHook
         $now = new \DateTime();
         $someDaysAgo = date('Y-m-d', strtotime('-' . $daysToCheck . ' days', strtotime($now->format("Y-m-d"))));
     
-        $sql = "SELECT * FROM opportunities AS o"//COUNT(*) AS cnt
+        //print("user: " . $agentId);
+        //print("date: " . $someDaysAgo);
+        
+        $sql = "SELECT COUNT(*) AS cnt FROM opportunities AS o"//COUNT(*) AS cnt
             . " INNER JOIN opportunities_cstm AS c ON o.id = c.id_c"
             . " INNER JOIN accounts_opportunities AS ao ON o.id = ao.opportunity_id"
             . " WHERE o.deleted = 0"
@@ -288,6 +291,8 @@ class GiroVisiteHook
                 self::$agentCodes[$agentCode] = $answer;
             }
         }
+    
+        //print("<br />AGENT-IDS: " . print_r(self::$agentCodes, true));
         
         return $answer;
     }
