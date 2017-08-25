@@ -1,7 +1,16 @@
+/*
+* For this to be loaded into compiled css by sugar you need to delete the cached version:
+* : /home/crm.mekit.it/httpdocs/cache/themes/SuiteP/css
+*/
+
 .detail-view-field .sugar_field
 {
     white-space: normal;
     overflow-wrap: break-word;
     font-family: monospace, monospace;
     font-size: 11px;
+}
+
+.search select[size]{
+    height:auto;
 }
