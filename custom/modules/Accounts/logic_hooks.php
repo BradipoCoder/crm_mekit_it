@@ -17,6 +17,15 @@ $hook_array['before_save'][] =
         'execute',
     );
 
+$hook_array['before_save'][] =
+    Array(
+        33,
+        'contact count',
+        'custom/Extension/modules/Accounts/Hooks/ContactCountHook.php',
+        'ContactCountHook',
+        'execute',
+    );
+
 
 $hook_array['after_save'] = Array();
 $hook_array['after_save'][] = Array(77, 'updateRelatedMeetingsGeocodeInfo', 'modules/Accounts/AccountsJjwg_MapsLogicHook.php','AccountsJjwg_MapsLogicHook', 'updateRelatedMeetingsGeocodeInfo');
