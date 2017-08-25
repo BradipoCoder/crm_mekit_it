@@ -8,32 +8,19 @@ array (
     'link' => true,
     'default' => true,
   ),
-  'ULTIMO_AGGIORNAMENTO_C' => 
-  array (
-    'type' => 'date',
-    'default' => true,
-    'label' => 'LBL_ULTIMO_AGGIORNAMENTO',
-    'width' => '10%',
-  ),
-  'PUNTEGGIO_RATING_C' => 
-  array (
-    'type' => 'int',
-    'default' => true,
-    'label' => 'LBL_PUNTEGGIO_RATING',
-    'width' => '10%',
-  ),
-  'CREDITO_C' => 
-  array (
-    'type' => 'int',
-    'default' => true,
-    'label' => 'LBL_CREDITO',
-    'width' => '10%',
-  ),
   'INDUSTRY' => 
   array (
     'width' => '10%',
     'label' => 'LBL_INDUSTRY',
     'default' => true,
+  ),
+  'ZONE_C' => 
+  array (
+    'type' => 'enum',
+    'default' => true,
+    'studio' => 'visible',
+    'label' => 'LBL_ZONE',
+    'width' => '10%',
   ),
   'BILLING_ADDRESS_CITY' => 
   array (
@@ -47,14 +34,6 @@ array (
     'label' => 'LBL_LIST_PHONE',
     'default' => true,
   ),
-  'ZONE_C' => 
-  array (
-    'type' => 'enum',
-    'default' => true,
-    'studio' => 'visible',
-    'label' => 'LBL_ZONE',
-    'width' => '10%',
-  ),
   'EMAIL1' => 
   array (
     'width' => '20%',
@@ -64,26 +43,78 @@ array (
     'customCode' => '{$EMAIL1_LINK}{$EMAIL1}</a>',
     'default' => true,
   ),
-  'IMP_STATUS_C' => 
+  'IMP_HAS_ACQ_CONTACT_MAIL_C' => 
   array (
     'type' => 'enum',
     'default' => true,
     'studio' => 'visible',
+    'label' => 'LBL_IMP_HAS_ACQ_CONTACT_MAIL',
+    'width' => '10%',
+  ),
+  'ULTIMO_AGGIORNAMENTO_C' => 
+  array (
+    'type' => 'date',
+    'default' => false,
+    'label' => 'LBL_ULTIMO_AGGIORNAMENTO',
+    'width' => '10%',
+  ),
+  'PUNTEGGIO_RATING_C' => 
+  array (
+    'type' => 'int',
+    'default' => false,
+    'label' => 'LBL_PUNTEGGIO_RATING',
+    'width' => '10%',
+  ),
+  'CREDITO_C' => 
+  array (
+    'type' => 'int',
+    'default' => false,
+    'label' => 'LBL_CREDITO',
+    'width' => '10%',
+  ),
+  'IMP_MACCHINE_C' => 
+  array (
+    'type' => 'radioenum',
+    'default' => false,
+    'studio' => 'visible',
+    'label' => 'LBL_IMP_MACCHINE',
+    'width' => '10%',
+  ),
+  'IMP_STATUS_C' => 
+  array (
+    'type' => 'enum',
+    'default' => false,
+    'studio' => 'visible',
     'label' => 'LBL_IMP_STATUS',
+    'width' => '10%',
+  ),
+  'IMP_MACCHINE_NOTE_C' => 
+  array (
+    'type' => 'varchar',
+    'default' => false,
+    'label' => 'LBL_IMP_MACCHINE_NOTE',
     'width' => '10%',
   ),
   'IMP_PROFITABILITY_C' => 
   array (
     'type' => 'enum',
-    'default' => true,
+    'default' => false,
     'studio' => 'visible',
     'label' => 'LBL_IMP_PROFITABILITY',
+    'width' => '10%',
+  ),
+  'IMP_MACCHINE_PROPRIETA_C' => 
+  array (
+    'type' => 'radioenum',
+    'default' => false,
+    'studio' => 'visible',
+    'label' => 'LBL_IMP_MACCHINE_PROPRIETA',
     'width' => '10%',
   ),
   'IMP_STATUS_PHASE__C' => 
   array (
     'type' => 'dynamicenum',
-    'default' => true,
+    'default' => false,
     'studio' => 'visible',
     'label' => 'LBL_IMP_STATUS_PHASE_',
     'width' => '10%',
@@ -91,15 +122,22 @@ array (
   'MESIMOBILI12_C' => 
   array (
     'type' => 'currency',
-    'default' => true,
+    'default' => false,
     'label' => 'LBL_MESIMOBILI12',
     'currency_format' => true,
+    'width' => '10%',
+  ),
+  'MACCHINE_RICORDAMELO_IL_C' => 
+  array (
+    'type' => 'date',
+    'default' => false,
+    'label' => 'LBL_MACCHINE_RICORDAMELO_IL',
     'width' => '10%',
   ),
   'FT_ANNO_MENO_UNO_COMPLETO_C' => 
   array (
     'type' => 'currency',
-    'default' => true,
+    'default' => false,
     'label' => 'LBL_FT_ANNO_MENO_UNO_COMPLETO',
     'currency_format' => true,
     'width' => '10%',
@@ -107,7 +145,7 @@ array (
   'DAGENAOGGI_C' => 
   array (
     'type' => 'currency',
-    'default' => true,
+    'default' => false,
     'label' => 'LBL_DAGENAOGGI',
     'currency_format' => true,
     'width' => '10%',
@@ -115,37 +153,44 @@ array (
   'CHIAMATOPERBARBARA_C' => 
   array (
     'type' => 'enum',
-    'default' => true,
+    'default' => false,
     'studio' => 'visible',
     'label' => 'LBL_CHIAMATOPERBARBARA',
-    'width' => '10%',
-  ),
-  'IMP_METODO_CLIENT_CODE_C' => 
-  array (
-    'type' => 'varchar',
-    'default' => true,
-    'label' => 'LBL_IMP_METODO_CLIENT_CODE',
     'width' => '10%',
   ),
   'IMP_ORIGIN_C' => 
   array (
     'type' => 'enum',
-    'default' => true,
+    'default' => false,
     'studio' => 'visible',
     'label' => 'LBL_IMP_ORIGIN',
+    'width' => '10%',
+  ),
+  'IMP_METODO_CLIENT_CODE_C' => 
+  array (
+    'type' => 'varchar',
+    'default' => false,
+    'label' => 'LBL_IMP_METODO_CLIENT_CODE',
     'width' => '10%',
   ),
   'IMP_ACC_SLEEP_DATE_C' => 
   array (
     'type' => 'date',
-    'default' => true,
+    'default' => false,
     'label' => 'LBL_IMP_ACC_SLEEP_DATE',
+    'width' => '10%',
+  ),
+  'GV_CONT_1_C' => 
+  array (
+    'type' => 'int',
+    'default' => false,
+    'label' => 'LBL_GV_CONT_1',
     'width' => '10%',
   ),
   'TARGET_C' => 
   array (
     'type' => 'enum',
-    'default' => true,
+    'default' => false,
     'studio' => 'visible',
     'label' => 'LBL_TARGET',
     'width' => '10%',
@@ -153,7 +198,7 @@ array (
   'IMP_AGENT_CODE_C' => 
   array (
     'type' => 'enum',
-    'default' => true,
+    'default' => false,
     'studio' => 'visible',
     'label' => 'LBL_IMP_AGENT_CODE',
     'width' => '10%',
@@ -161,9 +206,37 @@ array (
   'IMP_EX_AGENT_CODE_C' => 
   array (
     'type' => 'enum',
-    'default' => true,
+    'default' => false,
     'studio' => 'visible',
     'label' => 'LBL_IMP_EX_AGENT_CODE',
+    'width' => '10%',
+  ),
+  'GV_CONT_2_C' => 
+  array (
+    'type' => 'int',
+    'default' => false,
+    'label' => 'LBL_GV_CONT_2',
+    'width' => '10%',
+  ),
+  'GV_CONT_3_C' => 
+  array (
+    'type' => 'int',
+    'default' => false,
+    'label' => 'LBL_GV_CONT_3',
+    'width' => '10%',
+  ),
+  'GV_CONT_TOT_C' => 
+  array (
+    'type' => 'int',
+    'default' => false,
+    'label' => 'LBL_GV_CONT_TOT',
+    'width' => '10%',
+  ),
+  'GV_CONT_MEETINGS_C' => 
+  array (
+    'type' => 'int',
+    'default' => false,
+    'label' => 'LBL_GV_CONT_MEETINGS',
     'width' => '10%',
   ),
   'IMPORTO_PROTESTI_C' => 

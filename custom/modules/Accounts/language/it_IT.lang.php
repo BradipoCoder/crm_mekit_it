@@ -1,5 +1,5 @@
 <?php
-// created: 2017-05-16 17:30:06
+// created: 2017-08-25 12:21:55
 $mod_strings = array (
   'LBL_ACCOUNT_INFORMATION' => 'Anagrafica',
   'LBL_ACTIVE_INACTIVE' => 'Attivo Inattivo',
@@ -237,7 +237,7 @@ $mod_strings = array (
   'LBL_EDITVIEW_PANEL14' => 'Macchine In Uso',
   'LBL_GIORNI_DI_APERTURA' => 'Giorni di Apertura',
   'LBL_FASCIA_ORARIA_ACQUISTI' => 'Fascia Oraria Acquisti',
-  'LBL_IMP_MACCHINE' => 'Macchine',
+  'LBL_IMP_MACCHINE' => 'Macchine/Contratti',
   'LBL_IMP_MACCHINE_NOTE' => 'Campo Note Macchine',
   'LBL_IMP_MACCHINE_PROPRIETA' => 'Macchine Proprietà-Noleggio',
   'LBL_IMP_EX_AGENT_CODE' => 'Codice Ex-Agente(IMP)',
@@ -266,4 +266,16 @@ $mod_strings = array (
   'LBL_IMP_DISCOUNT_2016' => 'IMP Sconto 2016',
   'LBL_CAMPO_PAGAMENTO' => 'Campo Pagamento',
   'LBL_AFFIANCAMENTO' => 'Affiancamento',
+  'LBL_GV_CONT_1' => 'GV conteggio chiamate',
+  'LBL_GV_CONT_2' => 'GV conteggio riunioni',
+  'LBL_GV_CONT_3' => 'GV conteggio opportunità',
+  'LBL_GV_CONT_TOT' => 'GV conteggio totale',
+  'LBL_GV_CONT_MEETINGS' => 'GV riunioni (da sempre)',
+  'LBL_EDITVIEW_PANEL23' => 'Mail acquisti presente',
+  'LBL_DATE_MODIFIED' => 'Data Modifica:',
+  'LBL_MKT_ACC_SLEEP_DATE' => 'LBL_MKT_ACC_SLEEP_DATE',
+  'LBL_MKT_ACC_START_DATE' => 'LBL_MKT_ACC_START_DATE',
+  'LBL_IMP_HAS_ACQ_CONTACT_MAIL' => 'Mail acquisti',
+  'LBL_EDITVIEW_PANEL24' => 'Giro visite',
+  'LBL_MACCHINE_RICORDAMELO_IL' => 'Ricordamelo il',
 );

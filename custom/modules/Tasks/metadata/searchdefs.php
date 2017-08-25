@@ -5,6 +5,20 @@ array (
   array (
     'basic_search' => 
     array (
+      'status' => 
+      array (
+        'name' => 'status',
+        'default' => true,
+        'width' => '10%',
+      ),
+      'priority' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'label' => 'LBL_PRIORITY',
+        'width' => '10%',
+        'name' => 'priority',
+      ),
       'name' => 
       array (
         'name' => 'name',
@@ -26,86 +40,6 @@ array (
         'type' => 'bool',
         'default' => true,
         'width' => '10%',
-      ),
-      'priority' => 
-      array (
-        'type' => 'enum',
-        'default' => true,
-        'label' => 'LBL_PRIORITY',
-        'width' => '10%',
-        'name' => 'priority',
-      ),
-      'favorites_only' => 
-      array (
-        'name' => 'favorites_only',
-        'label' => 'LBL_FAVORITES_FILTER',
-        'type' => 'bool',
-        'default' => true,
-        'width' => '10%',
-      ),
-      'created_by' => 
-      array (
-        'type' => 'assigned_user_name',
-        'label' => 'LBL_CREATED',
-        'width' => '10%',
-        'default' => true,
-        'name' => 'created_by',
-      ),
-      'status' => 
-      array (
-        'name' => 'status',
-        'default' => true,
-        'width' => '10%',
-      ),
-      'date_start' => 
-      array (
-        'type' => 'datetimecombo',
-        'studio' => 
-        array (
-          'required' => true,
-          'no_duplicate' => true,
-        ),
-        'label' => 'LBL_START_DATE',
-        'width' => '10%',
-        'default' => true,
-        'name' => 'date_start',
-      ),
-      'date_due' => 
-      array (
-        'type' => 'datetimecombo',
-        'studio' => 
-        array (
-          'required' => true,
-          'no_duplicate' => true,
-        ),
-        'label' => 'LBL_DUE_DATE',
-        'width' => '10%',
-        'default' => true,
-        'name' => 'date_due',
-      ),
-      'assigned_user_id' => 
-      array (
-        'name' => 'assigned_user_id',
-        'type' => 'enum',
-        'label' => 'LBL_ASSIGNED_TO',
-        'function' => 
-        array (
-          'name' => 'get_user_array',
-          'params' => 
-          array (
-            0 => false,
-          ),
-        ),
-        'default' => true,
-        'width' => '10%',
-      ),
-      'parent_name' => 
-      array (
-        'type' => 'parent',
-        'label' => 'LBL_LIST_RELATED_TO',
-        'width' => '10%',
-        'default' => true,
-        'name' => 'parent_name',
       ),
     ),
     'advanced_search' => 
@@ -145,6 +79,14 @@ array (
         'label' => 'LBL_PRIORITY',
         'width' => '10%',
         'name' => 'priority',
+      ),
+      'urgency_indicator_c' => 
+      array (
+        'type' => 'int',
+        'default' => true,
+        'label' => 'LBL_URGENCY_INDICATOR',
+        'width' => '10%',
+        'name' => 'urgency_indicator_c',
       ),
       'parent_name' => 
       array (

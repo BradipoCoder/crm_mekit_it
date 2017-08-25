@@ -8,14 +8,6 @@ array (
     'link' => true,
     'default' => true,
   ),
-  'DESCRIPTION' => 
-  array (
-    'type' => 'text',
-    'label' => 'LBL_DESCRIPTION',
-    'sortable' => false,
-    'width' => '10%',
-    'default' => true,
-  ),
   'STATUS' => 
   array (
     'width' => '10%',
@@ -37,30 +29,6 @@ array (
     'link' => false,
     'default' => true,
   ),
-  'PARENT_NAME' => 
-  array (
-    'width' => '20%',
-    'label' => 'LBL_LIST_RELATED_TO',
-    'dynamic_module' => 'PARENT_TYPE',
-    'id' => 'PARENT_ID',
-    'link' => true,
-    'default' => true,
-    'sortable' => false,
-    'ACLTag' => 'PARENT',
-    'related_fields' => 
-    array (
-      0 => 'parent_id',
-      1 => 'parent_type',
-    ),
-  ),
-  'ASSIGNED_USER_NAME' => 
-  array (
-    'width' => '2%',
-    'label' => 'LBL_LIST_ASSIGNED_TO_NAME',
-    'module' => 'Employees',
-    'id' => 'ASSIGNED_USER_ID',
-    'default' => true,
-  ),
   'CREATED_BY_NAME' => 
   array (
     'type' => 'relate',
@@ -68,6 +36,14 @@ array (
     'label' => 'LBL_CREATED',
     'id' => 'CREATED_BY',
     'width' => '10%',
+    'default' => true,
+  ),
+  'ASSIGNED_USER_NAME' => 
+  array (
+    'width' => '2%',
+    'label' => 'LBL_LIST_ASSIGNED_TO_NAME',
+    'module' => 'Employees',
+    'id' => 'ASSIGNED_USER_ID',
     'default' => true,
   ),
   'SET_COMPLETE' => 
@@ -96,12 +72,13 @@ array (
       0 => 'contact_id',
     ),
   ),
-  'URGENCY_INDICATOR_1' => 
+  'DESCRIPTION' => 
   array (
-    'type' => 'varchar',
-    'default' => false,
-    'label' => 'LBL_URGENCY_INDICATOR_1',
+    'type' => 'text',
+    'label' => 'LBL_DESCRIPTION',
+    'sortable' => false,
     'width' => '10%',
+    'default' => false,
   ),
   'DATE_MODIFIED' => 
   array (
@@ -118,6 +95,22 @@ array (
     'id' => 'MODIFIED_USER_ID',
     'width' => '10%',
     'default' => false,
+  ),
+  'PARENT_NAME' => 
+  array (
+    'width' => '20%',
+    'label' => 'LBL_LIST_RELATED_TO',
+    'dynamic_module' => 'PARENT_TYPE',
+    'id' => 'PARENT_ID',
+    'link' => true,
+    'default' => false,
+    'sortable' => false,
+    'ACLTag' => 'PARENT',
+    'related_fields' => 
+    array (
+      0 => 'parent_id',
+      1 => 'parent_type',
+    ),
   ),
   'PARENT_TYPE' => 
   array (
@@ -165,6 +158,22 @@ array (
     'width' => '10%',
     'label' => 'LBL_DATE_ENTERED',
     'default' => false,
+  ),
+  'URGENCY_INDICATOR_C' => 
+  array (
+    'type' => 'int',
+    'default' => false,
+    'label' => 'LBL_URGENCY_INDICATOR',
+    'width' => '10%',
+  ),
+  'URGENCY_CALC_TEMP_C' => 
+  array (
+    'type' => 'text',
+    'default' => false,
+    'studio' => 'visible',
+    'label' => 'LBL_URGENCY_CALC_TEMP',
+    'sortable' => false,
+    'width' => '10%',
   ),
 );
 ?>

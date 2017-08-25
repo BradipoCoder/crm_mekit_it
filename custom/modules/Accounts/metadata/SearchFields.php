@@ -1,5 +1,5 @@
 <?php
-// created: 2017-06-05 07:56:38
+// created: 2017-08-25 13:50:15
 $searchFields['Accounts'] = array (
   'name' => 
   array (
@@ -511,5 +511,195 @@ $searchFields['Accounts'] = array (
   array (
     'query_type' => 'default',
     'enable_range_search' => true,
+  ),
+  'range_gv_cont_1' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_gv_cont_1' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_gv_cont_1' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_gv_cont_2' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_gv_cont_2' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_gv_cont_2' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_gv_cont_3' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_gv_cont_3' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_gv_cont_3' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_gv_cont_tot' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_gv_cont_tot' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_gv_cont_tot' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_gv_cont_1_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_gv_cont_1_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_gv_cont_1_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_gv_cont_2_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_gv_cont_2_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_gv_cont_2_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_gv_cont_3_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_gv_cont_3_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_gv_cont_3_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_gv_cont_tot_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_gv_cont_tot_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_gv_cont_tot_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_gv_cont_meetings' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_gv_cont_meetings' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_gv_cont_meetings' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_gv_cont_meetings_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_gv_cont_meetings_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_gv_cont_meetings_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'date_modified' => 
+  array (
+    'query_type' => 'default',
+  ),
+  'range_macchine_ricordamelo_il' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'start_range_macchine_ricordamelo_il' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'end_range_macchine_ricordamelo_il' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'range_macchine_ricordamelo_il_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'start_range_macchine_ricordamelo_il_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'end_range_macchine_ricordamelo_il_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
   ),
 );

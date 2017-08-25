@@ -1,5 +1,5 @@
 <?php
- // created: 2016-03-03 13:40:11
+ // created: 2017-08-24 16:15:55
 $dictionary['Account']['fields']['commercial_zone_c']['inline_edit']='1';
 $dictionary['Account']['fields']['commercial_zone_c']['labelValue']='Zona Commerciale';
 

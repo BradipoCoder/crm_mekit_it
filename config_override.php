@@ -59,17 +59,15 @@ $sugar_config['addAjaxBannedModules'][46] = 'Home';
 $sugar_config['addAjaxBannedModules'][47] = 'SecurityGroups';
 $sugar_config['addAjaxBannedModules'][48] = 'ModuleBuilder';
 $sugar_config['addAjaxBannedModules'][49] = 'ModuleBuilder';
-$sugar_config['http_referer']['actions'] =array(
-    'index',
-    'ListView',
-    'DetailView',
-    'EditView',
-    'oauth',
-    'authorize',
-    'Authenticate',
-    'Login',
-    'SupportPortal',
-    'usersquickcrm',
-    'rawdata'
-);
+$sugar_config['http_referer']['actions'][0] = 'index';
+$sugar_config['http_referer']['actions'][1] = 'ListView';
+$sugar_config['http_referer']['actions'][2] = 'DetailView';
+$sugar_config['http_referer']['actions'][3] = 'EditView';
+$sugar_config['http_referer']['actions'][4] = 'oauth';
+$sugar_config['http_referer']['actions'][5] = 'authorize';
+$sugar_config['http_referer']['actions'][6] = 'Authenticate';
+$sugar_config['http_referer']['actions'][7] = 'Login';
+$sugar_config['http_referer']['actions'][8] = 'SupportPortal';
+$sugar_config['http_referer']['actions'][9] = 'usersquickcrm';
+$sugar_config['http_referer']['actions'][10] = 'rawdata';
 /***CONFIGURATOR***/

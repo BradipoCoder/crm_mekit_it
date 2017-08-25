@@ -19,112 +19,13 @@ array (
         'default' => true,
         'width' => '10%',
       ),
-      'favorites_only' => 
-      array (
-        'name' => 'favorites_only',
-        'label' => 'LBL_FAVORITES_FILTER',
-        'type' => 'bool',
-        'default' => true,
-        'width' => '10%',
-      ),
-      'industry' => 
-      array (
-        'name' => 'industry',
-        'default' => true,
-        'width' => '10%',
-      ),
-      'imp_status_c' => 
-      array (
-        'type' => 'enum',
-        'default' => true,
-        'studio' => 'visible',
-        'label' => 'LBL_IMP_STATUS',
-        'width' => '10%',
-        'name' => 'imp_status_c',
-      ),
-      'imp_status_phase__c' => 
-      array (
-        'type' => 'dynamicenum',
-        'default' => true,
-        'studio' => 'visible',
-        'label' => 'LBL_IMP_STATUS_PHASE_',
-        'width' => '10%',
-        'name' => 'imp_status_phase__c',
-      ),
-      'imp_agent_code_c' => 
-      array (
-        'type' => 'enum',
-        'default' => true,
-        'studio' => 'visible',
-        'label' => 'LBL_IMP_AGENT_CODE',
-        'width' => '10%',
-        'name' => 'imp_agent_code_c',
-      ),
-      'imp_ex_agent_code_c' => 
-      array (
-        'type' => 'enum',
-        'default' => true,
-        'studio' => 'visible',
-        'label' => 'LBL_IMP_EX_AGENT_CODE',
-        'width' => '10%',
-        'name' => 'imp_ex_agent_code_c',
-      ),
-      'imp_acc_start_date_c' => 
-      array (
-        'type' => 'date',
-        'default' => true,
-        'label' => 'LBL_IMP_ACC_START_DATE',
-        'width' => '10%',
-        'name' => 'imp_acc_start_date_c',
-      ),
-      'imp_metodo_client_code_c' => 
+      'vat_number_c' => 
       array (
         'type' => 'varchar',
         'default' => true,
-        'label' => 'LBL_IMP_METODO_CLIENT_CODE',
+        'label' => 'LBL_VAT_NUMBER',
         'width' => '10%',
-        'name' => 'imp_metodo_client_code_c',
-      ),
-      'imp_metodo_invoice_client_c' => 
-      array (
-        'type' => 'varchar',
-        'default' => true,
-        'label' => 'LBL_IMP_METODO_INVOICE_CLIENT',
-        'width' => '10%',
-        'name' => 'imp_metodo_invoice_client_c',
-      ),
-      'metodo_last_update_time_c' => 
-      array (
-        'type' => 'datetimecombo',
-        'default' => true,
-        'label' => 'LBL_METODO_LAST_UPDATE_TIME',
-        'width' => '10%',
-        'name' => 'metodo_last_update_time_c',
-      ),
-      'date_modified' => 
-      array (
-        'type' => 'datetime',
-        'label' => 'LBL_DATE_MODIFIED',
-        'width' => '10%',
-        'default' => true,
-        'name' => 'date_modified',
-      ),
-      'imp_metodo_supplier_code_c' => 
-      array (
-        'type' => 'varchar',
-        'default' => true,
-        'label' => 'LBL_IMP_METODO_SUPPLIER_CODE',
-        'width' => '10%',
-        'name' => 'imp_metodo_supplier_code_c',
-      ),
-      'chiamatoperbarbara_c' => 
-      array (
-        'type' => 'enum',
-        'default' => true,
-        'studio' => 'visible',
-        'label' => 'LBL_CHIAMATOPERBARBARA',
-        'width' => '10%',
-        'name' => 'chiamatoperbarbara_c',
+        'name' => 'vat_number_c',
       ),
       'zone_c' => 
       array (
@@ -143,14 +44,6 @@ array (
         'label' => 'LBL_TARGET',
         'width' => '10%',
         'name' => 'target_c',
-      ),
-      'vat_number_c' => 
-      array (
-        'type' => 'varchar',
-        'default' => true,
-        'label' => 'LBL_VAT_NUMBER',
-        'width' => '10%',
-        'name' => 'vat_number_c',
       ),
     ),
     'advanced_search' => 
@@ -436,6 +329,31 @@ array (
         'width' => '10%',
         'name' => 'imp_profitability_c',
       ),
+      'gv_cont_tot_c' => 
+      array (
+        'type' => 'int',
+        'default' => true,
+        'label' => 'LBL_GV_CONT_TOT',
+        'width' => '10%',
+        'name' => 'gv_cont_tot_c',
+      ),
+      'gv_cont_meetings_c' => 
+      array (
+        'type' => 'int',
+        'default' => true,
+        'label' => 'LBL_GV_CONT_MEETINGS',
+        'width' => '10%',
+        'name' => 'gv_cont_meetings_c',
+      ),
+      'imp_has_acq_contact_mail_c' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_IMP_HAS_ACQ_CONTACT_MAIL',
+        'width' => '10%',
+        'name' => 'imp_has_acq_contact_mail_c',
+      ),
       'imp_origin_c' => 
       array (
         'type' => 'enum',
@@ -628,6 +546,31 @@ array (
         'label' => 'LBL_ULTIMO_AGGIORNAMENTO',
         'width' => '10%',
         'name' => 'ultimo_aggiornamento_c',
+      ),
+      'imp_macchine_c' => 
+      array (
+        'type' => 'radioenum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_IMP_MACCHINE',
+        'width' => '10%',
+        'name' => 'imp_macchine_c',
+      ),
+      'imp_macchine_note_c' => 
+      array (
+        'type' => 'varchar',
+        'default' => true,
+        'label' => 'LBL_IMP_MACCHINE_NOTE',
+        'width' => '10%',
+        'name' => 'imp_macchine_note_c',
+      ),
+      'macchine_ricordamelo_il_c' => 
+      array (
+        'type' => 'date',
+        'default' => true,
+        'label' => 'LBL_MACCHINE_RICORDAMELO_IL',
+        'width' => '10%',
+        'name' => 'macchine_ricordamelo_il_c',
       ),
     ),
   ),

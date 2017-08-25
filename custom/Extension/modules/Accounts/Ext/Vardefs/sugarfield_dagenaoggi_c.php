@@ -1,6 +1,6 @@
 <?php
- // created: 2016-02-12 10:34:39
+ // created: 2017-08-24 14:57:48
 $dictionary['Account']['fields']['dagenaoggi_c']['inline_edit']='1';
-$dictionary['Account']['fields']['dagenaoggi_c']['labelValue']='Da Gen a Oggi';
+$dictionary['Account']['fields']['dagenaoggi_c']['labelValue']='I Da Gen a Oggi';
 
  ?>

@@ -1,6 +1,6 @@
 <?php
- // created: 2016-02-15 11:24:55
+ // created: 2017-08-24 15:24:23
 $dictionary['Account']['fields']['mkt_stessoanno1_c']['inline_edit']='1';
-$dictionary['Account']['fields']['mkt_stessoanno1_c']['labelValue']='Stesso Anno -1';
+$dictionary['Account']['fields']['mkt_stessoanno1_c']['labelValue']='M Stesso Anno -1';
 
  ?>

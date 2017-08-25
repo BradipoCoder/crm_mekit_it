@@ -1,5 +1,5 @@
 <?php
-// created: 2017-04-28 13:27:57
+// created: 2017-08-09 14:44:16
 $searchFields['Tasks'] = array (
   'name' => 
   array (
@@ -135,5 +135,35 @@ $searchFields['Tasks'] = array (
     'query_type' => 'default',
     'enable_range_search' => true,
     'is_date_field' => true,
+  ),
+  'range_urgency_indicator' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_urgency_indicator' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_urgency_indicator' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_urgency_indicator_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_urgency_indicator_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_urgency_indicator_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
   ),
 );

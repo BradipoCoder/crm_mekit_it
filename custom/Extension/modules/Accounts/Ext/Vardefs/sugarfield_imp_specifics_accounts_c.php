@@ -1,5 +1,5 @@
 <?php
- // created: 2016-03-03 13:47:48
+ // created: 2017-08-24 16:10:28
 $dictionary['Account']['fields']['imp_specifics_accounts_c']['inline_edit']='1';
 $dictionary['Account']['fields']['imp_specifics_accounts_c']['labelValue']='Specifiche Cliente/Aziende IMP';
 

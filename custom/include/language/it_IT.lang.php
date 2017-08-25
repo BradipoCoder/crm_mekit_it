@@ -1170,3 +1170,13 @@ $GLOBALS['app_list_strings']['task_priority_dom']=array (
   'P3' => 'C - Media',
   'P4' => 'D - Bassa',
 );
+$GLOBALS['app_list_strings']['yes_no_list']=array (
+  '' => '',
+  0 => 'No',
+  1 => 'Sì',
+);
+$GLOBALS['app_list_strings']['stato_possibilita_list']=array (
+  '' => '',
+  'Aperto' => 'Aperto',
+  'Chiuso' => 'Chiuso',
+);

@@ -1,5 +1,5 @@
 <?php
-// created: 2017-08-09 09:08:49
+// created: 2017-08-09 14:30:20
 $mod_strings = array (
   'LBL_FASE_TEMPORALE' => 'Fase Temporale',
   'LBL_CASE' => 'Ticket',
@@ -10,4 +10,6 @@ $mod_strings = array (
   'LBL_MKT_WORKLOGS_TASKS_FROM_MKT_WORKLOGS_TITLE' => 'Worklogs',
   'LBL_START_DATE' => 'Data Inizio:',
   'LBL_DUE_DATE' => 'Data Scadenza:',
+  'LBL_URGENCY_INDICATOR' => 'Livello di urgenza',
+  'LBL_URGENCY_CALC_TEMP' => 'Urgency Calc Temp',
 );

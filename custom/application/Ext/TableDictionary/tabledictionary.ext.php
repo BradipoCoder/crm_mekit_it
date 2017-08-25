@@ -21,6 +21,11 @@ include('custom/metadata/mkt_commercial_zones_accountsMetaData.php');
 include('custom/metadata/mkt_nonconfint_usersMetaData.php');
 
 
+ 
+ //WARNING: The contents of this file are auto-generated
+include('custom/metadata/mkt_possibility_accountsMetaData.php');
+
+
 
 include('custom/metadata/reltables_accounts_contacts_imp_mekit.php');
 

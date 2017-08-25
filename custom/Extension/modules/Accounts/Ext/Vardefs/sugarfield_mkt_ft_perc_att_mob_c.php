@@ -1,6 +1,6 @@
 <?php
- // created: 2016-02-15 11:23:57
+ // created: 2017-08-24 15:21:12
 $dictionary['Account']['fields']['mkt_ft_perc_att_mob_c']['inline_edit']='1';
-$dictionary['Account']['fields']['mkt_ft_perc_att_mob_c']['labelValue']='Attuale/Mobile (%)';
+$dictionary['Account']['fields']['mkt_ft_perc_att_mob_c']['labelValue']='M Attuale/Mobile (%)';
 
  ?>

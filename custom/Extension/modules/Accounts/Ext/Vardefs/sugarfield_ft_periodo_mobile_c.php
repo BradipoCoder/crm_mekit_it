@@ -1,6 +1,6 @@
 <?php
- // created: 2016-02-12 10:15:33
+ // created: 2017-08-24 14:59:21
 $dictionary['Account']['fields']['ft_periodo_mobile_c']['inline_edit']='1';
-$dictionary['Account']['fields']['ft_periodo_mobile_c']['labelValue']='Periodo Mobile';
+$dictionary['Account']['fields']['ft_periodo_mobile_c']['labelValue']='I Periodo Mobile';
 
  ?>

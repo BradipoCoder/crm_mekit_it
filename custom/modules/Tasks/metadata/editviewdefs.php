@@ -60,21 +60,23 @@ array (
               'required' => true,
             ),
           ),
-          1 => 
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'description',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
           array (
             'name' => 'status',
             'displayParams' => 
             array (
               'required' => true,
             ),
-          ),
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            'name' => 'parent_name',
-            'label' => 'LBL_LIST_RELATED_TO',
           ),
           1 => 
           array (
@@ -85,7 +87,15 @@ array (
             ),
           ),
         ),
-        2 => 
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'parent_name',
+            'label' => 'LBL_LIST_RELATED_TO',
+          ),
+        ),
+        4 => 
         array (
           0 => 
           array (
@@ -108,14 +118,7 @@ array (
             ),
           ),
         ),
-        3 => 
-        array (
-          0 => 
-          array (
-            'name' => 'description',
-          ),
-        ),
-        4 => 
+        5 => 
         array (
           0 => 
           array (
