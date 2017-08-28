@@ -1081,8 +1081,10 @@ $($.fullCalendar).ready(function () {
 							my: 'bottom left',
 							at: 'top left'
 						},
-						show: {solo: true},
-						hide: {event: false},
+                        /* !!! CORE MODIFICATION !!! */
+						show: {delay: 1000, solo: true},
+						hide: {fixed: true, delay: 200 /*event: false*/},
+                        /* !!! CORE MODIFICATION !!! */
 						style: {
 							width: 224,
 							padding: 5,
