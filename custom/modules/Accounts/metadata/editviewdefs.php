@@ -615,41 +615,6 @@ array (
           ),
         ),
       ),
-      'lbl_editview_panel14' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            'name' => 'imp_macchine_c',
-            'studio' => 'visible',
-            'label' => 'LBL_IMP_MACCHINE',
-          ),
-          1 => 
-          array (
-            'name' => 'imp_macchine_note_c',
-            'label' => 'LBL_IMP_MACCHINE_NOTE',
-          ),
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            'name' => 'imp_macchine_proprieta_c',
-            'studio' => 'visible',
-            'label' => 'LBL_IMP_MACCHINE_PROPRIETA',
-          ),
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            'name' => 'macchine_ricordamelo_il_c',
-            'label' => 'LBL_MACCHINE_RICORDAMELO_IL',
-          ),
-          1 => '',
-        ),
-      ),
       'lbl_editview_panel7' => 
       array (
         0 => 
@@ -717,7 +682,6 @@ array (
             'name' => 'gv_cont_1_c',
             'label' => 'LBL_GV_CONT_1',
           ),
-          1 => '',
         ),
         2 => 
         array (

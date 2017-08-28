@@ -1,5 +1,5 @@
 <?php
-// created: 2017-08-25 12:21:55
+// created: 2017-08-25 16:19:46
 $mod_strings = array (
   'LBL_ACCOUNT_INFORMATION' => 'Anagrafica',
   'LBL_ACTIVE_INACTIVE' => 'Attivo Inattivo',
@@ -237,9 +237,6 @@ $mod_strings = array (
   'LBL_EDITVIEW_PANEL14' => 'Macchine In Uso',
   'LBL_GIORNI_DI_APERTURA' => 'Giorni di Apertura',
   'LBL_FASCIA_ORARIA_ACQUISTI' => 'Fascia Oraria Acquisti',
-  'LBL_IMP_MACCHINE' => 'Macchine/Contratti',
-  'LBL_IMP_MACCHINE_NOTE' => 'Campo Note Macchine',
-  'LBL_IMP_MACCHINE_PROPRIETA' => 'Macchine Proprietà-Noleggio',
   'LBL_IMP_EX_AGENT_CODE' => 'Codice Ex-Agente(IMP)',
   'LBL_IMP_ACC_START_DATE' => 'I Data Inizio Rapporto',
   'LBL_IMP_ACC_SLEEP_DATE' => 'I Data Ultimo Dormiente',
@@ -277,5 +274,4 @@ $mod_strings = array (
   'LBL_MKT_ACC_START_DATE' => 'LBL_MKT_ACC_START_DATE',
   'LBL_IMP_HAS_ACQ_CONTACT_MAIL' => 'Mail acquisti',
   'LBL_EDITVIEW_PANEL24' => 'Giro visite',
-  'LBL_MACCHINE_RICORDAMELO_IL' => 'Ricordamelo il',
 );

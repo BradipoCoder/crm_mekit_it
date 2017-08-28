@@ -44,7 +44,7 @@ $dictionary['mkt_AccountExtras'] = array(
     'inline_edit' => true,
     'duplicate_merge' => true,
     'fields' => array (
-  'current_month' => 
+  'current_month' =>
   array (
     'required' => false,
     'name' => 'current_month',
@@ -67,7 +67,7 @@ $dictionary['mkt_AccountExtras'] = array(
     'rows' => '4',
     'cols' => '20',
   ),
-  'deadlines' => 
+  'deadlines' =>
   array (
     'required' => false,
     'name' => 'deadlines',
@@ -90,7 +90,7 @@ $dictionary['mkt_AccountExtras'] = array(
     'rows' => '4',
     'cols' => '20',
   ),
-  'products_recent_buys' => 
+  'products_recent_buys' =>
   array (
     'required' => false,
     'name' => 'products_recent_buys',
@@ -113,7 +113,7 @@ $dictionary['mkt_AccountExtras'] = array(
     'rows' => '4',
     'cols' => '20',
   ),
-  'products_recent_non_buys' => 
+  'products_recent_non_buys' =>
   array (
     'required' => false,
     'name' => 'products_recent_non_buys',
@@ -136,7 +136,7 @@ $dictionary['mkt_AccountExtras'] = array(
     'rows' => '4',
     'cols' => '20',
   ),
-  'client_data' => 
+  'client_data' =>
   array (
     'required' => false,
     'name' => 'client_data',
@@ -159,14 +159,14 @@ $dictionary['mkt_AccountExtras'] = array(
     'rows' => '4',
     'cols' => '20',
   ),
-  'iframe_1' => 
+  'iframe_1' =>
   array (
     'required' => false,
     'name' => 'iframe_1',
     'vname' => 'LBL_IFRAME_1',
     'type' => 'iframe',
     'massupdate' => 0,
-    'default' => 'crm2.mekit.it/index.php?module=mkt_AccountExtras&action=rawdata&record={id}',
+    'default' => 'crm.mekit.it/index.php?module=mkt_AccountExtras&action=rawdata&record={id}',
     'no_default' => false,
     'comments' => '',
     'help' => '',

@@ -22,7 +22,7 @@ class mkt_AccountExtrasViewDetail extends ViewDetail {
     
         /**
          * the 'rawdata_c' IFrame field - this is not executed on QuickCRM so we need to save url in db
-         * $iframeUrl = "http://crm2.mekit.it/index.php?module=mkt_AccountExtras&action=rawdata&record=" . $this->bean->id;
+         * $iframeUrl = "http://[CRM_URL]/index.php?module=mkt_AccountExtras&action=rawdata&record=" . $this->bean->id;
          * $this->bean->rawdata_c = $iframeUrl;
          */
     

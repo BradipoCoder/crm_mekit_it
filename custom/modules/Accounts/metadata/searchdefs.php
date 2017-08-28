@@ -547,31 +547,6 @@ array (
         'width' => '10%',
         'name' => 'ultimo_aggiornamento_c',
       ),
-      'imp_macchine_c' => 
-      array (
-        'type' => 'radioenum',
-        'default' => true,
-        'studio' => 'visible',
-        'label' => 'LBL_IMP_MACCHINE',
-        'width' => '10%',
-        'name' => 'imp_macchine_c',
-      ),
-      'imp_macchine_note_c' => 
-      array (
-        'type' => 'varchar',
-        'default' => true,
-        'label' => 'LBL_IMP_MACCHINE_NOTE',
-        'width' => '10%',
-        'name' => 'imp_macchine_note_c',
-      ),
-      'macchine_ricordamelo_il_c' => 
-      array (
-        'type' => 'date',
-        'default' => true,
-        'label' => 'LBL_MACCHINE_RICORDAMELO_IL',
-        'width' => '10%',
-        'name' => 'macchine_ricordamelo_il_c',
-      ),
     ),
   ),
   'templateMeta' => 

@@ -328,14 +328,6 @@ $dictionary['Account']['fields']['mkt_fatturato_lastyear_3_c']['labelValue']='An
 
  
 
- // created: 2017-08-25 11:10:52
-$dictionary['Account']['fields']['macchine_ricordamelo_il_c']['inline_edit']='1';
-$dictionary['Account']['fields']['macchine_ricordamelo_il_c']['options']='date_range_search_dom';
-$dictionary['Account']['fields']['macchine_ricordamelo_il_c']['labelValue']='Ricordamelo il';
-$dictionary['Account']['fields']['macchine_ricordamelo_il_c']['enable_range_search']='1';
-
- 
-
  // created: 2016-02-12 10:04:50
 $dictionary['Account']['fields']['fatturato_thisyear_11_c']['inline_edit']='1';
 $dictionary['Account']['fields']['fatturato_thisyear_11_c']['labelValue']='Anno in corso - Novembre';
@@ -445,12 +437,6 @@ $dictionary['Account']['fields']['billing_address_country']['merge_filter']='dis
 $dictionary['Account']['fields']['billing_address_country']['duplicate_merge']='enabled';
 $dictionary['Account']['fields']['billing_address_country']['duplicate_merge_dom_value']='1';
 $dictionary['Account']['fields']['billing_address_country']['help']='[ND]';
-
- 
-
- // created: 2017-08-25 11:11:38
-$dictionary['Account']['fields']['imp_macchine_proprieta_c']['inline_edit']='1';
-$dictionary['Account']['fields']['imp_macchine_proprieta_c']['labelValue']='Macchine Proprietà-Noleggio';
 
  
 
@@ -1436,12 +1422,6 @@ $dictionary['Account']['fields']['duns_c']['labelValue']='DUNS';
 
  
 
- // created: 2017-08-25 11:11:57
-$dictionary['Account']['fields']['imp_macchine_note_c']['inline_edit']='1';
-$dictionary['Account']['fields']['imp_macchine_note_c']['labelValue']='Campo Note Macchine';
-
- 
-
  // created: 2017-08-24 14:59:21
 $dictionary['Account']['fields']['ft_periodo_mobile_c']['inline_edit']='1';
 $dictionary['Account']['fields']['ft_periodo_mobile_c']['labelValue']='I Periodo Mobile';
@@ -1603,12 +1583,6 @@ $dictionary['Account']['fields']['jjwg_maps_lng_c']['labelValue']='Longitudine';
  // created: 2017-08-24 14:52:07
 $dictionary['Account']['fields']['fascia_oraria_acquisti_c']['inline_edit']='1';
 $dictionary['Account']['fields']['fascia_oraria_acquisti_c']['labelValue']='Fascia Oraria Acquisti';
-
- 
-
- // created: 2017-08-25 12:21:55
-$dictionary['Account']['fields']['imp_macchine_c']['inline_edit']='1';
-$dictionary['Account']['fields']['imp_macchine_c']['labelValue']='Macchine/Contratti';
 
  
 
