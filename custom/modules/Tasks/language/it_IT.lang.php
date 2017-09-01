@@ -12,4 +12,5 @@ $mod_strings = array (
   'LBL_DUE_DATE' => 'Data Scadenza:',
   'LBL_URGENCY_INDICATOR' => 'Livello di urgenza',
   'LBL_URGENCY_CALC_TEMP' => 'Urgency Calc Temp',
+  'LBL_MY_TASKS_OVERVIEW' => '000 - Resoconto compiti',
 );
