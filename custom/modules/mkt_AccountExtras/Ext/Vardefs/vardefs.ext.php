@@ -2,6 +2,11 @@
  //WARNING: The contents of this file are auto-generated
 
 
+ // created: 2017-08-28 10:21:44
+$dictionary['mkt_AccountExtras']['fields']['iframe_1']['default']='crm.mekit.it/index.php?module=mkt_AccountExtras&action=rawdata&record={id}';
+
+ 
+
 // created: 2017-08-04 09:15:31
 $dictionary["mkt_AccountExtras"]["fields"]["mkt_accountextras_accounts"] = array (
   'name' => 'mkt_accountextras_accounts',

@@ -1,6 +1,5 @@
 <?php
-// created: 2017-07-26 13:19:43
+// created: 2017-08-28 10:21:44
 $mod_strings = array (
-  'LBL_DESCRIPTION_2' => 'Description 2',
-  'LBL_DESCRIPTION_3' => 'Descrizione 3',
+  'LBL_IFRAME_1' => 'Specchietto',
 );
