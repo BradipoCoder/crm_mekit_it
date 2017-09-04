@@ -1,0 +1,90 @@
+/* DASHLETS */
+
+/* DASHLET CONFIG FORM */
+.dashlet-config-form
+{
+  margin: 0;
+  padding:15px 0;
+
+  .form-group
+  {
+    label.control-label
+    {
+      padding-left:15px;
+      padding-right:15px;
+      height: 36px;
+      line-height: 36px;
+      padding-top: 0;
+    }
+  }
+
+}
+
+/* DASHLET - TASK OVERVIEW */
+.task-overview-dashlet
+{
+  /*this is already the center section*/
+  &.container-fluid{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .data
+  {
+    border: 1px solid #dedede;
+    text-align: center;
+    padding:15px;
+    font-family: Helvetica, "Arial Black", sans;
+
+    .circle
+    {
+      position: relative;
+      display: block;
+      margin:0 auto;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      font-size: 36px;
+      text-align: center;
+      background: #000000;
+      color: #ffffff;
+      span{
+        display: block;
+        padding-top: 35%;
+      }
+    }
+
+    &.data-1{
+      .circle{
+        background: #e4c890;
+        color: #ffffff;
+        width: 120px;
+        height: 120px;
+        margin-top:30px;
+      }
+    }
+    &.data-2{
+      .circle{
+        background: #69c732;
+        color: #ffffff;
+        width: 150px;
+        height: 150px;
+      }
+    }
+    &.data-3{
+      .circle{
+        background: #b2afe4;
+        color: #ffffff;
+        width: 120px;
+        height: 120px;
+        margin-top:30px;
+      }
+    }
+
+    .counter-name{
+      margin-top:15px;
+      font-size: 14px;
+    }
+  }
+
+}
