@@ -33,7 +33,7 @@
   {
     border: 1px solid #dedede;
     text-align: center;
-    padding:15px;
+    padding:15px 0 0 0;
     font-family: Helvetica, "Arial Black", sans;
 
     .circle
@@ -48,6 +48,7 @@
       text-align: center;
       background: #000000;
       color: #ffffff;
+      border: 1px solid #c1c2c3;
       span{
         display: block;
         padding-top: 35%;
@@ -56,34 +57,46 @@
 
     &.data-1{
       .circle{
-        background: #e4c890;
-        color: #ffffff;
+        background: #ffeee9;
+        color: #ff5d2f;
         width: 120px;
         height: 120px;
         margin-top:30px;
+      }
+      .counter-name{
+        /**/
       }
     }
     &.data-2{
       .circle{
-        background: #69c732;
+        background: #5cb42e;
         color: #ffffff;
         width: 150px;
         height: 150px;
       }
+      .counter-name{
+        /**/
+      }
     }
     &.data-3{
       .circle{
-        background: #b2afe4;
-        color: #ffffff;
+        background: #d2d9e4;
+        color: #2d63a6;
         width: 120px;
         height: 120px;
         margin-top:30px;
+      }
+      .counter-name{
+        /**/
       }
     }
 
     .counter-name{
       margin-top:15px;
       font-size: 14px;
+      color: #ffffff;
+      background: #66727d;
+      padding: 10px 0;
     }
   }
 

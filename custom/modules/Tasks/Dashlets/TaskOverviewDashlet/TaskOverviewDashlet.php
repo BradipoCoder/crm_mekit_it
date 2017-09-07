@@ -43,7 +43,7 @@ if (!defined('sugarEntry') || !sugarEntry) {
 }
 
 require_once('include/Dashlets/DashletGeneric.php');
-//require_once('modules/mkt_Checkin/mkt_Checkin.php');
+require_once('custom/modules/Tasks/Helpers/TaskHelper.php');
 
 /**
  * Class TaskOverviewDashlet
@@ -139,12 +139,24 @@ class TaskOverviewDashlet extends DashletGeneric
         $filterid = $options["filterid-" . $number]
             ? $options["filterid-" . $number]
             : "";
+        
+        $count = 0;
+        if($number == 1)
+        {
+            $count = TaskHelper::getMyTasksCountByStatus(['ToBeVerified']);
+        } else if ($number == 2)
+        {
+            $count = TaskHelper::getMyTasksCountByStatus(['In Progress']);
+        } else if ($number == 3)
+        {
+            $count = TaskHelper::getMyTasksCountByStatus(['Waiting']);
+        }
     
         $answer = array(
             'title' => $title,
             'number' => $number,
             'class' => 'data-' . $number,
-            'count' => rand(1,99),
+            'count' => $count,
             'filterid' => $filterid,
             'link' => $this->getLinkToFilteredTasks($filterid),
         );

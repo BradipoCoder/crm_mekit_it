@@ -1,7 +1,6 @@
 <div class="task-overview-dashlet container-fluid">
     <div class="row">
 
-
         {foreach from=$counters key=k item=counter}
             <div class="col-md-4 data {$counter.class}">
                 <a href="{$counter.link}">
