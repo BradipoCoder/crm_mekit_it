@@ -274,8 +274,15 @@ class Meeting extends SugarBean {
         /*
          * FORZATURA INVIO NOTIFICHE
          */
+        $isNew = false;
+        if (!isset($this->fetched_row['id']))
+        {
+            $isNew = true;
+        }
+        //notify only if new
+        $check_notify = $isNew;
+        
         //die("zampino di ADAM! check_notify: " . ($check_notify ? "Y":"N"));
-        $check_notify = true;
         /*
         * FORZATURA INVIO NOTIFICHE
         */
