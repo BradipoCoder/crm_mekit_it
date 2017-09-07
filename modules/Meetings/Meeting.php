@@ -270,8 +270,17 @@ class Meeting extends SugarBean {
 
             $api->logoff();
         }
-
-		$return_id = parent::save($check_notify);
+        
+        /*
+         * FORZATURA INVIO NOTIFICHE
+         */
+        //die("zampino di ADAM! check_notify: " . ($check_notify ? "Y":"N"));
+        $check_notify = true;
+        /*
+        * FORZATURA INVIO NOTIFICHE
+        */
+        
+        $return_id = parent::save($check_notify);
 
 		if($this->update_vcal) {
 			vCal::cache_sugar_vcal($current_user);
