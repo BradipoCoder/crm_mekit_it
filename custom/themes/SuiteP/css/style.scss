@@ -1,0 +1,12 @@
+/**Style**/
+/*
+* 1) compile it to .css
+* 2) For this to be loaded into compiled css by sugar you need to delete the cached version:
+* : cache/themes/SuiteP/css/style.css
+*/
+
+@import 'detail';
+@import 'list';
+@import 'form';
+@import 'search';
+@import 'dashlet';

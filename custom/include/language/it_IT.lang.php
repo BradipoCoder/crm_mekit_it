@@ -1084,13 +1084,6 @@ $app_list_strings['moduleList']['AOK_KnowledgeBase']='Procedure';
 $app_list_strings['moduleList']['AOK_Knowledge_Base_Categories']='Categorie Procedure';
 $app_list_strings['moduleListSingular']['AOK_KnowledgeBase']='Procedura';
 $app_list_strings['moduleListSingular']['AOK_Knowledge_Base_Categories']='Categoria Procedure';
-$GLOBALS['app_list_strings']['chiamatoperbarbara_list']=array (
-  '' => '',
-  1 => 'Chiamato 2016',
-  2 => 'Da Chiamare 2016',
-  3 => 'Da chiamare 2017',
-  4 => 'Chiamato 17',
-);
 $GLOBALS['app_list_strings']['origine_list']=array (
   '' => '',
   'Acquisti' => 'Acquisti',
@@ -1179,4 +1172,14 @@ $GLOBALS['app_list_strings']['stato_possibilita_list']=array (
   '' => '',
   'Aperto' => 'Aperto',
   'Chiuso' => 'Chiuso',
+);
+
+$GLOBALS['app_list_strings']['chiamatoperbarbara_list']=array (
+  '' => '',
+  2 => 'Da Chiamare 2016',
+  1 => 'Chiamato 2016',
+  3 => 'Da Chiamare 2017',
+  4 => 'Chiamato 2017',
+  5 => 'Da Chiamare 2018',
+  6 => 'Chiamato 2018',
 );

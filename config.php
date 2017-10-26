@@ -1,5 +1,5 @@
 <?php
-// created: 2017-08-28 11:00:33
+// created: 2017-09-01 18:01:18
 $sugar_config = array (
   'SAML_X509Cert' => '',
   'SAML_loginurl' => '',
@@ -367,7 +367,7 @@ $sugar_config = array (
     'timeout' => 86400,
   ),
   'js_custom_version' => 1,
-  'js_lang_version' => 12,
+  'js_lang_version' => 13,
   'languages' => 
   array (
     'en_us' => 'English (US)',

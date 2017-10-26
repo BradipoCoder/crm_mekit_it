@@ -27,11 +27,6 @@ array (
           'newTab' => false,
           'panelDefault' => 'expanded',
         ),
-        'LBL_PANEL_ASSIGNMENT' => 
-        array (
-          'newTab' => false,
-          'panelDefault' => 'expanded',
-        ),
       ),
       'syncDetailEditViews' => true,
     ),
@@ -41,29 +36,22 @@ array (
       array (
         0 => 
         array (
-          0 => 'contact_name',
-          1 => 
-          array (
-            'name' => 'parent_name',
-            'customLabel' => '{sugar_translate label=\'LBL_MODULE_NAME\' module=$fields.parent_type.value}',
-          ),
-        ),
-        1 => 
-        array (
           0 => 
           array (
             'name' => 'name',
             'label' => 'LBL_SUBJECT',
           ),
+          1 => 'assigned_user_name',
         ),
-        2 => 
+        1 => 
         array (
           0 => 
           array (
-            'name' => 'filename',
+            'name' => 'description',
+            'label' => 'LBL_NOTE_STATUS',
           ),
         ),
-        3 => 
+        2 => 
         array (
           0 => 
           array (
@@ -72,20 +60,24 @@ array (
             'label' => 'LBL_IMAGE',
           ),
         ),
+        3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'filename',
+          ),
+        ),
         4 => 
         array (
           0 => 
           array (
-            'name' => 'description',
-            'label' => 'LBL_NOTE_STATUS',
+            'name' => 'parent_name',
+            'customLabel' => '{sugar_translate label=\'LBL_MODULE_NAME\' module=$fields.parent_type.value}',
           ),
         ),
-      ),
-      'LBL_PANEL_ASSIGNMENT' => 
-      array (
-        0 => 
+        5 => 
         array (
-          0 => 'assigned_user_name',
+          0 => 'contact_name',
         ),
       ),
     ),

@@ -74,8 +74,22 @@ array (
   'DATE_CLOSE_PRG_C' => 
   array (
     'type' => 'date',
-    'default' => false,
+    'default' => true,
     'label' => 'LBL_DATE_CLOSE_PRG',
+    'width' => '10%',
+  ),
+  'DAYS_TO_CLOSE_C' => 
+  array (
+    'type' => 'int',
+    'default' => true,
+    'label' => 'LBL_DAYS_TO_CLOSE',
+    'width' => '10%',
+  ),
+  'DATE_CLOSE_EFCT_C' => 
+  array (
+    'type' => 'date',
+    'default' => false,
+    'label' => 'LBL_DATE_CLOSE_EFCT',
     'width' => '10%',
   ),
   'PRIORITY' => 
@@ -116,13 +130,6 @@ array (
     'type' => 'varchar',
     'default' => false,
     'label' => 'LBL_REF_PART_NUMBER',
-    'width' => '10%',
-  ),
-  'DATE_CLOSE_EFCT_C' => 
-  array (
-    'type' => 'date',
-    'default' => false,
-    'label' => 'LBL_DATE_CLOSE_EFCT',
     'width' => '10%',
   ),
   'AREA_DINTERESSE_IMP_C' => 
@@ -170,13 +177,6 @@ array (
     'type' => 'varchar',
     'default' => false,
     'label' => 'LBL_RIF_COMMESSA_CODE',
-    'width' => '10%',
-  ),
-  'JJWG_MAPS_ADDRESS_C' => 
-  array (
-    'type' => 'varchar',
-    'default' => false,
-    'label' => 'LBL_JJWG_MAPS_ADDRESS',
     'width' => '10%',
   ),
 );

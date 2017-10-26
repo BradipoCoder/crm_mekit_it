@@ -1124,13 +1124,6 @@ $GLOBALS['app_list_strings']['Campaign_List']=array (
   73 => 'Mekit - Social',
   'A15presaappuntamento' => 'A15 Presa Appuntamento',
 );
-$GLOBALS['app_list_strings']['chiamatoperbarbara_list']=array (
-  '' => '',
-  1 => 'Sì',
-  2 => 'No',
-  3 => 'No 17',
-  4 => 'Sì 17',
-);
 $GLOBALS['app_list_strings']['origine_list']=array (
   '' => '',
   'Acquisti' => 'Acquisti',
@@ -1219,4 +1212,14 @@ $GLOBALS['app_list_strings']['stato_possibilita_list']=array (
   '' => '',
   'Aperto' => 'Aperto',
   'Chiuso' => 'Chiuso',
+);
+
+$GLOBALS['app_list_strings']['chiamatoperbarbara_list']=array (
+  '' => '',
+  1 => 'Sì',
+  2 => 'No',
+  3 => 'No 17',
+  4 => 'Sì 17',
+  5 => 'Da Chiamare 2018',
+  6 => 'Chiamato 2018',
 );

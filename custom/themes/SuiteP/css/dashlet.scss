@@ -1,0 +1,103 @@
+/* DASHLETS */
+
+/* DASHLET CONFIG FORM */
+.dashlet-config-form
+{
+  margin: 0;
+  padding:15px 0;
+
+  .form-group
+  {
+    label.control-label
+    {
+      padding-left:15px;
+      padding-right:15px;
+      height: 36px;
+      line-height: 36px;
+      padding-top: 0;
+    }
+  }
+
+}
+
+/* DASHLET - TASK OVERVIEW */
+.task-overview-dashlet
+{
+  /*this is already the center section*/
+  &.container-fluid{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .data
+  {
+    border: 1px solid #dedede;
+    text-align: center;
+    padding:15px 0 0 0;
+    font-family: Helvetica, "Arial Black", sans;
+
+    .circle
+    {
+      position: relative;
+      display: block;
+      margin:0 auto;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      font-size: 36px;
+      text-align: center;
+      background: #000000;
+      color: #ffffff;
+      border: 1px solid #c1c2c3;
+      span{
+        display: block;
+        padding-top: 35%;
+      }
+    }
+
+    &.data-1{
+      .circle{
+        background: #ffeee9;
+        color: #ff5d2f;
+        width: 120px;
+        height: 120px;
+        margin-top:30px;
+      }
+      .counter-name{
+        /**/
+      }
+    }
+    &.data-2{
+      .circle{
+        background: #5cb42e;
+        color: #ffffff;
+        width: 150px;
+        height: 150px;
+      }
+      .counter-name{
+        /**/
+      }
+    }
+    &.data-3{
+      .circle{
+        background: #d2d9e4;
+        color: #2d63a6;
+        width: 120px;
+        height: 120px;
+        margin-top:30px;
+      }
+      .counter-name{
+        /**/
+      }
+    }
+
+    .counter-name{
+      margin-top:15px;
+      font-size: 14px;
+      color: #ffffff;
+      background: #66727d;
+      padding: 10px 0;
+    }
+  }
+
+}

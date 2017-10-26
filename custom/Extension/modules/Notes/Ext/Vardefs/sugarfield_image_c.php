@@ -1,5 +1,5 @@
 <?php
- // created: 2016-09-23 16:03:50
+ // created: 2017-09-18 09:50:28
 $dictionary['Note']['fields']['image_c']['inline_edit']='';
 $dictionary['Note']['fields']['image_c']['labelValue']='Immagine';
 

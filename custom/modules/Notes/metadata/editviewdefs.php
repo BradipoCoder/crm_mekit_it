@@ -46,11 +46,6 @@ function deleteAttachmentCallBack(text)
           'newTab' => false,
           'panelDefault' => 'expanded',
         ),
-        'LBL_PANEL_ASSIGNMENT' => 
-        array (
-          'newTab' => false,
-          'panelDefault' => 'expanded',
-        ),
       ),
       'syncDetailEditViews' => true,
     ),
@@ -60,11 +55,6 @@ function deleteAttachmentCallBack(text)
       array (
         0 => 
         array (
-          0 => 'contact_name',
-          1 => 'parent_name',
-        ),
-        1 => 
-        array (
           0 => 
           array (
             'name' => 'name',
@@ -73,12 +63,21 @@ function deleteAttachmentCallBack(text)
               'size' => 60,
             ),
           ),
+          1 => 
+          array (
+            'name' => 'assigned_user_name',
+            'label' => 'LBL_ASSIGNED_TO',
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'description',
+            'label' => 'LBL_NOTE_STATUS',
+          ),
         ),
         2 => 
-        array (
-          0 => 'filename',
-        ),
-        3 => 
         array (
           0 => 
           array (
@@ -87,24 +86,17 @@ function deleteAttachmentCallBack(text)
             'label' => 'LBL_IMAGE',
           ),
         ),
+        3 => 
+        array (
+          0 => 'filename',
+        ),
         4 => 
         array (
-          0 => 
-          array (
-            'name' => 'description',
-            'label' => 'LBL_NOTE_STATUS',
-          ),
+          0 => 'parent_name',
         ),
-      ),
-      'LBL_PANEL_ASSIGNMENT' => 
-      array (
-        0 => 
+        5 => 
         array (
-          0 => 
-          array (
-            'name' => 'assigned_user_name',
-            'label' => 'LBL_ASSIGNED_TO',
-          ),
+          0 => 'contact_name',
         ),
       ),
     ),
