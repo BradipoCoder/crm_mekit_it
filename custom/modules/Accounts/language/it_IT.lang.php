@@ -1,5 +1,5 @@
 <?php
-// created: 2017-08-25 16:19:46
+// created: 2017-11-08 08:43:28
 $mod_strings = array (
   'LBL_ACCOUNT_INFORMATION' => 'Anagrafica',
   'LBL_ACTIVE_INACTIVE' => 'Attivo Inattivo',
@@ -130,8 +130,8 @@ $mod_strings = array (
   'LBL_MEKIT_METODO_SYNC_UP' => 'Sync Metodo',
   'LBL_EDITVIEW_PANEL4' => 'Dati Fatturato IMP',
   'LBL_STESSOANNO1' => 'I Stesso Anno -1',
-  'LBL_CASES' => 'Ticket',
-  'LBL_CASES_SUBPANEL_TITLE' => 'Tickets',
+  'LBL_CASES' => 'RAS',
+  'LBL_CASES_SUBPANEL_TITLE' => 'RAS',
   'LBL_ACCOUNTS_CONTACTS_MEKIT_OPR_CONTACTS' => '[MEKIT] Contatti - Operativo',
   'LBL_ACCOUNTS_CONTACTS_MEKIT_ADM_CONTACTS' => '[MEKIT] Contatti - Amministrazione',
   'LBL_ACCOUNTS_CONTACTS_MEKIT_DIR_CONTACTS' => '[MEKIT] Contatti - Direzione',

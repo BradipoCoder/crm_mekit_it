@@ -1,5 +1,5 @@
 <?php
-// created: 2016-04-14 14:28:23
+// created: 2017-11-08 08:43:28
 $mod_strings = array (
   'LBL_TIPO' => 'Tipo',
   'LBL_CODICE_COMMESSA_METODO' => 'Codice Commessa Metodo',
@@ -17,8 +17,8 @@ $mod_strings = array (
   'LBL_CONCLUSIONI' => 'Conclusioni',
   'LBL_EDITVIEW_PANEL3' => 'Aggiornamenti',
   'LBL_EDITVIEW_PANEL4' => 'Analisi Realtà',
-  'LBL_CASES' => 'Ticket',
-  'LBL_CASES_SUBPANEL_TITLE' => 'Tickets',
+  'LBL_CASES' => 'RAS',
+  'LBL_CASES_SUBPANEL_TITLE' => 'RAS',
   'LBL_FINEEFFETTIVA' => 'Data fine effettiva',
   'LBL_RAGGIUNGIMENTOPERCENTUALE' => '% Raggiungimento',
   'LBL_DATE_END' => 'Data Fine:',

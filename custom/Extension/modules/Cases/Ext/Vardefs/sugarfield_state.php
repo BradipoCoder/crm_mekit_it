@@ -1,5 +1,5 @@
 <?php
- // created: 2016-11-07 08:07:29
+ // created: 2017-11-07 18:36:51
 $dictionary['Case']['fields']['state']['default']='';
 $dictionary['Case']['fields']['state']['inline_edit']=true;
 $dictionary['Case']['fields']['state']['comments']='The state of the case (i.e. open/closed)';

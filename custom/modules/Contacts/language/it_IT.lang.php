@@ -1,5 +1,5 @@
 <?php
-// created: 2016-11-04 05:44:08
+// created: 2017-11-08 08:43:28
 $mod_strings = array (
   'LBL_ACC_CODE_METODO' => 'Codice Metodo Azienda(OLD)',
   'LBL_COMPANY_NAME_ACCOUNT_ID' => 'Nome Azienda (relativo Aziende ID)',
@@ -14,8 +14,8 @@ $mod_strings = array (
   'LBL_PANEL_ADVANCED' => 'Dati Avanzati',
   'LBL_CRM_EXPORT_FLAG' => 'Crm Export Flag',
   'LBL_TITLE' => 'Posizione',
-  'LBL_CASES' => 'Ticket',
-  'LBL_CASES_SUBPANEL_TITLE' => 'Tickets',
+  'LBL_CASES' => 'RAS',
+  'LBL_CASES_SUBPANEL_TITLE' => 'RAS',
   'LBL_ACCOUNTS_CONTACTS_MEKIT_OPR_ACCOUNTS' => '[MEKIT] Aziende - Operativo',
   'LBL_EDITVIEW_PANEL1' => 'Dati Socio-Demografici',
   'LBL_METODO_SYNC_UP' => 'Sincronizza con Metodo',

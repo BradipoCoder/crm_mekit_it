@@ -87,14 +87,24 @@ array (
         2 => 
         array (
           0 => 'priority',
+          1 => 
+          array (
+            'name' => 'date_close_prg_c',
+            'label' => 'LBL_DATE_CLOSE_PRG',
+          ),
         ),
         3 => 
         array (
-          0 => 'account_name',
+          0 => 'assigned_user_name',
+          1 => 
+          array (
+            'name' => 'users_cases_1_name',
+          ),
         ),
         4 => 
         array (
-          0 => 
+          0 => 'account_name',
+          1 => 
           array (
             'name' => 'jjwg_maps_address_c',
             'label' => 'LBL_JJWG_MAPS_ADDRESS',
@@ -117,15 +127,6 @@ array (
         ),
         6 => 
         array (
-          0 => 'assigned_user_name',
-          1 => 
-          array (
-            'name' => 'date_close_prg_c',
-            'label' => 'LBL_DATE_CLOSE_PRG',
-          ),
-        ),
-        7 => 
-        array (
           0 => 
           array (
             'name' => 'descrizione_problematica_c',
@@ -133,7 +134,7 @@ array (
             'label' => 'LBL_DESCRIZIONE_PROBLEMATICA',
           ),
         ),
-        8 => 
+        7 => 
         array (
           0 => 
           array (
@@ -142,7 +143,7 @@ array (
             'label' => 'LBL_DESCRIZIONE_AGGIORNAMENTO',
           ),
         ),
-        9 => 
+        8 => 
         array (
           0 => 
           array (
@@ -213,16 +214,16 @@ array (
             'name' => 'resolution',
             'nl2br' => true,
           ),
-          1 => 
+        ),
+        1 => 
+        array (
+          0 => 
           array (
             'name' => 'origine_c',
             'studio' => 'visible',
             'label' => 'LBL_ORIGINE',
           ),
-        ),
-        1 => 
-        array (
-          0 => 
+          1 => 
           array (
             'name' => 'date_close_efct_c',
             'label' => 'LBL_DATE_CLOSE_EFCT',

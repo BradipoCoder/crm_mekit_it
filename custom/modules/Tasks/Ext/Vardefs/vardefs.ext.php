@@ -21,6 +21,12 @@ $dictionary["Task"]["fields"]["mkt_worklogs_tasks"] = array (
 );
 
 
+ // created: 2017-11-06 10:57:36
+$dictionary['Task']['fields']['complexity_level_c']['inline_edit']='1';
+$dictionary['Task']['fields']['complexity_level_c']['labelValue']='Livello di difficoltà';
+
+ 
+
  // created: 2017-08-28 16:28:05
 $dictionary['Task']['fields']['date_due']['display_default']='+1 week&11:00am';
 $dictionary['Task']['fields']['date_due']['inline_edit']=true;

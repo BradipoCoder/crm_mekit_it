@@ -132,6 +132,12 @@ array (
             'name' => 'parent_name',
             'customLabel' => '{sugar_translate label=\'LBL_MODULE_NAME\' module=$fields.parent_type.value}',
           ),
+          1 => 
+          array (
+            'name' => 'complexity_level_c',
+            'studio' => 'visible',
+            'label' => 'LBL_COMPLEXITY_LEVEL',
+          ),
         ),
       ),
     ),

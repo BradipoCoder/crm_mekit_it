@@ -21,6 +21,20 @@ array (
     'link' => true,
     'default' => true,
   ),
+  'TITLE' => 
+  array (
+    'width' => '15%',
+    'label' => 'LBL_TITLE',
+    'link' => true,
+    'default' => true,
+  ),
+  'DEPARTMENT' => 
+  array (
+    'width' => '15%',
+    'label' => 'LBL_DEPARTMENT',
+    'link' => true,
+    'default' => true,
+  ),
   'EMAIL1' => 
   array (
     'width' => '30%',
@@ -29,21 +43,19 @@ array (
     'link' => true,
     'default' => true,
   ),
-  'IMP_AGENT_CODE_C' => 
+  'PHONE_WORK' => 
   array (
-    'type' => 'enum',
+    'width' => '25%',
+    'label' => 'LBL_LIST_PHONE',
+    'link' => true,
     'default' => true,
-    'studio' => 'visible',
-    'label' => 'LBL_IMP_AGENT_CODE',
-    'width' => '10%',
   ),
-  'MEKIT_AGENT_CODE_C' => 
+  'PHONE_MOBILE' => 
   array (
-    'type' => 'enum',
-    'default' => true,
-    'studio' => 'visible',
-    'label' => 'LBL_MEKIT_AGENT_CODE',
+    'type' => 'phone',
+    'label' => 'LBL_MOBILE_PHONE',
     'width' => '10%',
+    'default' => true,
   ),
   'STATUS' => 
   array (
@@ -59,6 +71,20 @@ array (
     'link' => false,
     'default' => true,
   ),
+  'PHONE_OTHER' => 
+  array (
+    'type' => 'phone',
+    'label' => 'LBL_OTHER_PHONE',
+    'width' => '10%',
+    'default' => false,
+  ),
+  'PHONE_HOME' => 
+  array (
+    'type' => 'phone',
+    'label' => 'LBL_HOME_PHONE',
+    'width' => '10%',
+    'default' => false,
+  ),
   'IS_GROUP' => 
   array (
     'width' => '10%',
@@ -66,26 +92,21 @@ array (
     'link' => true,
     'default' => false,
   ),
-  'PHONE_WORK' => 
+  'IMP_AGENT_CODE_C' => 
   array (
-    'width' => '25%',
-    'label' => 'LBL_LIST_PHONE',
-    'link' => true,
+    'type' => 'enum',
     'default' => false,
+    'studio' => 'visible',
+    'label' => 'LBL_IMP_AGENT_CODE',
+    'width' => '10%',
   ),
-  'DEPARTMENT' => 
+  'MEKIT_AGENT_CODE_C' => 
   array (
-    'width' => '15%',
-    'label' => 'LBL_DEPARTMENT',
-    'link' => true,
+    'type' => 'enum',
     'default' => false,
-  ),
-  'TITLE' => 
-  array (
-    'width' => '15%',
-    'label' => 'LBL_TITLE',
-    'link' => true,
-    'default' => false,
+    'studio' => 'visible',
+    'label' => 'LBL_MEKIT_AGENT_CODE',
+    'width' => '10%',
   ),
 );
 ?>

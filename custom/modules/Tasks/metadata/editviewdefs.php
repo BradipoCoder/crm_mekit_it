@@ -118,6 +118,12 @@ array (
               'showFormats' => true,
             ),
           ),
+          1 => 
+          array (
+            'name' => 'complexity_level_c',
+            'studio' => 'visible',
+            'label' => 'LBL_COMPLEXITY_LEVEL',
+          ),
         ),
         5 => 
         array (

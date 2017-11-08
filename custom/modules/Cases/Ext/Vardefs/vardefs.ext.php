@@ -62,7 +62,7 @@ $dictionary['Case']['fields']['controlled_c']['labelValue']='Collaudo Effettuato
 
  
 
- // created: 2016-11-07 08:07:29
+ // created: 2017-11-07 18:36:51
 $dictionary['Case']['fields']['state']['default']='';
 $dictionary['Case']['fields']['state']['inline_edit']=true;
 $dictionary['Case']['fields']['state']['comments']='The state of the case (i.e. open/closed)';
@@ -193,6 +193,40 @@ $dictionary['Case']['fields']['status']['duplicate_merge_dom_value']='0';
 $dictionary['Case']['fields']['status']['massupdate']='1';
 
  
+
+// created: 2017-11-08 08:27:01
+$dictionary["Case"]["fields"]["users_cases_1"] = array (
+  'name' => 'users_cases_1',
+  'type' => 'link',
+  'relationship' => 'users_cases_1',
+  'source' => 'non-db',
+  'module' => 'Users',
+  'bean_name' => 'User',
+  'vname' => 'LBL_USERS_CASES_1_FROM_USERS_TITLE',
+  'id_name' => 'users_cases_1users_ida',
+);
+$dictionary["Case"]["fields"]["users_cases_1_name"] = array (
+  'name' => 'users_cases_1_name',
+  'type' => 'relate',
+  'source' => 'non-db',
+  'vname' => 'LBL_USERS_CASES_1_FROM_USERS_TITLE',
+  'save' => true,
+  'id_name' => 'users_cases_1users_ida',
+  'link' => 'users_cases_1',
+  'table' => 'users',
+  'module' => 'Users',
+  'rname' => 'name',
+);
+$dictionary["Case"]["fields"]["users_cases_1users_ida"] = array (
+  'name' => 'users_cases_1users_ida',
+  'type' => 'link',
+  'relationship' => 'users_cases_1',
+  'source' => 'non-db',
+  'reportable' => false,
+  'side' => 'right',
+  'vname' => 'LBL_USERS_CASES_1_FROM_CASES_TITLE',
+);
+
 
  // created: 2016-02-12 14:10:04
 $dictionary['Case']['fields']['soluzione_c']['inline_edit']='1';

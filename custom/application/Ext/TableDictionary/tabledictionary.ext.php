@@ -23,6 +23,11 @@ include('custom/metadata/mkt_nonconfint_usersMetaData.php');
 
  
  //WARNING: The contents of this file are auto-generated
+include('custom/metadata/users_cases_1MetaData.php');
+
+
+ 
+ //WARNING: The contents of this file are auto-generated
 include('custom/metadata/mkt_possibility_accountsMetaData.php');
 
 

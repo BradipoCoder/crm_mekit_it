@@ -1,5 +1,5 @@
 <?php
-// created: 2016-02-12 13:19:27
+// created: 2017-11-08 08:43:28
 $mod_strings = array (
   'LBL_EDITVIEW_PANEL1' => 'Dati Avanzati',
   'LBL_COMPLETED' => 'Completato',
@@ -8,5 +8,5 @@ $mod_strings = array (
   'LBL_EXECUTION_DATE' => 'Data di Esecuzione',
   'LBL_FLEX_RELATE' => 'Relativo a',
   'LBL_OPERATION_TYPE' => 'Tipo',
-  'LBL_MKT_WORKLOGS_CASES_FROM_CASES_TITLE' => 'Ticket',
+  'LBL_MKT_WORKLOGS_CASES_FROM_CASES_TITLE' => 'Reclami',
 );

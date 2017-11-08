@@ -1,10 +1,10 @@
 <?php
-// created: 2017-04-13 07:57:25
+// created: 2017-11-08 08:43:28
 $mod_strings = array (
   'LBL_ASSISTENCE_REQUEST_DATA' => 'Data Richiesta Assistenza',
   'LBL_MEETING_TYPE' => 'Tipologia',
   'LBL_STATUS' => 'Stato:',
-  'LBL_CASE' => 'Ticket',
+  'LBL_CASE' => 'RAS',
   'LBL_REMINDERS' => 'Preavvisi',
   'LBL_RELATIVOACAMPAGNA_CAMPAIGN_ID' => 'Relativo A Campagna (relativo Campagne ID)',
   'LBL_RELATIVOACAMPAGNA' => 'Relativo A Campagna',
