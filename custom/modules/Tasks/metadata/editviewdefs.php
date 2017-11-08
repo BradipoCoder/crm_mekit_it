@@ -60,22 +60,25 @@ array (
               'required' => true,
             ),
           ),
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            'name' => 'description',
-          ),
-        ),
-        2 => 
-        array (
-          0 => 
+          1 => 
           array (
             'name' => 'status',
             'displayParams' => 
             array (
               'required' => true,
+            ),
+          ),
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'date_due',
+            'type' => 'datetimecombo',
+            'displayParams' => 
+            array (
+              'showNoneCheckbox' => true,
+              'showFormats' => true,
             ),
           ),
           1 => 
@@ -87,12 +90,20 @@ array (
             ),
           ),
         ),
+        2 => 
+        array (
+          0 => 'assigned_user_name',
+          1 => 
+          array (
+            'name' => 'created_by_name',
+            'label' => 'LBL_CREATED',
+          ),
+        ),
         3 => 
         array (
           0 => 
           array (
-            'name' => 'parent_name',
-            'label' => 'LBL_LIST_RELATED_TO',
+            'name' => 'description',
           ),
         ),
         4 => 
@@ -109,23 +120,18 @@ array (
           ),
           1 => 
           array (
-            'name' => 'date_due',
-            'type' => 'datetimecombo',
-            'displayParams' => 
-            array (
-              'showNoneCheckbox' => true,
-              'showFormats' => true,
-            ),
+            'name' => 'complexity_level_c',
+            'studio' => 'visible',
+            'label' => 'LBL_COMPLEXITY_LEVEL',
           ),
         ),
         5 => 
         array (
           0 => 
           array (
-            'name' => 'created_by_name',
-            'label' => 'LBL_CREATED',
+            'name' => 'parent_name',
+            'label' => 'LBL_LIST_RELATED_TO',
           ),
-          1 => 'assigned_user_name',
         ),
       ),
     ),

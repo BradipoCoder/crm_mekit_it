@@ -24,7 +24,7 @@ $dictionary['Case']['fields']['origine_c']['labelValue']='Origine';
 
  
 
-// created: 2016-07-15 10:40:02
+ // created: 2017-10-26 15:33:37
 $dictionary['Case']['fields']['area_dinteresse_imp_c']['inline_edit']='1';
 $dictionary['Case']['fields']['area_dinteresse_imp_c']['labelValue']='Area d\'interesse IMP';
 
@@ -48,9 +48,11 @@ $dictionary['Case']['fields']['rif_commessa_code_c']['labelValue'] = 'Riferiment
 
 
 
-// created: 2016-07-15 10:40:24
+ // created: 2017-10-26 12:48:47
 $dictionary['Case']['fields']['date_close_prg_c']['inline_edit']='1';
+$dictionary['Case']['fields']['date_close_prg_c']['options']='date_range_search_dom';
 $dictionary['Case']['fields']['date_close_prg_c']['labelValue']='Data Chiusura Prevista';
+$dictionary['Case']['fields']['date_close_prg_c']['enable_range_search']='1';
 
  
 
@@ -60,7 +62,7 @@ $dictionary['Case']['fields']['controlled_c']['labelValue']='Collaudo Effettuato
 
  
 
- // created: 2016-11-07 08:07:29
+ // created: 2017-11-07 18:36:51
 $dictionary['Case']['fields']['state']['default']='';
 $dictionary['Case']['fields']['state']['inline_edit']=true;
 $dictionary['Case']['fields']['state']['comments']='The state of the case (i.e. open/closed)';
@@ -80,6 +82,14 @@ $dictionary['Case']['fields']['aop_case_updates_threaded']['reportable']=true;
  // created: 2016-10-05 10:15:21
 $dictionary['Case']['fields']['internal_tag_number_c']['inline_edit']='1';
 $dictionary['Case']['fields']['internal_tag_number_c']['labelValue']='Tag Numero';
+
+ 
+
+ // created: 2017-10-26 15:48:32
+$dictionary['Case']['fields']['days_to_close_c']['inline_edit']='1';
+$dictionary['Case']['fields']['days_to_close_c']['options']='numeric_range_search_dom';
+$dictionary['Case']['fields']['days_to_close_c']['labelValue']='Giorni ritardo';
+$dictionary['Case']['fields']['days_to_close_c']['enable_range_search']='1';
 
  
 
@@ -135,7 +145,7 @@ $dictionary['Case']['fields']['numerotag_c']['labelValue']='Numero Tag';
 
  
 
- // created: 2016-02-12 14:55:41
+ // created: 2017-10-26 15:33:44
 $dictionary['Case']['fields']['case_area_c']['inline_edit']='1';
 $dictionary['Case']['fields']['case_area_c']['labelValue']='Area di Interesse MEKIT';
 
@@ -153,9 +163,11 @@ $dictionary['Case']['fields']['imp_doc_progressivo_c']['labelValue'] = 'I Numero
 
 
 
- // created: 2016-02-05 13:52:26
+ // created: 2017-10-26 15:29:35
 $dictionary['Case']['fields']['date_close_efct_c']['inline_edit']='1';
+$dictionary['Case']['fields']['date_close_efct_c']['options']='date_range_search_dom';
 $dictionary['Case']['fields']['date_close_efct_c']['labelValue']='Data Chiusura Effettiva';
+$dictionary['Case']['fields']['date_close_efct_c']['enable_range_search']='1';
 
  
 
@@ -181,6 +193,40 @@ $dictionary['Case']['fields']['status']['duplicate_merge_dom_value']='0';
 $dictionary['Case']['fields']['status']['massupdate']='1';
 
  
+
+// created: 2017-11-08 08:27:01
+$dictionary["Case"]["fields"]["users_cases_1"] = array (
+  'name' => 'users_cases_1',
+  'type' => 'link',
+  'relationship' => 'users_cases_1',
+  'source' => 'non-db',
+  'module' => 'Users',
+  'bean_name' => 'User',
+  'vname' => 'LBL_USERS_CASES_1_FROM_USERS_TITLE',
+  'id_name' => 'users_cases_1users_ida',
+);
+$dictionary["Case"]["fields"]["users_cases_1_name"] = array (
+  'name' => 'users_cases_1_name',
+  'type' => 'relate',
+  'source' => 'non-db',
+  'vname' => 'LBL_USERS_CASES_1_FROM_USERS_TITLE',
+  'save' => true,
+  'id_name' => 'users_cases_1users_ida',
+  'link' => 'users_cases_1',
+  'table' => 'users',
+  'module' => 'Users',
+  'rname' => 'name',
+);
+$dictionary["Case"]["fields"]["users_cases_1users_ida"] = array (
+  'name' => 'users_cases_1users_ida',
+  'type' => 'link',
+  'relationship' => 'users_cases_1',
+  'source' => 'non-db',
+  'reportable' => false,
+  'side' => 'right',
+  'vname' => 'LBL_USERS_CASES_1_FROM_CASES_TITLE',
+);
+
 
  // created: 2016-02-12 14:10:04
 $dictionary['Case']['fields']['soluzione_c']['inline_edit']='1';

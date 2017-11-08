@@ -1,18 +1,18 @@
 <?php
-// created: 2017-07-20 13:30:53
+// created: 2017-11-08 08:43:29
 $mod_strings = array (
   'LBL_DATE_CLOSE_EFCT' => 'Data Chiusura Effettiva',
   'LBL_CASE_AREA' => 'Area di Interesse MEKIT',
   'LBL_ORIGINE' => 'Origine',
   'LBL_DATE_CLOSE_PRG' => 'Data Chiusura Prevista',
   'LBL_EDITVIEW_PANEL1' => 'Soluzioni Adottate',
-  'LNK_NEW_CASE' => 'Nuovo Reclamo',
-  'LNK_CASE_LIST' => 'Visualizza Tickets',
-  'LNK_IMPORT_CASES' => 'Importa Tickets',
-  'LBL_LIST_FORM_TITLE' => 'Elenco Ticket',
-  'LBL_SEARCH_FORM_TITLE' => 'Cerca Reclamo',
-  'LBL_LIST_MY_CASES' => 'I miei Tickets Aperti',
-  'LBL_MODULE_NAME' => 'Tickets',
+  'LNK_NEW_CASE' => 'Nuova RAS',
+  'LNK_CASE_LIST' => 'Visualizza RAS',
+  'LNK_IMPORT_CASES' => 'Importa RAS',
+  'LBL_LIST_FORM_TITLE' => 'Elenco RAS',
+  'LBL_SEARCH_FORM_TITLE' => 'Cerca RAS',
+  'LBL_LIST_MY_CASES' => 'Le mie RAS Aperti',
+  'LBL_MODULE_NAME' => 'RAS',
   'LBL_TYPE' => 'Tipo',
   'LBL_STATE' => 'Stato:',
   'LBL_STATUS' => 'Fase / Esito:',
@@ -32,4 +32,6 @@ $mod_strings = array (
   'LBL_RIF_COMMESSA_CODE' => 'Commessa',
   'LBL_INTERNAL_TAG_NUMBER' => 'Tag Numero',
   'LBL_NUMEROTAG' => 'Numero Tag',
+  'LBL_DAYS_TO_CLOSE' => 'Giorni ritardo',
+  'LBL_USERS_CASES_1_FROM_USERS_TITLE' => 'Tecnico responsabile',
 );

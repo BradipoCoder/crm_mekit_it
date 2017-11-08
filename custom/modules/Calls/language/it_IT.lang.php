@@ -1,5 +1,5 @@
 <?php
-// created: 2016-05-17 09:08:21
+// created: 2017-11-08 08:43:28
 $mod_strings = array (
   'LBL_CALL_INFORMATION' => 'Chiamata',
   'LBL_ASSIGNED_CLIENT' => 'Cliente Assegnato',
@@ -26,7 +26,7 @@ $mod_strings = array (
   'LBL_DURATION' => 'Durata Ore',
   'LBL_IMPORTANTE' => 'Importante',
   'LBL_EDITVIEW_PANEL2' => 'Dati per Telemarketing',
-  'LBL_CASE' => 'Ticket',
+  'LBL_CASE' => 'RAS',
   'LBL_RELATIVO_A_CAMPAGNA_CAMPAIGN_ID' => 'Relativo a Campagna (relativo Campagne ID)',
   'LBL_RELATIVO_A_CAMPAGNA' => 'Relativo a Campagna',
   'LBL_DIRECTION' => 'Direzione',

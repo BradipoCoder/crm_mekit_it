@@ -1,5 +1,5 @@
 <?php
-// created: 2017-07-20 13:46:39
+// created: 2017-10-26 15:48:31
 $searchFields['Cases'] = array (
   'name' => 
   array (
@@ -129,5 +129,56 @@ $searchFields['Cases'] = array (
   'description' => 
   array (
     'query_type' => 'default',
+  ),
+  'range_date_close_prg_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'start_range_date_close_prg_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'end_range_date_close_prg_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'range_date_close_efct_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'start_range_date_close_efct_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'end_range_date_close_efct_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'range_days_to_close' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_days_to_close' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_days_to_close' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
   ),
 );

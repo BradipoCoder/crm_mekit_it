@@ -1,6 +1,6 @@
 <?php
-// created: 2016-02-12 13:19:27
+// created: 2017-11-08 08:43:28
 $mod_strings = array (
-  'LBL_CASE_NAME' => 'Ticket',
-  'LBL_CASE' => 'Ticket',
+  'LBL_CASE_NAME' => 'RAS',
+  'LBL_CASE' => 'RAS',
 );

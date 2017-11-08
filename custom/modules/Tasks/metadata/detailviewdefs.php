@@ -92,54 +92,51 @@ array (
             'name' => 'name',
             'label' => 'LBL_SUBJECT',
           ),
+          1 => 'status',
         ),
         1 => 
         array (
-          0 => 'description',
+          0 => 'date_due',
+          1 => 'priority',
         ),
         2 => 
         array (
-          0 => 'status',
-          1 => 'priority',
+          0 => 
+          array (
+            'name' => 'assigned_user_name',
+            'label' => 'LBL_ASSIGNED_TO',
+          ),
+          1 => 
+          array (
+            'name' => 'created_by_name',
+            'label' => 'LBL_CREATED',
+          ),
         ),
         3 => 
+        array (
+          0 => 'description',
+        ),
+        4 => 
+        array (
+          0 => 'date_start',
+          1 => 
+          array (
+            'name' => 'urgency_indicator_c',
+            'label' => 'LBL_URGENCY_INDICATOR',
+          ),
+        ),
+        5 => 
         array (
           0 => 
           array (
             'name' => 'parent_name',
             'customLabel' => '{sugar_translate label=\'LBL_MODULE_NAME\' module=$fields.parent_type.value}',
           ),
-        ),
-        4 => 
-        array (
-          0 => 'date_start',
-          1 => 'date_due',
-        ),
-        5 => 
-        array (
-          0 => 
-          array (
-            'name' => 'created_by_name',
-            'label' => 'LBL_CREATED',
-          ),
           1 => 
           array (
-            'name' => 'assigned_user_name',
-            'label' => 'LBL_ASSIGNED_TO',
-          ),
-        ),
-        6 => 
-        array (
-          0 => 
-          array (
-            'name' => 'urgency_indicator_c',
-            'label' => 'LBL_URGENCY_INDICATOR',
-          ),
-          1 => 
-          array (
-            'name' => 'urgency_calc_temp_c',
+            'name' => 'complexity_level_c',
             'studio' => 'visible',
-            'label' => 'LBL_URGENCY_CALC_TEMP',
+            'label' => 'LBL_COMPLEXITY_LEVEL',
           ),
         ),
       ),

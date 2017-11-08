@@ -8,12 +8,29 @@ array (
     'link' => true,
     'default' => true,
   ),
-  'STATUS' => 
+  'CREATED_BY_NAME' => 
   array (
+    'type' => 'relate',
+    'link' => true,
+    'label' => 'LBL_CREATED',
+    'id' => 'CREATED_BY',
     'width' => '10%',
-    'label' => 'LBL_LIST_STATUS',
-    'link' => false,
     'default' => true,
+  ),
+  'URGENCY_INDICATOR_C' => 
+  array (
+    'type' => 'int',
+    'default' => true,
+    'label' => 'LBL_URGENCY_INDICATOR',
+    'width' => '10%',
+  ),
+  'COMPLEXITY_LEVEL_C' => 
+  array (
+    'type' => 'enum',
+    'default' => true,
+    'studio' => 'visible',
+    'label' => 'LBL_COMPLEXITY_LEVEL',
+    'width' => '10%',
   ),
   'PRIORITY' => 
   array (
@@ -22,20 +39,18 @@ array (
     'label' => 'LBL_PRIORITY',
     'width' => '10%',
   ),
+  'STATUS' => 
+  array (
+    'width' => '10%',
+    'label' => 'LBL_LIST_STATUS',
+    'link' => false,
+    'default' => true,
+  ),
   'DATE_DUE' => 
   array (
     'width' => '15%',
     'label' => 'LBL_LIST_DUE_DATE',
     'link' => false,
-    'default' => true,
-  ),
-  'CREATED_BY_NAME' => 
-  array (
-    'type' => 'relate',
-    'link' => true,
-    'label' => 'LBL_CREATED',
-    'id' => 'CREATED_BY',
-    'width' => '10%',
     'default' => true,
   ),
   'ASSIGNED_USER_NAME' => 
@@ -158,13 +173,6 @@ array (
     'width' => '10%',
     'label' => 'LBL_DATE_ENTERED',
     'default' => false,
-  ),
-  'URGENCY_INDICATOR_C' => 
-  array (
-    'type' => 'int',
-    'default' => false,
-    'label' => 'LBL_URGENCY_INDICATOR',
-    'width' => '10%',
   ),
   'URGENCY_CALC_TEMP_C' => 
   array (

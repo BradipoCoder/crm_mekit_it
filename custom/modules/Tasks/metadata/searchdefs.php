@@ -88,6 +88,15 @@ array (
         'width' => '10%',
         'name' => 'urgency_indicator_c',
       ),
+      'complexity_level_c' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_COMPLEXITY_LEVEL',
+        'width' => '10%',
+        'name' => 'complexity_level_c',
+      ),
       'parent_name' => 
       array (
         'type' => 'parent',

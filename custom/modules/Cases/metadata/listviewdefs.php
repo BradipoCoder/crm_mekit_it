@@ -1,6 +1,13 @@
 <?php
 $listViewDefs ['Cases'] = 
 array (
+  'TYPE' => 
+  array (
+    'type' => 'enum',
+    'label' => 'LBL_TYPE',
+    'width' => '10%',
+    'default' => true,
+  ),
   'NAME' => 
   array (
     'width' => '25%',
@@ -8,18 +15,28 @@ array (
     'link' => true,
     'default' => true,
   ),
-  'NUMEROTAG_C' => 
+  'USERS_CASES_1_NAME' => 
+  array (
+    'type' => 'relate',
+    'link' => true,
+    'label' => 'LBL_USERS_CASES_1_FROM_USERS_TITLE',
+    'id' => 'USERS_CASES_1USERS_IDA',
+    'width' => '10%',
+    'default' => true,
+  ),
+  'IMP_RAS_NUMBER_C' => 
   array (
     'type' => 'varchar',
     'default' => true,
-    'label' => 'LBL_NUMEROTAG',
+    'label' => 'LBL_IMP_RAS_NUMBER',
     'width' => '10%',
   ),
-  'DATE_ENTERED' => 
+  'REF_PART_UNIQUE_NUMBER_C' => 
   array (
-    'width' => '10%',
-    'label' => 'LBL_DATE_ENTERED',
+    'type' => 'varchar',
     'default' => true,
+    'label' => 'LBL_REF_PART_UNIQUE_NUMBER',
+    'width' => '10%',
   ),
   'ACCOUNT_NAME' => 
   array (
@@ -64,18 +81,38 @@ array (
     'label' => 'LBL_REF_PART_DESCRIPTION',
     'width' => '10%',
   ),
-  'REF_PART_UNIQUE_NUMBER_C' => 
+  'NUMEROTAG_C' => 
   array (
     'type' => 'varchar',
     'default' => true,
-    'label' => 'LBL_REF_PART_UNIQUE_NUMBER',
+    'label' => 'LBL_NUMEROTAG',
     'width' => '10%',
   ),
   'DATE_CLOSE_PRG_C' => 
   array (
     'type' => 'date',
-    'default' => false,
+    'default' => true,
     'label' => 'LBL_DATE_CLOSE_PRG',
+    'width' => '10%',
+  ),
+  'DAYS_TO_CLOSE_C' => 
+  array (
+    'type' => 'int',
+    'default' => true,
+    'label' => 'LBL_DAYS_TO_CLOSE',
+    'width' => '10%',
+  ),
+  'DATE_ENTERED' => 
+  array (
+    'width' => '10%',
+    'label' => 'LBL_DATE_ENTERED',
+    'default' => false,
+  ),
+  'DATE_CLOSE_EFCT_C' => 
+  array (
+    'type' => 'date',
+    'default' => false,
+    'label' => 'LBL_DATE_CLOSE_EFCT',
     'width' => '10%',
   ),
   'PRIORITY' => 
@@ -83,20 +120,6 @@ array (
     'width' => '10%',
     'label' => 'LBL_LIST_PRIORITY',
     'default' => false,
-  ),
-  'TYPE' => 
-  array (
-    'type' => 'enum',
-    'label' => 'LBL_TYPE',
-    'width' => '10%',
-    'default' => false,
-  ),
-  'IMP_RAS_NUMBER_C' => 
-  array (
-    'type' => 'varchar',
-    'default' => false,
-    'label' => 'LBL_IMP_RAS_NUMBER',
-    'width' => '10%',
   ),
   'CASE_NUMBER' => 
   array (
@@ -116,13 +139,6 @@ array (
     'type' => 'varchar',
     'default' => false,
     'label' => 'LBL_REF_PART_NUMBER',
-    'width' => '10%',
-  ),
-  'DATE_CLOSE_EFCT_C' => 
-  array (
-    'type' => 'date',
-    'default' => false,
-    'label' => 'LBL_DATE_CLOSE_EFCT',
     'width' => '10%',
   ),
   'AREA_DINTERESSE_IMP_C' => 
@@ -170,13 +186,6 @@ array (
     'type' => 'varchar',
     'default' => false,
     'label' => 'LBL_RIF_COMMESSA_CODE',
-    'width' => '10%',
-  ),
-  'JJWG_MAPS_ADDRESS_C' => 
-  array (
-    'type' => 'varchar',
-    'default' => false,
-    'label' => 'LBL_JJWG_MAPS_ADDRESS',
     'width' => '10%',
   ),
 );

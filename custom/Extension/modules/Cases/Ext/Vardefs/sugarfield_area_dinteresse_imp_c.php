@@ -1,5 +1,5 @@
 <?php
-// created: 2016-07-15 10:40:02
+ // created: 2017-10-26 15:33:37
 $dictionary['Case']['fields']['area_dinteresse_imp_c']['inline_edit']='1';
 $dictionary['Case']['fields']['area_dinteresse_imp_c']['labelValue']='Area d\'interesse IMP';
 

@@ -134,8 +134,8 @@ class AccountFixer
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             //$this->log("D: " . json_encode($data));
-            $updateSql = "UPDATE accounts_cstm 
-          SET imp_status_c = :status, 
+            $updateSql = "UPDATE accounts_cstm
+          SET imp_status_c = :status,
           imp_status_phase__c = :phase
           WHERE id_c = :id
           ";
@@ -224,8 +224,8 @@ class AccountFixer
         //update
         foreach ($fidelizzati as $id => $fidelizzato)
         {
-            $updateSql = "UPDATE accounts_cstm 
-          SET imp_status_c = :status, 
+            $updateSql = "UPDATE accounts_cstm
+          SET imp_status_c = :status,
           imp_status_phase__c = :phase
           WHERE id_c = :id
           ";
@@ -282,8 +282,8 @@ class AccountFixer
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             //$this->log("D: " . json_encode($data));
-            $updateSql = "UPDATE accounts_cstm 
-          SET imp_status_c = :status, 
+            $updateSql = "UPDATE accounts_cstm
+          SET imp_status_c = :status,
           imp_status_phase__c = :phase
           WHERE id_c = :id
           ";
@@ -335,8 +335,8 @@ class AccountFixer
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             //$this->log("D: " . json_encode($data));
-            $updateSql = "UPDATE accounts_cstm 
-          SET imp_status_c = :status, 
+            $updateSql = "UPDATE accounts_cstm
+          SET imp_status_c = :status,
           imp_status_phase__c = :phase,
           imp_acc_sleep_date_c = :acc_sleep_date
           WHERE id_c = :id
@@ -391,8 +391,8 @@ class AccountFixer
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             //$this->log("D: " . json_encode($data));
-            $updateSql = "UPDATE accounts_cstm 
-              SET imp_status_c = :status, 
+            $updateSql = "UPDATE accounts_cstm
+              SET imp_status_c = :status,
               imp_status_phase__c = :phase
               WHERE id_c = :id
               ";
@@ -445,8 +445,8 @@ class AccountFixer
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             //$this->log("D: " . json_encode($data));
-            $updateSql = "UPDATE accounts_cstm 
-              SET imp_status_c = :status, 
+            $updateSql = "UPDATE accounts_cstm
+              SET imp_status_c = :status,
               imp_status_phase__c = :phase,
               imp_acc_start_date_c = :acc_start_date
               WHERE id_c = :id
@@ -503,7 +503,7 @@ class AccountFixer
         
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
-            $updateSql = "UPDATE accounts_cstm 
+            $updateSql = "UPDATE accounts_cstm
           SET imp_status_phase__c = :phase
           WHERE id_c = :id
           ";

@@ -51,6 +51,11 @@ array (
               'required' => true,
             ),
           ),
+          1 => 
+          array (
+            'name' => 'assigned_user_name',
+            'label' => 'LBL_ASSIGNED_TO',
+          ),
         ),
         1 => 
         array (
@@ -67,16 +72,7 @@ array (
         ),
         2 => 
         array (
-          0 => 'contact_name',
-          1 => 'parent_name',
-        ),
-        3 => 
-        array (
-          0 => 
-          array (
-            'name' => 'assigned_user_name',
-            'label' => 'LBL_ASSIGNED_TO',
-          ),
+          0 => 'parent_name',
         ),
       ),
     ),
