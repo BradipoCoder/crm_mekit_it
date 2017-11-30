@@ -1219,27 +1219,46 @@ $GLOBALS['app_list_strings']['Campaign_List']=array (
   'A15presaappuntamento' => 'A15 Presa Appuntamento',
 );
 
-$GLOBALS['app_list_strings']['case_state_dom']=array (
-  1 => 'Aperto',
-  2 => 'Chiuso',
-  3 => 'Attesa',
-  4 => 'Lavorazione',
-  5 => 'Attesa Chiusura',
-  6 => 'Attesa Conf. Preventivo',
-  7 => 'Bozza',
-  8 => 'Assegnato',
-  9 => 'In Stand By',
-  10 => 'Da fare preventivo',
-  11 => 'Da ordinare Ricambi',
-  12 => 'Da finire',
-  13 => 'Preparazione Ricambi',
-  14 => 'Da riassegnare',
-);
 $GLOBALS['app_list_strings']['aos_quote_type']=array (
-  'mov' => 'MOV - Movimentazione magazzino',
-  'bac' => 'BAC - Bolla di acquisto',
-  'orf' => 'ORF - Ordine fornitore',
-  'orc' => 'ORC - Ordine cliente',
-  'ofc' => 'OFC - Offerta cliente',
-  'fol' => 'FOL - Foglio di lavoro',
+    'mov' => 'MOV - Movimentazione magazzino',
+    'bac' => 'BAC - Bolla di acquisto',
+    'orf' => 'ORF - Ordine fornitore',
+    'orc' => 'ORC - Ordine cliente',
+    'ofc' => 'OFC - Offerta cliente',
+    'fol' => 'FOL - Foglio di lavoro',
+);
+$GLOBALS['app_list_strings']['approval_status_dom']=array (
+    'Approved' => 'Approvato',
+    'Not Approved' => 'Non Approvato',
+);
+$GLOBALS['app_list_strings']['vat_list']=array (
+    '0.22' => '22%',
+    '0.0' => 'Esente',
+);
+$GLOBALS['app_list_strings']['case_state_dom']=array (
+    7 => 'Bozza',
+    1 => 'Nuovo',
+    8 => 'Assegnato',
+    12 => 'Da finire',
+    13 => 'Preparazione Ricambi',
+    14 => 'Da riassegnare',
+    9 => 'In Stand By',
+    4 => 'Lavorazione',
+    11 => 'Da ordinare Ricambi',
+    3 => 'Attesa Ricambi',
+    10 => 'Da fare preventivo',
+    6 => 'Attesa Conf. Preventivo',
+    5 => 'Attesa Chiusura',
+    2 => 'Chiuso',
+);
+$GLOBALS['app_list_strings']['ras_status_hint_list']=array (
+    '' => 'Nessun cambiamento',
+    12 => 'Da finire',
+    13 => 'Preparazione Ricambi',
+    14 => 'Da riassegnare',
+    9 => 'In Stand By',
+    4 => 'Lavorazione',
+    11 => 'Da ordinare Ricambi',
+    3 => 'Attesa Ricambi',
+    2 => 'Chiuso',
 );

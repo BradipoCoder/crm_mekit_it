@@ -13,6 +13,15 @@ array (
         'default' => true,
         'width' => '10%',
       ),
+      'quote_type' => 
+      array (
+        'type' => 'enum',
+        'studio' => 'visible',
+        'default' => true,
+        'label' => 'LBL_QUOTE_TYPE',
+        'width' => '10%',
+        'name' => 'quote_type',
+      ),
       'current_user_only' => 
       array (
         'name' => 'current_user_only',
@@ -26,10 +35,21 @@ array (
         'name' => 'favorites_only',
         'label' => 'LBL_FAVORITES_FILTER',
         'type' => 'bool',
+        'default' => true,
+        'width' => '10%',
       ),
     ),
     'advanced_search' => 
     array (
+      'quote_type' => 
+      array (
+        'type' => 'enum',
+        'studio' => 'visible',
+        'default' => true,
+        'label' => 'LBL_QUOTE_TYPE',
+        'width' => '10%',
+        'name' => 'quote_type',
+      ),
       'metodo_database_c' => 
       array (
         'type' => 'enum',

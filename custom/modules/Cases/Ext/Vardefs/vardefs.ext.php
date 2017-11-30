@@ -74,6 +74,19 @@ $dictionary['Case']['fields']['state']['massupdate']='1';
 
  
 
+// created: 2017-11-30 14:19:48
+$dictionary["Case"]["fields"]["cases_aos_quotes_1"] = array (
+  'name' => 'cases_aos_quotes_1',
+  'type' => 'link',
+  'relationship' => 'cases_aos_quotes_1',
+  'source' => 'non-db',
+  'module' => 'AOS_Quotes',
+  'bean_name' => 'AOS_Quotes',
+  'side' => 'right',
+  'vname' => 'LBL_CASES_AOS_QUOTES_1_FROM_AOS_QUOTES_TITLE',
+);
+
+
  // created: 2016-02-05 10:59:05
 $dictionary['Case']['fields']['aop_case_updates_threaded']['comments']='Aggiornamento Reclami';
 $dictionary['Case']['fields']['aop_case_updates_threaded']['merge_filter']='disabled';

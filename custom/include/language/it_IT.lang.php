@@ -1178,26 +1178,12 @@ $app_list_strings['moduleListSingular']['Cases']='RAS';
 $app_list_strings['record_type_display']['Cases']='RAS';
 $app_list_strings['parent_type_display']['Cases']='RAS';
 $app_list_strings['record_type_display_notes']['Cases']='RAS';
-$GLOBALS['app_list_strings']['case_state_dom']=array (
-  7 => 'Bozza',
-  1 => 'Nuovo',
-  8 => 'Assegnato',
-  12 => 'Da finire',
-  13 => 'Preparazione Ricambi',
-  14 => 'Da riassegnare',
-  9 => 'In Stand By',
-  4 => 'Lavorazione',
-  11 => 'Da ordinare Ricambi',
-  3 => 'Attesa Ricambi',
-  10 => 'Da fare preventivo',
-  6 => 'Attesa Conf. Preventivo',
-  5 => 'Attesa Chiusura',
-  2 => 'Chiuso',
-);
+
 $app_list_strings['moduleList']['Documents']='Files';
 $app_list_strings['moduleListSingular']['Documents']='File';
 $app_list_strings['moduleList']['AOS_Quotes']='Documenti';
 $app_list_strings['moduleListSingular']['AOS_Quotes']='Documento';
+
 $GLOBALS['app_list_strings']['aos_quote_type']=array (
   'mov' => 'MOV - Movimentazione magazzino',
   'bac' => 'BAC - Bolla di acquisto',
@@ -1213,4 +1199,31 @@ $GLOBALS['app_list_strings']['approval_status_dom']=array (
 $GLOBALS['app_list_strings']['vat_list']=array (
     '0.22' => '22%',
     '0.0' => 'Esente',
+);
+$GLOBALS['app_list_strings']['case_state_dom']=array (
+    7 => 'Bozza',
+    1 => 'Nuovo',
+    8 => 'Assegnato',
+    12 => 'Da finire',
+    13 => 'Preparazione Ricambi',
+    14 => 'Da riassegnare',
+    9 => 'In Stand By',
+    4 => 'Lavorazione',
+    11 => 'Da ordinare Ricambi',
+    3 => 'Attesa Ricambi',
+    10 => 'Da fare preventivo',
+    6 => 'Attesa Conf. Preventivo',
+    5 => 'Attesa Chiusura',
+    2 => 'Chiuso',
+);
+$GLOBALS['app_list_strings']['ras_status_hint_list']=array (
+  '' => 'Nessun cambiamento',
+  12 => 'Da finire',
+  13 => 'Preparazione Ricambi',
+  14 => 'Da riassegnare',
+  9 => 'In Stand By',
+  4 => 'Lavorazione',
+  11 => 'Da ordinare Ricambi',
+  3 => 'Attesa Ricambi',
+  2 => 'Chiuso',
 );

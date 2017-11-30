@@ -1,5 +1,5 @@
 <?php
-// created: 2016-03-03 17:59:38
+// created: 2017-11-30 14:46:22
 $searchFields['AOS_Quotes'] = array (
   'name' => 
   array (
@@ -256,6 +256,54 @@ $searchFields['AOS_Quotes'] = array (
     'enable_range_search' => true,
   ),
   'end_range_discount_percent_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_data_doc_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'start_range_data_doc_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'end_range_data_doc_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+    'is_date_field' => true,
+  ),
+  'range_workhours' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_workhours' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_workhours' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_machine_workhours' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_machine_workhours' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_machine_workhours' => 
   array (
     'query_type' => 'default',
     'enable_range_search' => true,
