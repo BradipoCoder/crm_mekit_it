@@ -1173,12 +1173,18 @@ $GLOBALS['app_list_strings']['Campaign_List']=array (
   60 => 'Master Team',
   'LoveNatale2015' => '15-09 Loveatwell Natale',
 );
-
+$app_list_strings['moduleList']['Cases']='RAS';
+$app_list_strings['moduleListSingular']['Cases']='RAS';
+$app_list_strings['record_type_display']['Cases']='RAS';
+$app_list_strings['parent_type_display']['Cases']='RAS';
+$app_list_strings['record_type_display_notes']['Cases']='RAS';
 $GLOBALS['app_list_strings']['case_state_dom']=array (
   7 => 'Bozza',
   1 => 'Nuovo',
   8 => 'Assegnato',
   12 => 'Da finire',
+  13 => 'Preparazione Ricambi',
+  14 => 'Da riassegnare',
   9 => 'In Stand By',
   4 => 'Lavorazione',
   11 => 'Da ordinare Ricambi',
@@ -1188,8 +1194,3 @@ $GLOBALS['app_list_strings']['case_state_dom']=array (
   5 => 'Attesa Chiusura',
   2 => 'Chiuso',
 );
-$app_list_strings['moduleList']['Cases']='RAS';
-$app_list_strings['moduleListSingular']['Cases']='RAS';
-$app_list_strings['record_type_display']['Cases']='RAS';
-$app_list_strings['parent_type_display']['Cases']='RAS';
-$app_list_strings['record_type_display_notes']['Cases']='RAS';

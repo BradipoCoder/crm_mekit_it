@@ -445,6 +445,15 @@ array (
         'width' => '10%',
         'name' => 'credit_risk_c',
       ),
+      'andamentoreating_c' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_ANDAMENTOREATING',
+        'width' => '10%',
+        'name' => 'andamentoreating_c',
+      ),
       'date_entered' => 
       array (
         'type' => 'datetime',

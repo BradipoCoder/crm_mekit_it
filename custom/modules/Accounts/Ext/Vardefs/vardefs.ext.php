@@ -942,6 +942,12 @@ $dictionary['Account']['fields']['mkt_prev_di_fatt_100_c']['labelValue']='Mkt Pr
 
  
 
+ // created: 2017-11-21 05:51:18
+$dictionary['Account']['fields']['andamentoreating_c']['inline_edit']='1';
+$dictionary['Account']['fields']['andamentoreating_c']['labelValue']='andamentoreating';
+
+ 
+
  // created: 2016-03-03 11:58:58
 $dictionary['Account']['fields']['price_listing_c']['inline_edit']='1';
 $dictionary['Account']['fields']['price_listing_c']['labelValue']='Listino';

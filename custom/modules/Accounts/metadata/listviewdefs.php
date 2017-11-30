@@ -73,6 +73,14 @@ array (
     'label' => 'LBL_PUNTEGGIO_RATING',
     'width' => '10%',
   ),
+  'ANDAMENTOREATING_C' => 
+  array (
+    'type' => 'enum',
+    'default' => false,
+    'studio' => 'visible',
+    'label' => 'LBL_ANDAMENTOREATING',
+    'width' => '10%',
+  ),
   'CREDITO_C' => 
   array (
     'type' => 'int',

@@ -1,5 +1,5 @@
 <?php
-// created: 2017-11-08 08:43:29
+// created: 2017-11-13 18:31:18
 $mod_strings = array (
   'LBL_DATE_CLOSE_EFCT' => 'Data Chiusura Effettiva',
   'LBL_CASE_AREA' => 'Area di Interesse MEKIT',
@@ -34,4 +34,5 @@ $mod_strings = array (
   'LBL_NUMEROTAG' => 'Numero Tag',
   'LBL_DAYS_TO_CLOSE' => 'Giorni ritardo',
   'LBL_USERS_CASES_1_FROM_USERS_TITLE' => 'Tecnico responsabile',
+  'LBL_SUBJECT' => 'Oggetto:',
 );

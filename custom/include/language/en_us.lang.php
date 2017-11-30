@@ -1232,4 +1232,6 @@ $GLOBALS['app_list_strings']['case_state_dom']=array (
   10 => 'Da fare preventivo',
   11 => 'Da ordinare Ricambi',
   12 => 'Da finire',
+  13 => 'Preparazione Ricambi',
+  14 => 'Da riassegnare',
 );

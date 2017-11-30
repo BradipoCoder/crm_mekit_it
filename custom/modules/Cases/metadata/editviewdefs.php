@@ -82,7 +82,12 @@ array (
             'comment' => 'The state of the case (i.e. open/closed)',
             'label' => 'LBL_STATE',
           ),
-          1 => 'status',
+          1 => 
+          array (
+            'name' => 'date_entered',
+            'comment' => 'Date record created',
+            'label' => 'LBL_DATE_ENTERED',
+          ),
         ),
         2 => 
         array (
@@ -96,10 +101,7 @@ array (
         3 => 
         array (
           0 => 'assigned_user_name',
-          1 => 
-          array (
-            'name' => 'users_cases_1_name',
-          ),
+          1 => '',
         ),
         4 => 
         array (

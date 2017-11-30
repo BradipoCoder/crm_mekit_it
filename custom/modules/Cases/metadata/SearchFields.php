@@ -1,5 +1,5 @@
 <?php
-// created: 2017-10-26 15:48:31
+// created: 2017-11-15 04:23:37
 $searchFields['Cases'] = array (
   'name' => 
   array (
@@ -177,6 +177,21 @@ $searchFields['Cases'] = array (
     'enable_range_search' => true,
   ),
   'end_range_days_to_close' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_days_to_close_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_days_to_close_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_days_to_close_c' => 
   array (
     'query_type' => 'default',
     'enable_range_search' => true,

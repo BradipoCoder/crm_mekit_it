@@ -97,11 +97,6 @@ array (
           'newTab' => false,
           'panelDefault' => 'expanded',
         ),
-        'LBL_EDITVIEW_PANEL14' => 
-        array (
-          'newTab' => false,
-          'panelDefault' => 'expanded',
-        ),
         'LBL_EDITVIEW_PANEL7' => 
         array (
           'newTab' => false,
@@ -386,8 +381,9 @@ array (
           ),
           1 => 
           array (
-            'name' => 'credito_c',
-            'label' => 'LBL_CREDITO',
+            'name' => 'andamentoreating_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ANDAMENTOREATING',
           ),
         ),
         2 => 
@@ -398,6 +394,14 @@ array (
             'label' => 'LBL_IMPORTO_PROTESTI',
           ),
           1 => 
+          array (
+            'name' => 'credito_c',
+            'label' => 'LBL_CREDITO',
+          ),
+        ),
+        3 => 
+        array (
+          0 => 
           array (
             'name' => 'note_del_credito_c',
             'label' => 'LBL_NOTE_DEL_CREDITO',

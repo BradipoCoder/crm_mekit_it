@@ -2,13 +2,15 @@
  //WARNING: The contents of this file are auto-generated
 
 
-// created: 2016-07-15 10:43:00
+ // created: 2017-11-14 06:55:43
 $dictionary['Case']['fields']['type']['len']=100;
 $dictionary['Case']['fields']['type']['inline_edit']=true;
 $dictionary['Case']['fields']['type']['comments']='The type of issue (ex: issue, feature)';
 $dictionary['Case']['fields']['type']['merge_filter']='disabled';
-$dictionary['Case']['fields']['type']['duplicate_merge'] = 'enabled';
-$dictionary['Case']['fields']['type']['duplicate_merge_dom_value'] = '1';
+$dictionary['Case']['fields']['type']['duplicate_merge']='enabled';
+$dictionary['Case']['fields']['type']['duplicate_merge_dom_value']='1';
+$dictionary['Case']['fields']['type']['default']='4';
+$dictionary['Case']['fields']['type']['massupdate']='1';
 
  
 
@@ -62,8 +64,8 @@ $dictionary['Case']['fields']['controlled_c']['labelValue']='Collaudo Effettuato
 
  
 
- // created: 2017-11-07 18:36:51
-$dictionary['Case']['fields']['state']['default']='';
+ // created: 2017-11-15 04:41:37
+$dictionary['Case']['fields']['state']['default']='7';
 $dictionary['Case']['fields']['state']['inline_edit']=true;
 $dictionary['Case']['fields']['state']['comments']='The state of the case (i.e. open/closed)';
 $dictionary['Case']['fields']['state']['duplicate_merge']='enabled';
@@ -227,6 +229,14 @@ $dictionary["Case"]["fields"]["users_cases_1users_ida"] = array (
   'vname' => 'LBL_USERS_CASES_1_FROM_CASES_TITLE',
 );
 
+
+ // created: 2017-11-13 18:35:21
+$dictionary['Case']['fields']['name']['default']='Guasto';
+$dictionary['Case']['fields']['name']['inline_edit']=true;
+$dictionary['Case']['fields']['name']['comments']='The short description of the bug';
+$dictionary['Case']['fields']['name']['merge_filter']='disabled';
+
+ 
 
  // created: 2016-02-12 14:10:04
 $dictionary['Case']['fields']['soluzione_c']['inline_edit']='1';
