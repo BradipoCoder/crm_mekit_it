@@ -647,11 +647,6 @@ $GLOBALS['app_list_strings']['meeting_status_dom']=array (
   'Held' => 'Held',
   'Not Held' => 'Not Held',
 );
-$GLOBALS['app_list_strings']['vat_list']=array (
-  '0.0' => '0%',
-  '10.0' => '10%',
-  '22.0' => '22%',
-);
 $GLOBALS['app_list_strings']['fase_stato_vendita_list']=array (
   '' => '',
   '5_1' => 'Motivazione Economica',
@@ -1232,8 +1227,8 @@ $GLOBALS['app_list_strings']['approval_status_dom']=array (
     'Not Approved' => 'Non Approvato',
 );
 $GLOBALS['app_list_strings']['vat_list']=array (
-    '0.22' => '22%',
     '0.0' => 'Esente',
+    '22.0' => '22%',
 );
 $GLOBALS['app_list_strings']['case_state_dom']=array (
     7 => 'Bozza',

@@ -1197,8 +1197,8 @@ $GLOBALS['app_list_strings']['approval_status_dom']=array (
     'Not Approved' => 'Non Approvato',
 );
 $GLOBALS['app_list_strings']['vat_list']=array (
-    '0.22' => '22%',
     '0.0' => 'Esente',
+    '22.0' => '22%',
 );
 $GLOBALS['app_list_strings']['case_state_dom']=array (
     7 => 'Bozza',
