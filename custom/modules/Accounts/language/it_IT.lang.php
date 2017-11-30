@@ -1,5 +1,5 @@
 <?php
-// created: 2017-11-21 05:53:57
+// created: 2017-11-30 09:13:51
 $mod_strings = array (
   'LBL_ACCOUNT_INFORMATION' => 'Anagrafica',
   'LBL_ACTIVE_INACTIVE' => 'Attivo Inattivo',
@@ -191,7 +191,7 @@ $mod_strings = array (
   'LBL_MKT_SCONTO_MEDIO' => 'Mkt Sconto Medio',
   'LBL_IMP_SCONTO_MEDIO' => 'Imp Sconto Medio',
   'LBL_EDITVIEW_PANEL7' => 'Imp Previsioni di Fatturato',
-  'LBL_DOCUMENTS_SUBPANEL_TITLE' => 'Documenti',
+  'LBL_DOCUMENTS_SUBPANEL_TITLE' => 'Files',
   'LBL_MKT_FATTURATO_STORICO' => 'M Fatturato Storico',
   'LBL_DACHECLIENTEIMPESERVITO_ACCOUNT_ID' => 'Da Che Cliente Imp E&#039; Servito (relativo Aziende ID)',
   'LBL_DACHECLIENTEIMPESERVITO' => 'Da Che Cliente Imp E&#039; Servito',
@@ -275,4 +275,5 @@ $mod_strings = array (
   'LBL_IMP_HAS_ACQ_CONTACT_MAIL' => 'Mail acquisti',
   'LBL_EDITVIEW_PANEL24' => 'Giro visite',
   'LBL_ANDAMENTOREATING' => 'Andamento Rating',
+  'LBL_AOS_QUOTES' => 'Quotes',
 );

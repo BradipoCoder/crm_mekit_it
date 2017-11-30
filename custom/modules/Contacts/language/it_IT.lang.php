@@ -1,5 +1,5 @@
 <?php
-// created: 2017-11-08 08:43:28
+// created: 2017-11-30 09:13:51
 $mod_strings = array (
   'LBL_ACC_CODE_METODO' => 'Codice Metodo Azienda(OLD)',
   'LBL_COMPANY_NAME_ACCOUNT_ID' => 'Nome Azienda (relativo Aziende ID)',
@@ -59,4 +59,6 @@ $mod_strings = array (
   'LBL_LIST_TITLE' => 'Posizione',
   'LBL_EDITVIEW_PANEL2' => 'Profilazione',
   'LBL_PROFILAZIONEIMP' => 'Profilazione IMP',
+  'LBL_DOCUMENTS_SUBPANEL_TITLE' => 'Files',
+  'LBL_AOS_QUOTES' => 'Quotes',
 );

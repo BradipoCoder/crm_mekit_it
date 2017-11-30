@@ -131,6 +131,16 @@ array (
         array (
           0 => 
           array (
+            'name' => 'quote_type',
+            'studio' => 'visible',
+            'label' => 'LBL_QUOTE_TYPE',
+          ),
+          1 => '',
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
             'name' => 'document_year_c',
             'label' => 'LBL_DOCUMENT_YEAR',
           ),
@@ -139,11 +149,6 @@ array (
             'name' => 'data_doc_c',
             'label' => 'LBL_DATA_DOC',
           ),
-        ),
-        2 => 
-        array (
-          0 => '',
-          1 => '',
         ),
         3 => 
         array (

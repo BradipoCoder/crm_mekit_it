@@ -1,5 +1,5 @@
 <?php
-// created: 2017-03-26 12:02:21
+// created: 2017-11-30 09:13:51
 $mod_strings = array (
   'LBL_SALES_STAGE' => 'Fase di Vendita (old)',
   'LBL_CAMPAGNA_CAMPAIGN_ID' => 'Campagna (relativo Campagne ID)',
@@ -22,4 +22,6 @@ $mod_strings = array (
   'LBL_AMOUNT' => 'Importo Opportunità:',
   'LBL_DATE_CLOSED' => 'Data Chiusura Prevista:',
   'LBL_DATE_ENTERED' => 'Data Inserimento',
+  'LBL_DOCUMENTS_SUBPANEL_TITLE' => 'Files',
+  'LBL_AOS_QUOTES' => 'Quotes',
 );

@@ -1,5 +1,5 @@
 <?php
-// created: 2017-11-08 08:43:28
+// created: 2017-11-30 09:13:51
 $mod_strings = array (
   'LBL_TIPO' => 'Tipo',
   'LBL_CODICE_COMMESSA_METODO' => 'Codice Commessa Metodo',
@@ -23,4 +23,5 @@ $mod_strings = array (
   'LBL_RAGGIUNGIMENTOPERCENTUALE' => '% Raggiungimento',
   'LBL_DATE_END' => 'Data Fine:',
   'LBL_MKT_WORKLOGS_PROJECT_FROM_MKT_WORKLOGS_TITLE' => 'Worklogs',
+  'LBL_AOS_QUOTES_PROJECT' => 'Quotes: Project',
 );

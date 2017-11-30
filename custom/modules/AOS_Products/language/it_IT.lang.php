@@ -1,5 +1,5 @@
 <?php
-// created: 2016-09-23 20:22:33
+// created: 2017-11-30 09:13:51
 $mod_strings = array (
   'LBL_COST' => 'Costo(Listino9998)',
   'LBL_PRICE' => 'Prezzo(L42)',
@@ -14,4 +14,5 @@ $mod_strings = array (
   'LBL_PRICE_USDOLLAR' => 'Prezzo($)',
   'LBL_COST_USDOLLAR' => 'Cost($)',
   'LBL_IMMAGINE' => 'immagine',
+  'LBL_CUSTOMERS_PURCHASED_PRODUCTS_SUBPANEL_TITLE' => 'Acquisti effettuati',
 );

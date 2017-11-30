@@ -135,6 +135,16 @@ $dictionary['AOS_Quotes']['fields']['subtotal_amount_usdollar']['enable_range_se
 
  
 
+ // created: 2017-11-30 09:24:36
+$dictionary['AOS_Quotes']['fields']['name']['default']='Foglio lavoro';
+$dictionary['AOS_Quotes']['fields']['name']['inline_edit']='';
+$dictionary['AOS_Quotes']['fields']['name']['duplicate_merge']='disabled';
+$dictionary['AOS_Quotes']['fields']['name']['duplicate_merge_dom_value']='0';
+$dictionary['AOS_Quotes']['fields']['name']['merge_filter']='disabled';
+$dictionary['AOS_Quotes']['fields']['name']['unified_search']=false;
+
+ 
+
  // created: 2016-03-01 10:49:12
 $dictionary['AOS_Quotes']['fields']['shipping_amount']['inline_edit']=true;
 $dictionary['AOS_Quotes']['fields']['shipping_amount']['merge_filter']='disabled';
@@ -163,6 +173,28 @@ $dictionary['AOS_Quotes']['fields']['total_amount']['merge_filter']='disabled';
 $dictionary['AOS_Quotes']['fields']['stage']['required']=false;
 $dictionary['AOS_Quotes']['fields']['stage']['inline_edit']=true;
 $dictionary['AOS_Quotes']['fields']['stage']['merge_filter']='disabled';
+
+ 
+
+ // created: 2017-11-30 09:38:13
+$dictionary['AOS_Quotes']['fields']['quote_type']['type']='enum';
+$dictionary['AOS_Quotes']['fields']['quote_type']['options']='aos_quote_type';
+$dictionary['AOS_Quotes']['fields']['quote_type']['len']='100';
+$dictionary['AOS_Quotes']['fields']['quote_type']['required']=1;
+$dictionary['AOS_Quotes']['fields']['quote_type']['name']='quote_type';
+$dictionary['AOS_Quotes']['fields']['quote_type']['vname']='LBL_QUOTE_TYPE';
+$dictionary['AOS_Quotes']['fields']['quote_type']['massupdate']=0;
+$dictionary['AOS_Quotes']['fields']['quote_type']['comments']='';
+$dictionary['AOS_Quotes']['fields']['quote_type']['help']='';
+$dictionary['AOS_Quotes']['fields']['quote_type']['importable']='true';
+$dictionary['AOS_Quotes']['fields']['quote_type']['duplicate_merge']='disabled';
+$dictionary['AOS_Quotes']['fields']['quote_type']['duplicate_merge_dom_value']='0';
+$dictionary['AOS_Quotes']['fields']['quote_type']['audited']='1';
+$dictionary['AOS_Quotes']['fields']['quote_type']['reportable']='true';
+$dictionary['AOS_Quotes']['fields']['quote_type']['inline_edit']=false;
+$dictionary['AOS_Quotes']['fields']['quote_type']['merge_filter']='disabled';
+$dictionary['AOS_Quotes']['fields']['quote_type']['studio']='visible';
+$dictionary['AOS_Quotes']['fields']['quote_type']['default']='fol';
 
  
 

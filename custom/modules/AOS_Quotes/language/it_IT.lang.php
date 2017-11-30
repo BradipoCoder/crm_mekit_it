@@ -1,5 +1,5 @@
 <?php
-// created: 2016-03-03 18:11:03
+// created: 2017-11-30 09:38:13
 $mod_strings = array (
   'LBL_QUOTE_NUMBER' => 'Numerazione Automatica',
   'LBL_METODO_DATABASE' => 'Azienda Metodo',
@@ -29,6 +29,17 @@ $mod_strings = array (
   'LBL_EDITVIEW_PANEL1' => 'Righe',
   'LBL_DISCOUNT_PERCENT' => 'Sconto(%)',
   'LBL_EDITVIEW_PANEL2' => 'Totali Documento',
-  'LBL_STAGE' => 'Stadio Preventivo',
+  'LBL_STAGE' => 'Stato Documento',
   'LBL_EXPIRATION' => 'Validit&agrave offerta',
+  'LBL_HOMEPAGE_TITLE' => 'I Miei Documenti',
+  'LNK_NEW_RECORD' => 'Nuovo Documento',
+  'LBL_NEW_FORM_TITLE' => 'Nuovo Documento',
+  'LBL_LIST_FORM_TITLE' => 'Elenco Documenti',
+  'LBL_MODULE_NAME' => 'Documenti',
+  'LBL_MODULE_TITLE' => 'Documenti',
+  'LBL_AOS_QUOTES_SUBPANEL_TITLE' => 'Documenti',
+  'LBL_SEARCH_FORM_TITLE' => 'Cerca Documenti',
+  'LNK_LIST' => 'Documenti',
+  'LBL_NAME' => 'Titolo',
+  'LBL_QUOTE_TYPE' => 'Tipo',
 );

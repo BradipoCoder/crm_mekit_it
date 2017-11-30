@@ -1235,3 +1235,11 @@ $GLOBALS['app_list_strings']['case_state_dom']=array (
   13 => 'Preparazione Ricambi',
   14 => 'Da riassegnare',
 );
+$GLOBALS['app_list_strings']['aos_quote_type']=array (
+  'mov' => 'MOV - Movimentazione magazzino',
+  'bac' => 'BAC - Bolla di acquisto',
+  'orf' => 'ORF - Ordine fornitore',
+  'orc' => 'ORC - Ordine cliente',
+  'ofc' => 'OFC - Offerta cliente',
+  'fol' => 'FOL - Foglio di lavoro',
+);

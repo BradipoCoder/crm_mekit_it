@@ -1,6 +1,14 @@
 <?php
 $listViewDefs ['AOS_Quotes'] = 
 array (
+  'QUOTE_TYPE' => 
+  array (
+    'type' => 'enum',
+    'studio' => 'visible',
+    'default' => true,
+    'label' => 'LBL_QUOTE_TYPE',
+    'width' => '10%',
+  ),
   'NAME' => 
   array (
     'width' => '15%',
@@ -15,18 +23,6 @@ array (
     'label' => 'LBL_DATA_DOC',
     'width' => '10%',
   ),
-  'STAGE' => 
-  array (
-    'width' => '10%',
-    'label' => 'LBL_STAGE',
-    'default' => true,
-  ),
-  'EXPIRATION' => 
-  array (
-    'width' => '10%',
-    'label' => 'LBL_EXPIRATION',
-    'default' => true,
-  ),
   'BILLING_ACCOUNT' => 
   array (
     'width' => '15%',
@@ -40,6 +36,12 @@ array (
       0 => 'billing_account_id',
     ),
   ),
+  'STAGE' => 
+  array (
+    'width' => '10%',
+    'label' => 'LBL_STAGE',
+    'default' => true,
+  ),
   'OPPORTUNITY' => 
   array (
     'type' => 'relate',
@@ -48,7 +50,7 @@ array (
     'id' => 'OPPORTUNITY_ID',
     'link' => true,
     'width' => '10%',
-    'default' => true,
+    'default' => false,
   ),
   'SUBTOTAL_AMOUNT' => 
   array (
@@ -56,20 +58,26 @@ array (
     'label' => 'LBL_SUBTOTAL_AMOUNT',
     'currency_format' => true,
     'width' => '10%',
-    'default' => true,
+    'default' => false,
   ),
   'DISCOUNT_PERCENT_C' => 
   array (
     'type' => 'decimal',
-    'default' => true,
+    'default' => false,
     'label' => 'LBL_DISCOUNT_PERCENT',
     'width' => '10%',
+  ),
+  'EXPIRATION' => 
+  array (
+    'width' => '10%',
+    'label' => 'LBL_EXPIRATION',
+    'default' => false,
   ),
   'ASSIGNED_USER_NAME' => 
   array (
     'width' => '10%',
     'label' => 'LBL_ASSIGNED_USER',
-    'default' => true,
+    'default' => false,
     'module' => 'Users',
     'id' => 'ASSIGNED_USER_ID',
     'link' => true,
