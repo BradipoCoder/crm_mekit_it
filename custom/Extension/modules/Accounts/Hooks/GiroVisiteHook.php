@@ -18,16 +18,16 @@ if (!defined('sugarEntry') || !sugarEntry)
 class GiroVisiteHook
 {
     private static $messages = [];
-    
+
     /** @var array - check these number of days for each profit level */
     protected static $profitLevels = [
         'A' => 90,
         'B' => 180,
         'C' => 365,
     ];
-    
+
     protected static $agentCodes = [];
-    
+
     /**
      *
      * @param \Account $account
@@ -36,17 +36,20 @@ class GiroVisiteHook
      */
     public static function execute(\Account $account, $event, $arguments)
     {
+
+        //die("GV-KO");
+
         self::$messages = [];
-        
+
         $account->gv_cont_1_c = self::getCount1($account);
         $account->gv_cont_2_c = self::getCount2($account);
         $account->gv_cont_3_c = self::getCount3($account);
         $account->gv_cont_tot_c = $account->gv_cont_1_c + $account->gv_cont_2_c + $account->gv_cont_3_c;
-    
+
         $account->gv_cont_meetings_c = self::getCountOverallMeetings($account);
-    
+
         /*
-        if ($account->id == "5acae852-1d39-f090-39ef-531b45febb09")
+        if ($account->id == "b9bef524-1784-ed42-3266-5a294740cca9")
         {
             print("<br />CNT-1: " . $account->gv_cont_1_c);
             print("<br />CNT-2: " . $account->gv_cont_2_c);
@@ -56,7 +59,7 @@ class GiroVisiteHook
         }
         */
     }
-    
+
     /**
      * Count Meetings - ever
      *
@@ -68,40 +71,42 @@ class GiroVisiteHook
     {
         /** @var \DBManager $db */
         global $db;
-        
+
         $answer = 0;
-        
+
+        /*
         if (!in_array($account->imp_profitability_c, array_keys(self::$profitLevels)))
         {
             return $answer;
         }
-        
+        */
+
         $agentCode = $account->imp_agent_code_c;
         $agentId = self::getUserIdForAgentCode($agentCode);
-        
+
         if (!$agentId)
         {
             return $answer;
         }
-        
+
         $sql = "SELECT COUNT(*) AS cnt FROM meetings AS m"
             . " WHERE m.deleted = 0"
             . " AND m.parent_type = 'Accounts'"
             . " AND m.parent_id = '" . $account->id . "'"
             . " AND m.assigned_user_id = '" . $agentId . "'"
         ;
-        
+
         $query = $db->query($sql);
         $res = $db->fetchByAssoc($query);
-        
+
         if ($res && isset($res["cnt"]))
         {
             $answer = $res["cnt"];
         }
-        
+
         return $answer;
     }
-    
+
     /**
      * Count Opportunities
      *
@@ -113,29 +118,31 @@ class GiroVisiteHook
     {
         /** @var \DBManager $db */
         global $db;
-    
+
         $answer = 0;
-    
+
+        /*
         if (!in_array($account->imp_profitability_c, array_keys(self::$profitLevels)))
         {
             return $answer;
         }
-    
+        */
+
         $daysToCheck = self::$profitLevels[$account->imp_profitability_c];
         $agentCode = $account->imp_agent_code_c;
         $agentId = self::getUserIdForAgentCode($agentCode);
-    
+
         if (!$agentId)
         {
             return $answer;
         }
-    
+
         $now = new \DateTime();
         $someDaysAgo = date('Y-m-d', strtotime('-' . $daysToCheck . ' days', strtotime($now->format("Y-m-d"))));
-    
+
         //print("user: " . $agentId);
         //print("date: " . $someDaysAgo);
-        
+
         $sql = "SELECT COUNT(*) AS cnt FROM opportunities AS o"//COUNT(*) AS cnt
             . " INNER JOIN opportunities_cstm AS c ON o.id = c.id_c"
             . " INNER JOIN accounts_opportunities AS ao ON o.id = ao.opportunity_id"
@@ -150,18 +157,18 @@ class GiroVisiteHook
             . " )"
             . " )"
         ;
-    
+
         $query = $db->query($sql);
         $res = $db->fetchByAssoc($query);
-    
+
         if ($res && isset($res["cnt"]))
         {
             $answer = $res["cnt"];
         }
-    
+
         return $answer;
     }
-    
+
     /**
      * Count Meetings
      *
@@ -173,26 +180,28 @@ class GiroVisiteHook
     {
         /** @var \DBManager $db */
         global $db;
-        
+
         $answer = 0;
-        
+
+        /*
         if (!in_array($account->imp_profitability_c, array_keys(self::$profitLevels)))
         {
             return $answer;
         }
-    
+        */
+
         $daysToCheck = self::$profitLevels[$account->imp_profitability_c];
         $agentCode = $account->imp_agent_code_c;
         $agentId = self::getUserIdForAgentCode($agentCode);
-    
+
         if (!$agentId)
         {
             return $answer;
         }
-    
+
         $now = new \DateTime();
         $someDaysAgo = date('Y-m-d', strtotime('-' . $daysToCheck . ' days', strtotime($now->format("Y-m-d"))));
-    
+
         $sql = "SELECT COUNT(*) AS cnt FROM meetings AS m"
             . " WHERE m.deleted = 0"
             . " AND m.parent_type = 'Accounts'"
@@ -200,18 +209,18 @@ class GiroVisiteHook
             . " AND m.assigned_user_id = '" . $agentId . "'"
             . " AND m.date_start >= '" . $someDaysAgo . "'"
         ;
-    
+
         $query = $db->query($sql);
         $res = $db->fetchByAssoc($query);
-    
+
         if ($res && isset($res["cnt"]))
         {
             $answer = $res["cnt"];
         }
-        
+
         return $answer;
     }
-    
+
     /**
      * Count Calls
      *
@@ -223,26 +232,28 @@ class GiroVisiteHook
     {
         /** @var \DBManager $db */
         global $db;
-        
+
         $answer = 0;
-        
+
+        /*
         if (!in_array($account->imp_profitability_c, array_keys(self::$profitLevels)))
         {
             return $answer;
         }
-        
+        */
+
         $daysToCheck = self::$profitLevels[$account->imp_profitability_c];
         $agentCode = $account->imp_agent_code_c;
         $agentId = self::getUserIdForAgentCode($agentCode);
-        
+
         if (!$agentId)
         {
             return $answer;
         }
-        
+
         $now = new \DateTime();
         $someDaysAgo = date('Y-m-d', strtotime('-' . $daysToCheck . ' days', strtotime($now->format("Y-m-d"))));
-        
+
         $sql = "SELECT COUNT(*) AS cnt FROM calls AS c"
             . " WHERE c.deleted = 0"
             . " AND c.parent_type = 'Accounts'"
@@ -250,18 +261,18 @@ class GiroVisiteHook
             . " AND c.assigned_user_id = '" . $agentId . "'"
             . " AND c.date_start >= '" . $someDaysAgo . "'"
         ;
-                
+
         $query = $db->query($sql);
         $res = $db->fetchByAssoc($query);
-        
+
         if ($res && isset($res["cnt"]))
         {
             $answer = $res["cnt"];
         }
-                
+
         return $answer;
     }
-    
+
     /**
      * @param string $agentCode
      *
@@ -271,29 +282,29 @@ class GiroVisiteHook
     {
         /** @var \DBManager $db */
         global $db;
-        
+
         $answer = isset(self::$agentCodes[$agentCode]) ? self::$agentCodes[$agentCode] : false;
-        
+
         if (!$answer)
         {
             $sql = "SELECT u.id FROM users AS u"
                 . " INNER JOIN users_cstm AS c ON u.id = c.id_c"
                 . " WHERE u.deleted = 0"
                 . " AND c.imp_agent_code_c = '" . $agentCode . "'";
-            
+
             $query = $db->query($sql);
-            
+
             $res = $db->fetchByAssoc($query);
-            
+
             if ($res && isset($res["id"]))
             {
                 $answer = $res["id"];
                 self::$agentCodes[$agentCode] = $answer;
             }
         }
-    
+
         //print("<br />AGENT-IDS: " . print_r(self::$agentCodes, true));
-        
+
         return $answer;
     }
 }
