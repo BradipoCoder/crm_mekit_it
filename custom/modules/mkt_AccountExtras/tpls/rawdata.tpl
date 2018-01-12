@@ -32,7 +32,7 @@
     <table class="datatable current_month">
         <thead>
             <tr>
-                <th colspan="7">
+                <th colspan="99">
                     <h3>ORDINATO DEL MESE</h3>
                 </th>
             </tr>
@@ -60,7 +60,7 @@
     <table class="datatable deadlines">
         <thead>
         <tr>
-            <th colspan="7">
+            <th colspan="99">
                 <h3>SCADENZE</h3>
             </th>
         </tr>
@@ -101,7 +101,7 @@
     <table class="datatable products_recent_buys">
         <thead>
         <tr>
-            <th colspan="7">
+            <th colspan="99">
                 <h3>Prodotti acquistati</h3>
             </th>
         </tr>
@@ -129,7 +129,7 @@
     <table class="datatable products_recent_non_buys">
         <thead>
         <tr>
-            <th colspan="7">
+            <th colspan="99">
                 <h3>Non più acquistati</h3>
             </th>
         </tr>

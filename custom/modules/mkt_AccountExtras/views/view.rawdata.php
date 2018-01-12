@@ -5,10 +5,10 @@ require_once('include/MVC/View/SugarView.php');
 
 
 class mkt_AccountExtrasViewRawdata extends SugarView {
-    
+
     /** @var  \mkt_AccountExtras */
     public $bean;
-    
+
     public function __construct()
     {
         parent::__construct();
@@ -21,9 +21,9 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
             'show_javascript' => false,
             'view_print' => false,
         ]);
-        
+
     }
-    
+
     /**
      * overwriting to use our custom template file
      */
@@ -31,26 +31,26 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
     {
         parent::preDisplay();
     }
-    
-    
+
+
     public function display()
     {
         if(empty($this->bean->id)){
             throw new \Exception("No bean id!");
         }
-    
+
         $ss = new Sugar_Smarty();
         $this->addToSmartyCssPath($ss);
         $this->addToSmartyClientData($ss);
         $this->addToSmartyCurrentMonth($ss);
         $this->addToSmartyDeadlines($ss);
         $this->addToSmartyProducts($ss);
-        
+
         $tplPath = 'custom/modules/mkt_AccountExtras/tpls/rawdata.tpl';
         $ss->display($tplPath);
     }
-    
-    
+
+
     /**
      * @param \Sugar_Smarty $ss
      */
@@ -58,29 +58,33 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
     {
         $answer_prod_acq = [];
         $answer_prod_non_acq = [];
-        
+
         $data_prod_acq = unserialize(base64_decode($this->bean->products_recent_buys));
         $data_prod_non_acq = unserialize(base64_decode($this->bean->products_recent_non_buys));
-        
-        
+
+
         if(true)//if($data_prod_acq && $data_prod_non_acq)
         {
             $answer_prod_acq = $this->convertObjectToArray($data_prod_acq);
             $answer_prod_non_acq = $this->convertObjectToArray($data_prod_non_acq);
-    
-            $answer_prod_acq = $this->removeNPAProducts($answer_prod_acq, $answer_prod_non_acq);
+
             $answer_prod_acq = $this->recentBuysUniqueArticles($answer_prod_acq);
-    
+            $answer_prod_acq = $this->removeNPAProducts($answer_prod_acq, $answer_prod_non_acq);
+
+
+
+
+
             //-------------------------------------------------------------------------------- PA ---
             foreach ($answer_prod_acq as &$row)
             {
                 $discount = (1 - floatval($row['PrezzoUnitNettoEuro']) / floatval($row['PrezzoListino42'])) * 100;
                 $row['discount'] = number_format($discount, 2);
-                
+
                 //unisci DesArt + CodArt
                 $row["DesArt"] .= " [" . $row["CodArt"] . "]";
             }
-            
+
             $formatKeys = [
                 "QtaGest",
                 "PrezzoUnitNettoEuro",
@@ -88,7 +92,7 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 "discount"
             ];
             $answer_prod_acq = $this->reformatNumberMulti($answer_prod_acq, $formatKeys);
-    
+
             $removeKeys = [
                 'CodArt',
                 'QtaGestRes',
@@ -99,14 +103,20 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 'IdTesta',
                 'IdRiga',
                 'IdTestaUltimoAcq',
+                'CodGruppoArticolo',
+                'DesGruppoArticolo',
+                'CodCategoriaArticolo',
+                'DesCategoriaArticolo',
+                'CodCategoriaStatArticolo',
+                'DesCategoriaStatArticolo',
             ];
             $answer_prod_acq = $this->removeKeysMulti($answer_prod_acq, $removeKeys);
-    
+
             $orderedKeys = ['CodArt', 'DesArt', 'DataDoc'];
             $answer_prod_acq = $this->reorderKeysMulti($answer_prod_acq, $orderedKeys);
-    
+
             $this->reorderByArticleColumn($answer_prod_acq);
-            
+
             $renameKeys = [
                 'CodArt'              => 'Codice',
                 'DesArt'              => 'Articolo',
@@ -117,17 +127,18 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 'DataDoc'             => 'Ult. acq.',
             ];
             $answer_prod_acq = $this->renameKeysMulti($answer_prod_acq, $renameKeys);
-            
+
+
             //--------------------------------------------------------------------------------- NPA ---
             foreach ($answer_prod_non_acq as &$row)
             {
                 $discount = (1 - floatval($row['PrezzoUnitNettoEuroUltimoAcq']) / floatval($row['PrezzoListino42'])) * 100;
                 $row['discount'] = number_format($discount, 2);
-    
+
                 //unisci DesArt + CodArt
                 $row["DesArt"] .= " [" . $row["CodArt"] . "]";
             }
-    
+
             $formatKeys = [
                 "TotQtaGest",
                 "PrezzoUnitNettoEuroUltimoAcq",
@@ -135,15 +146,23 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 "discount"
             ];
             $answer_prod_non_acq = $this->reformatNumberMulti($answer_prod_non_acq, $formatKeys);
-    
-            $removeKeys = ['CodArt'];
+
+            $removeKeys = [
+                'CodArt',
+                'CodGruppoArticolo',
+                'DesGruppoArticolo',
+                'CodCategoriaArticolo',
+                'DesCategoriaArticolo',
+                'CodCategoriaStatArticolo',
+                'DesCategoriaStatArticolo',
+            ];
             $answer_prod_non_acq = $this->removeKeysMulti($answer_prod_non_acq, $removeKeys);
-    
+
             //$orderedKeys = [];
             //$answer_prod_non_acq = $this->reorderKeys($answer_prod_non_acq, $orderedKeys);
-    
+
             $this->reorderByArticleColumn($answer_prod_non_acq);
-    
+
             $renameKeys = [
                 'CodArt'                       => 'Codice',
                 'DesArt'                       => 'Articolo',
@@ -155,12 +174,12 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
             ];
             $answer_prod_non_acq = $this->renameKeysMulti($answer_prod_non_acq, $renameKeys);
         }
-        
+
         $ss->assign("products_recent_buys", $answer_prod_acq);
         $ss->assign("products_recent_non_buys", $answer_prod_non_acq);
     }
-    
-    
+
+
     /**
      * @param array $rows
      *
@@ -169,7 +188,7 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
     protected function recentBuysUniqueArticles($rows)
     {
         $answer = [];
-        
+
         foreach ($rows as $row)
         {
             $code = $row["CodArt"];
@@ -183,12 +202,12 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 $answer[$code] = $currentRow;
             }
         }
-    
+
         $answer = array_values($answer);
-        
+
         return $answer;
     }
-    
+
     /**
      * @param array $pa - prodotti acquistati
      * @param array $npa - non più acquistati
@@ -199,7 +218,7 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
     {
         $answer = [];
         $npaCodes = array_column($npa, 'CodArt');
-        
+
         foreach ($pa as $row)
         {
             $code = $row["CodArt"];
@@ -208,21 +227,21 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 $answer[] = $row;
             }
         }
-        
+
         return $answer;
     }
-        
+
     /**
      * @param \Sugar_Smarty $ss
      */
     protected function addToSmartyDeadlines($ss)
     {
         $answer = [];
-        
+
         if ($data = unserialize(base64_decode($this->bean->deadlines)))
         {
             $answer = $this->convertObjectToArray($data);
-                        
+
             $sums = $this->getDeadlinesSums($answer);
             $formatKeys = [
                 "Totale scaduto(€)",
@@ -231,19 +250,19 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
             ];
             $this->reformatNumbers($sums, $formatKeys);
             $ss->assign("deadlines_sums", $sums);
-    
-            
+
+
             $answer = $this->reformatNumberMulti($answer, ["ImportoScEuro"]);
-            
+
             $removeKeys = [
                 'TipoEffetto',
                 'Progressivo',
             ];
             $answer = $this->removeKeysMulti($answer, $removeKeys);
-            
+
             //$orderedKeys = [];
             //$answer = $this->reorderKeys($answer, $orderedKeys);
-            
+
             $renameKeys = [
                 'DataScadenza'   => 'Data scadenza',
                 'DataFattura'    => 'Data fattura',
@@ -255,10 +274,10 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
             ];
             $answer = $this->renameKeysMulti($answer, $renameKeys);
         }
-        
+
         $ss->assign("deadlines", $answer);
     }
-    
+
     /**
      * @param array $data
      *
@@ -267,18 +286,18 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
     protected function getDeadlinesSums(array $data)
     {
         $answer = [];
-        
+
         $total = 0;
         $totalExpired = 0;
         $totalWillExpire = 0;
-        
+
         $now = new \DateTime();
-        
+
         foreach ($data as $row)
         {
 //            $v = floatval(str_replace(",", "", $row["ImportoScEuro"]));
 //            print "<br/>" . $row["ImportoScEuro"] . " === " . $v;
-            
+
             $expiryDate = \DateTime::createFromFormat("d/m/Y", $row["DataScadenza"]);
             $val = floatval(str_replace(",", "", $row["ImportoScEuro"]));
             $total += $val;
@@ -291,35 +310,35 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 $totalExpired += $val;
             }
         }
-        
+
         $answer["Totale scaduto(€)"] =  $totalExpired;
         $answer["Totale a scadere(€)"] =  $totalWillExpire;
         $answer["Totale esposizione(€)"] =  $total;
-        
+
         return $answer;
     }
-    
-    
+
+
     /**
      * @param \Sugar_Smarty $ss
      */
     protected function addToSmartyCurrentMonth($ss)
     {
         $answer = [];
-        
+
         if ($data = unserialize(base64_decode($this->bean->current_month)))
         {
             $answer = $this->convertObjectToArray($data);
-    
+
             //Discount calculations
             foreach ($answer as &$row)
             {
                 $discount = (1 - floatval($row['PrezzoUnitNettoEuro']) / floatval($row['PrezzoListino42'])) * 100;
                 $row['discount'] = number_format($discount, 2);
             }
-    
+
             $answer = $this->reformatNumberMulti($answer, ["PrezzoUnitNettoEuro", "TotNettoRigaEuro", "discount"]);
-            
+
             $removeKeys = [
                 'DataDoc',
                 'PrezzoListino42',
@@ -328,10 +347,10 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 'TotRigaListino42Res',
             ];
             $answer = $this->removeKeysMulti($answer, $removeKeys);
-    
+
             //$orderedKeys = [];
             //$answer = $this->reorderKeys($answer, $orderedKeys);
-            
+
             $renameKeys = [
                 'CodArt'              => 'Codice',
                 'DesArt'              => 'Articolo',
@@ -342,33 +361,33 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 'discount'            => 'Sconto(%)',
             ];
             $answer = $this->renameKeysMulti($answer, $renameKeys);
-    
-            
+
+
         }
-        
+
         $ss->assign("current_month", $answer);
     }
-    
-    
+
+
     /**
      * @param \Sugar_Smarty $ss
      */
     protected function addToSmartyClientData($ss)
     {
         $answer = [];
-        
+
         if ($data = unserialize(base64_decode($this->bean->client_data)))
         {
             $answer = $this->convertObjectToArray($data);
-    
+
             $ss->assign("last_update", $answer["DataDiModifica"]);
-    
+
             $removeKeys = ["Tipologia", "Database", "DataDiModifica"];
             $answer = $this->removeKeys($answer, $removeKeys);
-            
+
             $orderedKeys = ["Nome1", "CodiceMetodo", "ClienteDiFatturazione", "Agente1"];
             $answer = $this->reorderKeys($answer, $orderedKeys);
-            
+
             $renameKeys = [
                 "CodiceMetodo" =>           "Codice metodo",
                 "CodiceFiscale" =>          "Codice fiscale",
@@ -380,12 +399,12 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 "Agente1" =>                "Agente",
             ];
             $answer = $this->renameKeys($answer, $renameKeys);
-            
+
         }
-    
+
         $ss->assign("client_data", $answer);
     }
-    
+
     /**
      * @param \Sugar_Smarty $ss
      */
@@ -395,7 +414,7 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         $path = "/custom/modules/mkt_AccountExtras/tpls/rawdata.css?v=$v";
         $ss->assign("css_path", $path);
     }
-    
+
     /**
      * @param array $data
      */
@@ -405,7 +424,7 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
             return strcmp(trim($a['DesArt']), trim($b['DesArt']));
         });
     }
-    
+
     /**
      * @param array $rows
      * @param array $columns
@@ -418,10 +437,10 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         {
             $this->reformatNumbers($row, $columns);
         }
-        
+
         return $rows;
     }
-    
+
     /**
      * @param array $row
      * @param array $columns
@@ -438,8 +457,8 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
             }
         }
     }
-    
-    
+
+
     /**
      * @param array $data
      * @param array $orderedKeys
@@ -452,10 +471,10 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         {
             $row = $this->reorderKeys($row, $orderedKeys);
         }
-        
+
         return $data;
     }
-    
+
     /**
      * @param array $data
      * @param array $orderedKeys
@@ -473,12 +492,12 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                 unset($data[$key]);
             }
         }
-    
+
         $answer = array_merge($answer, $data);
-        
+
         return $answer;
     }
-    
+
     /**
      * @param array $data
      * @param array $removeKeys
@@ -491,10 +510,10 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         {
             $row = $this->removeKeys($row, $removeKeys);
         }
-        
+
         return $data;
     }
-    
+
     /**
      * @param array $data
      * @param array $removeKeys
@@ -510,10 +529,10 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
                unset($data[$key]);
            }
         }
-        
+
         return $data;
     }
-    
+
     /**
      * @param array $data
      * @param array $renameKeys
@@ -526,10 +545,10 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         {
             $row = $this->renameKeys($row, $renameKeys);
         }
-        
+
         return $data;
     }
-    
+
     /**
      * @param array $data
      * @param array $renameKeys
@@ -544,11 +563,11 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
             $k = array_key_exists($k, $renameKeys) ? $renameKeys[$k] : $k;
             $answer[$k] = $v;
         }
-    
+
         return $answer;
     }
-    
-    
+
+
     /**
      * @param \stdClass $obj
      *
@@ -561,7 +580,7 @@ class mkt_AccountExtrasViewRawdata extends SugarView {
         {
             $answer[$k] = $v;
         }
-    
+
         return $answer;
     }
 }
