@@ -1,0 +1,20 @@
+#meetings_print {
+  /*border: 1px dotted $marked;*/
+  padding: 0;
+  margin: 0; }
+  #meetings_print table.no-border {
+    border: none; }
+    #meetings_print table.no-border > tbody > tr > td {
+      border: none; }
+  #meetings_print td.data_name {
+    font-weight: 600; }
+  #meetings_print h1.title {
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+    background: #cccccc;
+    font-size: 32px; }
+  #meetings_print tr.row-meeting {
+    page-break-inside: avoid; }
+
+/*# sourceMappingURL=print.css.map */
