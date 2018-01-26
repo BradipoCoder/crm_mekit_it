@@ -1,5 +1,4 @@
 # Ignore custom .htaccess / web.config stuff
-/.htaccess
 /web.config
 
 # Ignore cache / upload directories
