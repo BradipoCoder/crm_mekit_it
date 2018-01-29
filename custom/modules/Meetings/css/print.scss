@@ -9,11 +9,39 @@ $gray-medium: #aaaaaa;
   padding: 0;
   margin: 0;
 
+  .logo{
+    background: transparent url(/custom/modules/Meetings/images/logo.png) 0 0 no-repeat;
+    height:80px;
+  }
+
+  table.header-table{
+    margin:0;
+    td{
+      background-color: #cecece !important;
+      -webkit-print-color-adjust: exact;
+      font-size: 22px;
+    }
+    td.col-a{
+      text-align: left;
+    }
+    td.col-b{
+      text-align: center;
+    }
+    td.col-c{
+      text-align: right;
+    }
+  }
+
   table.no-border{
     >tbody>tr>td{
       border:none;
     }
     border:none;
+  }
+
+  td.no-padding
+  {
+    padding:0;
   }
 
   td.data_name
@@ -25,18 +53,12 @@ $gray-medium: #aaaaaa;
 
   }
 
-  h1.title
-  {
-    text-align: center;
-    margin: 0;
-    padding: 5px;
-    background: $gray-light;
-    font-size: 32px;
+  span.nowrap {white-space: nowrap;}
 
-  }
 
   tr.row-meeting
   {
     page-break-inside:avoid;
   }
+
 }

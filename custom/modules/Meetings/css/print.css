@@ -2,18 +2,31 @@
   /*border: 1px dotted $marked;*/
   padding: 0;
   margin: 0; }
+  #meetings_print .logo {
+    background: transparent url(/custom/modules/Meetings/images/logo.png) 0 0 no-repeat;
+    height: 80px; }
+  #meetings_print table.header-table {
+    margin: 0; }
+    #meetings_print table.header-table td {
+      background-color: #cecece !important;
+      -webkit-print-color-adjust: exact;
+      font-size: 22px; }
+    #meetings_print table.header-table td.col-a {
+      text-align: left; }
+    #meetings_print table.header-table td.col-b {
+      text-align: center; }
+    #meetings_print table.header-table td.col-c {
+      text-align: right; }
   #meetings_print table.no-border {
     border: none; }
     #meetings_print table.no-border > tbody > tr > td {
       border: none; }
+  #meetings_print td.no-padding {
+    padding: 0; }
   #meetings_print td.data_name {
     font-weight: 600; }
-  #meetings_print h1.title {
-    text-align: center;
-    margin: 0;
-    padding: 5px;
-    background: #cccccc;
-    font-size: 32px; }
+  #meetings_print span.nowrap {
+    white-space: nowrap; }
   #meetings_print tr.row-meeting {
     page-break-inside: avoid; }
 

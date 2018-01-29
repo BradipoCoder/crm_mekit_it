@@ -12,22 +12,23 @@
         <table class="table no-border">
             <tr>
                 <td>
-
-                    <div class="alert alert-warning" role="alert">
-                        <strong class="logo">IMP LOGO</strong>
-                        Chiara mi ha detto che me lo inviava ... ma sto ancora aspettando ;)
-                    </div>
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h1 class="title">{$tplData.title}</h1>
+                    <div class="logo">&nbsp;</div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <table class="table table-bordered">
+                        <tr>
+                            <td colspan="4" class="no-padding">
+                                <table class="table no-border header-table">
+                                    <tr>
+                                        <td class="col-a">{$tplData.assigned_user.full_name}</td>
+                                        <td class="col-b">{$tplData.ras.name}</td>
+                                        <td class="col-c">{$tplData.meeting.date_start}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
                         <tr>
                             <td class="data_name">
                                 Oggetto:
@@ -44,16 +45,16 @@
                         </tr>
                         <tr>
                             <td class="data_name">
-                                Data & Ora di Inizio:
+                                Data inizio:
                             </td>
                             <td class="data_value">
-                                {$tplData.meeting.date_start}
+                                <span class="nowrap">{$tplData.meeting.date_start}</span>
                             </td>
                             <td class="data_name">
-                                Data Fine:
+                                Data fine:
                             </td>
                             <td class="data_value">
-                                {$tplData.meeting.date_end}
+                                <span class="nowrap">{$tplData.meeting.date_end}</span>
                             </td>
                         </tr>
                         <tr>
@@ -81,8 +82,8 @@
                                 Indirizzo:
                             </td>
                             <td class="data_value">
-                                {$tplData.account.billing_address_street}<br />
-                                {$tplData.account.billing_address_postalcode} {$tplData.account.billing_address_city} ({$tplData.account.billing_address_state})
+                                <span class="nowrap">{$tplData.account.billing_address_street}</span><br />
+                                <span class="nowrap">{$tplData.account.billing_address_postalcode} {$tplData.account.billing_address_city} ({$tplData.account.billing_address_state})</span>
 
                             </td>
                         </tr>
@@ -92,6 +93,14 @@
                             </td>
                             <td class="data_value" colspan="3">
                                 {$tplData.ras.descrizione_problematica_c}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="data_name">
+                                Macchinario:
+                            </td>
+                            <td class="data_value" colspan="3">
+                                {$tplData.ras.ref_part_description_c}
                             </td>
                         </tr>
                         <tr>
@@ -117,10 +126,11 @@
                                 {$tplData.contact.full_name}
                             </td>
                             <td class="data_name">
-
+                                Telefono contatto:
                             </td>
                             <td class="data_value">
-
+                                Cellulare: {$tplData.contact.phone_mobile}<br />
+                                Fisso: {$tplData.contact.phone_work}
                             </td>
                         </tr>
 
