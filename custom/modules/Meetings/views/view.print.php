@@ -72,7 +72,7 @@ class MeetingsViewPrint extends SugarView {
       }
     }
 
-    // RAS
+    // RAS(from MEETING)
     $this->templateData["ras"] = [];
     if ($this->bean->parent_type == "Cases" && !empty($this->bean->parent_id)) {
       $ras_array = $this->bean->get_linked_beans("case", "Case");
@@ -96,6 +96,25 @@ class MeetingsViewPrint extends SugarView {
         $this->templateData["account"] = $account->toArray(FALSE, true);
 
         //$this->log("<pre>ACCOUNT: " . print_r( $account, true) . "</pre>");
+      }
+    }
+
+
+
+
+    // Account (from meeting)
+    // We can have a meeting without a RAS but with account directly set as relative to
+    if(!isset($account))
+    {
+      if ($this->bean->parent_type == "Accounts" && !empty($this->bean->parent_id)) {
+        //$this->log("<pre>LINKS: " . print_r( $this->bean->get_linked_fields(), true) . "</pre>");
+        $account_array = $this->bean->get_linked_beans("accounts", "Account");
+        if ($account_array && $account_array[0] instanceof \Account) {
+          /** @var \Account $account */
+          $account = $account_array[0];
+          //$this->log("<pre>LINKS: " . print_r($account, true) . "</pre>");
+          $this->templateData["account"] = $account->toArray(FALSE, true);
+        }
       }
     }
 

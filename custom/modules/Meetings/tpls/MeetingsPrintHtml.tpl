@@ -87,6 +87,7 @@
 
                             </td>
                         </tr>
+                        {if !empty($tplData.ras.descrizione_problematica_c)}
                         <tr>
                             <td class="data_name">
                                 Descrizione problematica(RAS):
@@ -95,6 +96,8 @@
                                 {$tplData.ras.descrizione_problematica_c}
                             </td>
                         </tr>
+                        {/if}
+                        {if !empty($tplData.meeting.description)}
                         <tr>
                             <td class="data_name">
                                 Descrizione appuntamento:
@@ -103,6 +106,7 @@
                                 {$tplData.meeting.description}
                             </td>
                         </tr>
+                        {/if}
                         <tr>
                             <td class="data_name">
                                 Macchinario:
