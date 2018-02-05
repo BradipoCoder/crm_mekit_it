@@ -89,10 +89,18 @@
                         </tr>
                         <tr>
                             <td class="data_name">
-                                Descrizione problematica:
+                                Descrizione problematica(RAS):
                             </td>
                             <td class="data_value" colspan="3">
                                 {$tplData.ras.descrizione_problematica_c}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="data_name">
+                                Descrizione appuntamento:
+                            </td>
+                            <td class="data_value" colspan="3">
+                                {$tplData.meeting.description}
                             </td>
                         </tr>
                         <tr>

@@ -81,6 +81,7 @@ class MeetingsViewPrint extends SugarView {
         $ras = $ras_array[0];
         $this->templateData["ras"] = $ras->toArray(FALSE, TRUE);
         //$this->log("<pre>RAS: " . print_r( $ras, true) . "</pre>");
+        $this->templateData["ras"]["descrizione_problematica_c"] = nl2br($this->templateData["ras"]["descrizione_problematica_c"]);
       }
     }
 
