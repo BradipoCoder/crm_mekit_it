@@ -1257,3 +1257,6 @@ $GLOBALS['app_list_strings']['ras_status_hint_list']=array (
     3 => 'Attesa Ricambi',
     2 => 'Chiuso',
 );
+
+$app_list_strings['parent_type_display']['AOS_Quotes']='Documents';
+$app_list_strings['record_type_display_notes']['AOS_Quotes']='Documents';

@@ -1179,6 +1179,9 @@ $app_list_strings['record_type_display']['Cases']='RAS';
 $app_list_strings['parent_type_display']['Cases']='RAS';
 $app_list_strings['record_type_display_notes']['Cases']='RAS';
 
+$app_list_strings['parent_type_display']['AOS_Quotes']='Documenti';
+$app_list_strings['record_type_display_notes']['AOS_Quotes']='Documenti';
+
 $app_list_strings['moduleList']['Documents']='Files';
 $app_list_strings['moduleListSingular']['Documents']='File';
 $app_list_strings['moduleList']['AOS_Quotes']='Documenti';
