@@ -13,19 +13,19 @@ class AccountFixer
 {
     /** @var bool */
     protected $dryRun = true;
-    
+
     /** @var bool */
     protected $verboseLogging = false;
-    
+
     /** @var callable */
     protected $logger;
-    
+
     /** @var  \PDO */
     protected $db;
-    
+
     /** @var  \PDOStatement */
     protected $itemWalker;
-    
+
     /** @var array */
     protected $impStates = [
         1    => 'Potenziale',
@@ -36,7 +36,7 @@ class AccountFixer
         6    => 'Lead',
         1000 => 'NC',
     ];
-    
+
     /** @var array  (ONLY THE ONES USED IN CODE) */
     protected $impStatePhases = [
         "1_2" => 'Pt. Caldo',
@@ -47,16 +47,16 @@ class AccountFixer
         "3_3" => 'D. Freddo',
         "4_7" => 'Prs. Da Definire',
     ];
-    
+
     /** @var  \DateTime */
     protected $currentDate;
-    
+
     /** @var  \DateTime */
     protected $currentDateMinus30D;
-    
+
     /** @var  \DateTime */
     protected $lastMonthEndDate;
-    
+
     /**
      * @param callable $logger
      *
@@ -71,7 +71,7 @@ class AccountFixer
         $this->currentDateMinus30D->sub(new \DateInterval("P30D"));
         $this->lastMonthEndDate = new \DateTime("last day of previous month");
     }
-    
+
     /**
      * @param array $options
      */
@@ -79,23 +79,23 @@ class AccountFixer
     {
         //$this->log("Executing with options: " . json_encode($options));
         $this->verboseLogging = $options["verbose"];
-        
+
         $this->setAlwaysStatePhaseClientActiveFromClientNew();
-        
+
         //Converto to "Cliente"
         $this->setStatePhaseClientNewFromPotentialLead();
         $this->setStatePhaseClientActiveFromSleepingLost();
-        
+
         //Convert to "Cliente Fidelizzato" <-> "Cliente Attivo"
         $this->setStatePhaseClientFidelizzatoFromClientActive();
-        
+
         //Convert to "Dormiente"
         $this->setStatePhaseSleepingRecentFromClient();
         $this->setStatePhaseSleepingColdFromSleepingRecent();
-        
+
         //Converto to "Perso"/"Da Definire"
         $this->setStatePhaseLostToBeDefinedFromSleeping();
-        
+
         if ($this->dryRun)
         {
             $this->log(str_repeat("#", 120));
@@ -103,7 +103,7 @@ class AccountFixer
             $this->log(str_repeat("#", 120));
         }
     }
-    
+
     /**
      * Update state to "perso", phase to "perso da definire" when:
      * state: "dormiente"
@@ -121,7 +121,7 @@ class AccountFixer
             AND c.mesimobili12_c <= :mesimobili12
             AND c.imp_forced_status_c <> 1
             ";
-        
+
         $itemWalker = $this->db->prepare($sql);
         $itemWalker->execute(
             [
@@ -130,7 +130,7 @@ class AccountFixer
             ]
         );
         $this->log("RECORDS: " . $itemWalker->rowCount());
-        
+
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             //$this->log("D: " . json_encode($data));
@@ -156,7 +156,7 @@ class AccountFixer
             }
         }
     }
-    
+
     /**
      * Update state to "cliente", phase to "fidelizzato" when:
      * state: "cliente"
@@ -167,7 +167,7 @@ class AccountFixer
     {
         $this->log(str_repeat("-", 60)
                    . ": Cliente/Attivo -> Cliente/Fidelizzato (se acquistato 9 su 12 mesi recenti)");
-        
+
         $invoiceFields = $this->getInvoiceDataFieldNamesBackwards("imp", 12);
         //$this->log("INVOICE FIELDS: " . json_encode($invoiceFields));
         $i = 0;
@@ -177,7 +177,7 @@ class AccountFixer
             $i++;
             $sqlSelectPartial .= ",\n\t $invoiceField AS f${i}";
         }
-        
+
         $sql = "SELECT a.id, a.name
             $sqlSelectPartial
             FROM accounts AS a
@@ -186,7 +186,7 @@ class AccountFixer
             AND c.imp_status_phase__c = :phase
             AND c.imp_forced_status_c <> 1
             ";
-        
+
         $itemWalker = $this->db->prepare($sql);
         $itemWalker->execute(
             [
@@ -194,7 +194,7 @@ class AccountFixer
                 ':phase'  => $this->getImpStatePhaseKey("C. Attivo"),
             ]
         );
-        
+
         //filter out those with min 9 month active
         $fidelizzati = [];
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
@@ -220,7 +220,7 @@ class AccountFixer
             }
         }
         $this->log("RECORDS: " . count($fidelizzati));
-        
+
         //update
         foreach ($fidelizzati as $id => $fidelizzato)
         {
@@ -246,7 +246,7 @@ class AccountFixer
             }
         }
     }
-    
+
     /**
      * Update state to "dormiente", phase to "freddo" when:
      * state: "dormiente"
@@ -267,7 +267,7 @@ class AccountFixer
             AND c.ft_periodo_attuale_c <= :ft_periodo_attuale
             AND c.imp_forced_status_c <> 1
             ";
-        
+
         $itemWalker = $this->db->prepare($sql);
         $itemWalker->execute(
             [
@@ -278,7 +278,7 @@ class AccountFixer
             ]
         );
         $this->log("RECORDS: " . $itemWalker->rowCount());
-        
+
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             //$this->log("D: " . json_encode($data));
@@ -304,7 +304,7 @@ class AccountFixer
             }
         }
     }
-    
+
     /**
      * Update state to "dormiente", phase to "recente", "Data diventato dormiente" to end of last month when:
      * state: "cliente"
@@ -322,7 +322,7 @@ class AccountFixer
             AND c.ft_periodo_attuale_c <= :ft_periodo_attuale
             AND c.imp_forced_status_c <> 1
             ";
-        
+
         $itemWalker = $this->db->prepare($sql);
         $itemWalker->execute(
             [
@@ -331,7 +331,7 @@ class AccountFixer
             ]
         );
         $this->log("RECORDS: " . $itemWalker->rowCount());
-        
+
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             //$this->log("D: " . json_encode($data));
@@ -359,7 +359,7 @@ class AccountFixer
             }
         }
     }
-    
+
     /**
      * Update state to "client", phase to "active" when:
      * state: "dormiente" o "perso"
@@ -377,7 +377,7 @@ class AccountFixer
             AND c.ft_periodo_attuale_c > :ft_periodo_attuale
             AND c.imp_forced_status_c <> 1
             ";
-        
+
         $itemWalker = $this->db->prepare($sql);
         $itemWalker->execute(
             [
@@ -387,7 +387,7 @@ class AccountFixer
             ]
         );
         $this->log("RECORDS: " . $itemWalker->rowCount());
-        
+
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             //$this->log("D: " . json_encode($data));
@@ -413,7 +413,7 @@ class AccountFixer
             }
         }
     }
-    
+
     /**
      * Update state to "client", phase to "new" and Data inizio rapporto(imp_acc_start_date) when:
      * state: "potenziale" o "lead"
@@ -431,7 +431,7 @@ class AccountFixer
             AND c.ft_periodo_attuale_c > :ft_periodo_attuale
             AND c.imp_forced_status_c <> 1
             ";
-        
+
         $itemWalker = $this->db->prepare($sql);
         $itemWalker->execute(
             [
@@ -441,7 +441,7 @@ class AccountFixer
             ]
         );
         $this->log("RECORDS: " . $itemWalker->rowCount());
-        
+
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             //$this->log("D: " . json_encode($data));
@@ -457,13 +457,13 @@ class AccountFixer
                 ':phase'          => $this->getImpStatePhaseKey("C. Nuovo"),
                 ':acc_start_date' => $this->lastMonthEndDate->format("Y-m-d"),
             ];
-    
+
             $this->log($data["name"]);
             if ($this->verboseLogging)
             {
                 $this->log("UPDATE: " . $updateSql . " with params: " . json_encode($updateParams));
             }
-            
+
             if (!$this->dryRun)
             {
                 $st = $this->db->prepare($updateSql);
@@ -471,7 +471,7 @@ class AccountFixer
             }
         }
     }
-    
+
     /**
      * Update phase to "active" when:
      * state: "client"
@@ -490,7 +490,7 @@ class AccountFixer
             AND ( NULLIF(c.imp_acc_start_date_c, '') IS NULL OR c.imp_acc_start_date_c < :acc_start_date)
             AND c.imp_forced_status_c <> 1
             ";
-        
+
         $itemWalker = $this->db->prepare($sql);
         $itemWalker->execute(
             [
@@ -500,7 +500,7 @@ class AccountFixer
             ]
         );
         $this->log("RECORDS: " . $itemWalker->rowCount());
-        
+
         while ($data = $itemWalker->fetch(\PDO::FETCH_ASSOC))
         {
             $updateSql = "UPDATE accounts_cstm
@@ -511,13 +511,13 @@ class AccountFixer
                 ':id'    => $data["id"],
                 ':phase' => $this->getImpStatePhaseKey("C. Attivo"),
             ];
-    
+
             $this->log($data["name"]);
             if ($this->verboseLogging)
             {
                 $this->log("UPDATE: " . $updateSql . " with params: " . json_encode($updateParams));
             }
-            
+
             if (!$this->dryRun)
             {
                 $st = $this->db->prepare($updateSql);
@@ -525,7 +525,7 @@ class AccountFixer
             }
         }
     }
-    
+
     /**
      * Returns field names for the specified length starting from (and excluding) current month backwards
      *
@@ -558,11 +558,11 @@ class AccountFixer
             }
             $answer[] = $fieldPrefix . $currentYearIndicator . "_" . $monthNumber . "_c";
         }
-        
+
         return $answer;
     }
-    
-    
+
+
     /**
      * @param string $stateName
      *
@@ -576,10 +576,10 @@ class AccountFixer
         {
             throw new \Exception("Unknown Imp state name: $stateName!");
         }
-        
+
         return $key;
     }
-    
+
     /**
      * @param string $phaseName
      *
@@ -593,10 +593,10 @@ class AccountFixer
         {
             throw new \Exception("Unknown Imp state phase name: $phaseName!");
         }
-        
+
         return $key;
     }
-    
+
     /**
      * @param string $msg
      */
