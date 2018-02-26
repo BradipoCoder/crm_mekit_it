@@ -8,6 +8,13 @@ h1, h2, h3, h4, h5, h6
     text-align: center;
 }
 
+pre.debug{
+    background: #ffdbe0;
+    color: #560000;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
 .txt-right{text-align: right;}
 .txt-left{text-align: left;}
 

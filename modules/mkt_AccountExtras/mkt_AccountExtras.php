@@ -42,10 +42,25 @@
  */
 require_once('modules/mkt_AccountExtras/mkt_AccountExtras_sugar.php');
 class mkt_AccountExtras extends mkt_AccountExtras_sugar {
-	
+
+  /** @var string */
+  public $products_recent_buys;
+
+  /** @var string */
+  public $products_recent_non_buys;
+
+  /** @var string */
+  public $deadlines;
+
+  /** @var string */
+  public $current_month;
+
+  /** @var string */
+  public $client_data;
+
+
 	function __construct(){
 		parent::__construct();
 	}
-	
+
 }
-?>

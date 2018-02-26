@@ -6,6 +6,10 @@
     <h1>SPECCHIETTO CLIENTE</h1>
     <h5>[ultimo aggiornamento: {$last_update} ]</h5>
 
+    <pre class="debug">
+        <b>Debug</b>
+        {$debug}
+    </pre>
 
     <table class="datatable client_data">
         <thead>
