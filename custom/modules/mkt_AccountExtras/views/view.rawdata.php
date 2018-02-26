@@ -16,19 +16,22 @@ class mkt_AccountExtrasViewRawdata extends SugarView
   /** @var array */
   protected $debug = [];
 
+  /** @var bool */
+  protected $debug_display = false;
+
   public function __construct()
   {
     parent::__construct();
     $this->options = array_merge(
       $this->options, [
-      'show_header' => FALSE,
-      'show_title' => FALSE,
-      'show_subpanels' => FALSE,
-      'show_search' => FALSE,
-      'show_footer' => FALSE,
-      'show_javascript' => FALSE,
-      'view_print' => FALSE,
-    ]
+                      'show_header' => FALSE,
+                      'show_title' => FALSE,
+                      'show_subpanels' => FALSE,
+                      'show_search' => FALSE,
+                      'show_footer' => FALSE,
+                      'show_javascript' => FALSE,
+                      'view_print' => FALSE,
+                    ]
     );
 
   }
@@ -56,7 +59,12 @@ class mkt_AccountExtrasViewRawdata extends SugarView
     $this->addToSmartyDeadlines($ss);
     $this->addToSmartyProducts($ss);
 
-    $ss->assign("debug", print_r($this->debug, TRUE));
+    if ($this->debug_display)
+    {
+      //$ss->assign("debug", print_r($this->debug, TRUE));
+      $ss->assign("debug", print_r($this->debug, TRUE));
+    }
+
 
     $tplPath = 'custom/modules/mkt_AccountExtras/tpls/rawdata.tpl';
     $ss->display($tplPath);
@@ -94,10 +102,9 @@ class mkt_AccountExtrasViewRawdata extends SugarView
       $answer_prod_acq = $this->convertObjectToArray($data_prod_acq);
       $answer_prod_non_acq = $this->convertObjectToArray($data_prod_non_acq);
 
-      /*
+
       $answer_prod_acq = $this->recentBuysUniqueArticles($answer_prod_acq);
       $answer_prod_acq = $this->removeNPAProducts($answer_prod_acq, $answer_prod_non_acq);
-      */
 
 
       //-------------------------------------------------------------------------------- PA ---

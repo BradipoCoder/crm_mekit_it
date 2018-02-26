@@ -6,10 +6,12 @@
     <h1>SPECCHIETTO CLIENTE</h1>
     <h5>[ultimo aggiornamento: {$last_update} ]</h5>
 
+    {if isset($debug)}
     <pre class="debug">
-        <b>Debug</b>
+        <div class="h1">Debug Info</div>
         {$debug}
     </pre>
+    {/if}
 
     <table class="datatable client_data">
         <thead>
