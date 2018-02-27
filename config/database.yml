@@ -1,7 +1,0 @@
-configuration:
-    database:
-        local:
-            servername: localhost
-            database:   crm_mekit_it
-            username:   dbadmin
-            password:   'ABJ@02203505'
