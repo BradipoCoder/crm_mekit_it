@@ -921,20 +921,6 @@ $GLOBALS['app_list_strings']['project_status_dom']=array (
   'In_Review' => 'Fase 2: validazione',
   'Concluded' => 'Concluded',
 );
-
-$GLOBALS['app_list_strings']['case_area_list']=array (
-  '' => '',
-  'Acquisti' => 'Acquisti',
-  'logistica' => 'logistica',
-  'trasporti' => 'Trasporti',
-  'service' => 'Assistenza',
-  'commerciale' => 'Commerciale',
-  'Comunicazione' => 'Comunicazione',
-  'amministrativo' => 'Amministrazione',
-  'Marketing' => 'Marketing',
-  'Direzione' => 'Direzione',
-  'SGQ' => 'Qualità - Sicurezza - Risorse umane',
-);
 $GLOBALS['app_list_strings']['origin_imp_list']=array (
   '' => '',
   1 => 'Cliente Storico',
@@ -1260,3 +1246,19 @@ $GLOBALS['app_list_strings']['ras_status_hint_list']=array (
 
 $app_list_strings['parent_type_display']['AOS_Quotes']='Documents';
 $app_list_strings['record_type_display_notes']['AOS_Quotes']='Documents';
+$GLOBALS['app_list_strings']['case_area_list']=array (
+  '' => '',
+  'Acquisti' => 'Acquisti',
+  'logistica' => 'logistica',
+  'trasporti' => 'Trasporti',
+  'service' => 'Assistenza',
+  'commerciale' => 'Commerciale',
+  'Comunicazione' => 'Comunicazione',
+  'amministrativo' => 'Amministrazione',
+  'Marketing' => 'Marketing',
+  'Direzione' => 'Direzione',
+  'SGQ' => 'Qualità - Sicurezza - Risorse umane',
+  'Formazione' => 'Formazione',
+  'Sistemi_informativi' => 'Sistemi Informativi',
+  'Ricerca_Sviluppo' => 'Ricerca e sviluppo',
+);

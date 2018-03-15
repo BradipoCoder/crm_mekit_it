@@ -1,5 +1,5 @@
 <?php
-// created: 2017-11-30 09:13:51
+// created: 2018-01-29 17:36:16
 $mod_strings = array (
   'LBL_ACCOUNT_INFORMATION' => 'Anagrafica',
   'LBL_ACTIVE_INACTIVE' => 'Attivo Inattivo',
@@ -276,4 +276,5 @@ $mod_strings = array (
   'LBL_EDITVIEW_PANEL24' => 'Giro visite',
   'LBL_ANDAMENTOREATING' => 'Andamento Rating',
   'LBL_AOS_QUOTES' => 'Quotes',
+  'LBL_NEW_BUSINESS' => 'New Business',
 );

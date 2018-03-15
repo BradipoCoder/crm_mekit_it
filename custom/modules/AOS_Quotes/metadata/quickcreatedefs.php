@@ -66,8 +66,9 @@ array (
           ),
           1 => 
           array (
-            'name' => 'opportunity',
-            'label' => 'LBL_OPPORTUNITY',
+            'name' => 'quote_type',
+            'studio' => 'visible',
+            'label' => 'LBL_QUOTE_TYPE',
           ),
         ),
         1 => 

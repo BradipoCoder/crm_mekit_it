@@ -50,6 +50,14 @@ array (
         'width' => '10%',
         'name' => 'quote_type',
       ),
+      'date_entered' => 
+      array (
+        'type' => 'datetime',
+        'label' => 'LBL_DATE_ENTERED',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'date_entered',
+      ),
       'metodo_database_c' => 
       array (
         'type' => 'enum',
@@ -95,17 +103,63 @@ array (
         'default' => true,
         'width' => '10%',
       ),
+      'workhours_c' => 
+      array (
+        'type' => 'int',
+        'default' => true,
+        'label' => 'LBL_WORKHOURS',
+        'width' => '10%',
+        'name' => 'workhours_c',
+      ),
+      'ras_status_hint_c' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_RAS_STATUS_HINT',
+        'width' => '10%',
+        'name' => 'ras_status_hint_c',
+      ),
+      'machine_part_number_c' => 
+      array (
+        'type' => 'varchar',
+        'default' => true,
+        'label' => 'LBL_MACHINE_PART_NUMBER',
+        'width' => '10%',
+        'name' => 'machine_part_number_c',
+      ),
       'total_amount' => 
       array (
         'name' => 'total_amount',
         'default' => true,
         'width' => '10%',
       ),
+      'cases_aos_quotes_1_name' => 
+      array (
+        'type' => 'relate',
+        'link' => true,
+        'label' => 'LBL_CASES_AOS_QUOTES_1_FROM_CASES_TITLE',
+        'id' => 'CASES_AOS_QUOTES_1CASES_IDA',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'cases_aos_quotes_1_name',
+      ),
       'expiration' => 
       array (
         'name' => 'expiration',
         'default' => true,
         'width' => '10%',
+      ),
+      'opportunity' => 
+      array (
+        'type' => 'relate',
+        'studio' => 'visible',
+        'label' => 'LBL_OPPORTUNITY',
+        'id' => 'OPPORTUNITY_ID',
+        'link' => true,
+        'width' => '10%',
+        'default' => true,
+        'name' => 'opportunity',
       ),
       'stage' => 
       array (
@@ -128,6 +182,15 @@ array (
         ),
         'default' => true,
         'width' => '10%',
+      ),
+      'attivitagenerica_c' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_ATTIVITAGENERICA',
+        'width' => '10%',
+        'name' => 'attivitagenerica_c',
       ),
       'imp_agent_code_c' => 
       array (

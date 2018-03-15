@@ -1,5 +1,5 @@
 <?php
-// created: 2017-11-30 15:02:35
+// created: 2017-12-08 17:36:37
 $mod_strings = array (
   'LBL_QUOTE_NUMBER' => 'Numerazione Automatica',
   'LBL_METODO_DATABASE' => 'Azienda Metodo',
@@ -53,4 +53,7 @@ $mod_strings = array (
   'LBL_MACHINE_NAME' => 'Nome macchinario',
   'LBL_MACHINE_WORKHOURS' => 'Ore lavoro Macchinario',
   'LBL_RAS_STATUS_HINT' => 'Suggerimento stato RAS',
+  'LBL_COLLAUDO' => 'Collaudo effettuato:',
+  'LBL_CONTROLLISICUREZZA' => 'Controlli di sicurezza:',
+  'LBL_ATTIVITAGENERICA' => 'Attività Generica:',
 );

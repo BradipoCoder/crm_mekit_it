@@ -2,7 +2,7 @@
  //WARNING: The contents of this file are auto-generated
 
 
- // created: 2017-11-30 14:36:24
+ // created: 2017-12-11 16:42:44
 $dictionary['AOS_Quotes']['fields']['workhours_c']['inline_edit']='';
 $dictionary['AOS_Quotes']['fields']['workhours_c']['options']='numeric_range_search_dom';
 $dictionary['AOS_Quotes']['fields']['workhours_c']['labelValue']='Manodopera(ore)';
@@ -111,6 +111,19 @@ $dictionary["AOS_Quotes"]["fields"]["cases_aos_quotes_1cases_ida"] = array (
 );
 
 
+// created: 2018-02-09 15:42:59
+$dictionary["AOS_Quotes"]["fields"]["aos_quotes_notes_1"] = array (
+  'name' => 'aos_quotes_notes_1',
+  'type' => 'link',
+  'relationship' => 'aos_quotes_notes_1',
+  'source' => 'non-db',
+  'module' => 'Notes',
+  'bean_name' => 'Note',
+  'side' => 'right',
+  'vname' => 'LBL_AOS_QUOTES_NOTES_1_FROM_NOTES_TITLE',
+);
+
+
  // created: 2016-03-01 09:08:10
 $dictionary['AOS_Quotes']['fields']['document_year_c']['inline_edit']='';
 $dictionary['AOS_Quotes']['fields']['document_year_c']['options']='numeric_range_search_dom';
@@ -154,6 +167,18 @@ $dictionary['AOS_Quotes']['fields']['total_amt']['enable_range_search']=false;
  // created: 2016-02-25 15:30:08
 $dictionary['AOS_Quotes']['fields']['opportunity']['inline_edit']=true;
 $dictionary['AOS_Quotes']['fields']['opportunity']['merge_filter']='disabled';
+
+ 
+
+ // created: 2017-12-07 17:07:13
+$dictionary['AOS_Quotes']['fields']['collaudo_c']['inline_edit']='1';
+$dictionary['AOS_Quotes']['fields']['collaudo_c']['labelValue']='Collaudo effettuato:';
+
+ 
+
+ // created: 2017-12-07 17:17:32
+$dictionary['AOS_Quotes']['fields']['controllisicurezza_c']['inline_edit']='1';
+$dictionary['AOS_Quotes']['fields']['controllisicurezza_c']['labelValue']='Controlli di sicurezza:';
 
  
 
@@ -242,6 +267,12 @@ $dictionary['AOS_Quotes']['fields']['mekit_agent_code_c']['labelValue']='Agente 
  // created: 2016-03-01 10:51:19
 $dictionary['AOS_Quotes']['fields']['total_amount']['inline_edit']=true;
 $dictionary['AOS_Quotes']['fields']['total_amount']['merge_filter']='disabled';
+
+ 
+
+ // created: 2017-12-08 17:36:37
+$dictionary['AOS_Quotes']['fields']['attivitagenerica_c']['inline_edit']='1';
+$dictionary['AOS_Quotes']['fields']['attivitagenerica_c']['labelValue']='Attività Generica:';
 
  
 

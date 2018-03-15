@@ -1,13 +1,6 @@
 <?php
 $listViewDefs ['Cases'] = 
 array (
-  'TYPE' => 
-  array (
-    'type' => 'enum',
-    'label' => 'LBL_TYPE',
-    'width' => '10%',
-    'default' => true,
-  ),
   'NAME' => 
   array (
     'width' => '25%',
@@ -15,27 +8,17 @@ array (
     'link' => true,
     'default' => true,
   ),
-  'USERS_CASES_1_NAME' => 
+  'DATE_ENTERED' => 
   array (
-    'type' => 'relate',
-    'link' => true,
-    'label' => 'LBL_USERS_CASES_1_FROM_USERS_TITLE',
-    'id' => 'USERS_CASES_1USERS_IDA',
     'width' => '10%',
+    'label' => 'LBL_DATE_ENTERED',
     'default' => true,
   ),
-  'IMP_RAS_NUMBER_C' => 
+  'NUMEROTAG_C' => 
   array (
     'type' => 'varchar',
     'default' => true,
-    'label' => 'LBL_IMP_RAS_NUMBER',
-    'width' => '10%',
-  ),
-  'REF_PART_UNIQUE_NUMBER_C' => 
-  array (
-    'type' => 'varchar',
-    'default' => true,
-    'label' => 'LBL_REF_PART_UNIQUE_NUMBER',
+    'label' => 'LBL_NUMEROTAG',
     'width' => '10%',
   ),
   'ACCOUNT_NAME' => 
@@ -59,10 +42,10 @@ array (
     'label' => 'LBL_STATE',
     'width' => '10%',
   ),
-  'STATUS' => 
+  'PRIORITY' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_LIST_STATUS',
+    'label' => 'LBL_LIST_PRIORITY',
     'default' => true,
   ),
   'DESCRIZIONE_PROBLEMATICA_C' => 
@@ -81,11 +64,11 @@ array (
     'label' => 'LBL_REF_PART_DESCRIPTION',
     'width' => '10%',
   ),
-  'NUMEROTAG_C' => 
+  'REF_PART_UNIQUE_NUMBER_C' => 
   array (
     'type' => 'varchar',
     'default' => true,
-    'label' => 'LBL_NUMEROTAG',
+    'label' => 'LBL_REF_PART_UNIQUE_NUMBER',
     'width' => '10%',
   ),
   'DATE_CLOSE_PRG_C' => 
@@ -95,6 +78,13 @@ array (
     'label' => 'LBL_DATE_CLOSE_PRG',
     'width' => '10%',
   ),
+  'DATE_CLOSE_EFCT_C' => 
+  array (
+    'type' => 'date',
+    'default' => true,
+    'label' => 'LBL_DATE_CLOSE_EFCT',
+    'width' => '10%',
+  ),
   'DAYS_TO_CLOSE_C' => 
   array (
     'type' => 'int',
@@ -102,23 +92,19 @@ array (
     'label' => 'LBL_DAYS_TO_CLOSE',
     'width' => '10%',
   ),
-  'DATE_ENTERED' => 
+  'ASSIGNED_USER_NAME' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_DATE_ENTERED',
-    'default' => false,
+    'label' => 'LBL_ASSIGNED_TO_NAME',
+    'module' => 'Employees',
+    'id' => 'ASSIGNED_USER_ID',
+    'default' => true,
   ),
-  'DATE_CLOSE_EFCT_C' => 
+  'TYPE' => 
   array (
-    'type' => 'date',
-    'default' => false,
-    'label' => 'LBL_DATE_CLOSE_EFCT',
+    'type' => 'enum',
+    'label' => 'LBL_TYPE',
     'width' => '10%',
-  ),
-  'PRIORITY' => 
-  array (
-    'width' => '10%',
-    'label' => 'LBL_LIST_PRIORITY',
     'default' => false,
   ),
   'CASE_NUMBER' => 
@@ -171,14 +157,6 @@ array (
     'label' => 'LBL_CREATED',
     'id' => 'CREATED_BY',
     'width' => '10%',
-    'default' => false,
-  ),
-  'ASSIGNED_USER_NAME' => 
-  array (
-    'width' => '10%',
-    'label' => 'LBL_ASSIGNED_TO_NAME',
-    'module' => 'Employees',
-    'id' => 'ASSIGNED_USER_ID',
     'default' => false,
   ),
   'RIF_COMMESSA_CODE_C' => 

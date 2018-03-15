@@ -102,12 +102,12 @@ array (
           'newTab' => true,
           'panelDefault' => 'expanded',
         ),
-        'LBL_EDITVIEW_PANEL1' => 
+        'LBL_EDITVIEW_PANEL4' => 
         array (
           'newTab' => true,
           'panelDefault' => 'expanded',
         ),
-        'LBL_EDITVIEW_PANEL4' => 
+        'LBL_EDITVIEW_PANEL1' => 
         array (
           'newTab' => true,
           'panelDefault' => 'expanded',
@@ -156,41 +156,6 @@ array (
             'label' => 'LBL_DATA_DOC',
           ),
         ),
-        2 => 
-        array (
-          0 => 
-          array (
-            'name' => 'approval_status',
-            'label' => 'LBL_APPROVAL_STATUS',
-          ),
-        ),
-        3 => 
-        array (
-          0 => 
-          array (
-            'name' => 'description',
-            'comment' => 'Full text of the note',
-            'label' => 'LBL_DESCRIPTION',
-          ),
-          1 => 
-          array (
-            'name' => 'notes_internal_c',
-            'studio' => 'visible',
-            'label' => 'LBL_NOTES_INTERNAL',
-          ),
-        ),
-      ),
-      'lbl_editview_panel1' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            'name' => 'line_items',
-            'label' => 'LBL_LINE_ITEMS',
-            'hideLabel' => true,
-          ),
-        ),
       ),
       'lbl_editview_panel4' => 
       array (
@@ -220,21 +185,64 @@ array (
         array (
           0 => 
           array (
-            'name' => 'machine_part_number_c',
-            'label' => 'LBL_MACHINE_PART_NUMBER',
-          ),
-          1 => 
-          array (
             'name' => 'machine_name_c',
             'label' => 'LBL_MACHINE_NAME',
           ),
+          1 => '',
         ),
         3 => 
         array (
           0 => 
           array (
+            'name' => 'machine_part_number_c',
+            'label' => 'LBL_MACHINE_PART_NUMBER',
+          ),
+          1 => 
+          array (
             'name' => 'machine_workhours_c',
             'label' => 'LBL_MACHINE_WORKHOURS',
+          ),
+        ),
+        4 => 
+        array (
+          0 => 
+          array (
+            'name' => 'description',
+            'comment' => 'Full text of the note',
+            'label' => 'LBL_DESCRIPTION',
+          ),
+          1 => 
+          array (
+            'name' => 'notes_internal_c',
+            'studio' => 'visible',
+            'label' => 'LBL_NOTES_INTERNAL',
+          ),
+        ),
+        5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'collaudo_c',
+            'studio' => 'visible',
+            'label' => 'LBL_COLLAUDO',
+          ),
+          1 => 
+          array (
+            'name' => 'controllisicurezza_c',
+            'studio' => 'visible',
+            'label' => 'LBL_CONTROLLISICUREZZA',
+          ),
+        ),
+      ),
+      'lbl_editview_panel1' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            'name' => 'line_items',
+            'label' => 'LBL_LINE_ITEMS',
+            'hideLabel' => true,
           ),
         ),
       ),

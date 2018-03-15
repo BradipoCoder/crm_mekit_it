@@ -433,6 +433,12 @@ array (
             'comment' => 'The company belongs in this industry',
             'label' => 'LBL_INDUSTRY',
           ),
+          1 => 
+          array (
+            'name' => 'new_business_c',
+            'studio' => 'visible',
+            'label' => 'LBL_NEW_BUSINESS',
+          ),
         ),
         2 => 
         array (

@@ -97,6 +97,10 @@ function deleteAttachmentCallBack(text)
         5 => 
         array (
           0 => 'contact_name',
+          1 => 
+          array (
+            'name' => 'aos_quotes_notes_1_name',
+          ),
         ),
       ),
     ),

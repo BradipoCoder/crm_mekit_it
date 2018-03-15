@@ -104,6 +104,14 @@ array (
     'label' => 'LBL_IMP_HAS_ACQ_CONTACT_MAIL',
     'width' => '10%',
   ),
+  'NEW_BUSINESS_C' => 
+  array (
+    'type' => 'enum',
+    'default' => false,
+    'studio' => 'visible',
+    'label' => 'LBL_NEW_BUSINESS',
+    'width' => '10%',
+  ),
   'IMP_PROFITABILITY_C' => 
   array (
     'type' => 'enum',

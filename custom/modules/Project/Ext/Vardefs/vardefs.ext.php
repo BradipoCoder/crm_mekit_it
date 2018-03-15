@@ -10,7 +10,7 @@ $dictionary['Project']['fields']['fineeffettiva_c']['enable_range_search']='1';
 
  
 
- // created: 2016-02-17 06:21:36
+ // created: 2018-02-19 19:29:21
 $dictionary['Project']['fields']['area_dinteresse_imp_c']['inline_edit']='1';
 $dictionary['Project']['fields']['area_dinteresse_imp_c']['labelValue']='Area di interesse (IMP)';
 

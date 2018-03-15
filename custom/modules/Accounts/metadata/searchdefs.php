@@ -515,6 +515,15 @@ array (
         'width' => '10%',
         'name' => 'chiamatoperbarbara_c',
       ),
+      'new_business_c' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_NEW_BUSINESS',
+        'width' => '10%',
+        'name' => 'new_business_c',
+      ),
       'stessoanno1_c' => 
       array (
         'type' => 'currency',

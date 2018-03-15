@@ -241,7 +241,7 @@ class GiroVisiteHook
             return $answer;
         }
         */
-
+        
         $daysToCheck = self::$profitLevels[$account->imp_profitability_c];
         $agentCode = $account->imp_agent_code_c;
         $agentId = self::getUserIdForAgentCode($agentCode);

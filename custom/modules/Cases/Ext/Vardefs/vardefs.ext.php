@@ -50,7 +50,7 @@ $dictionary['Case']['fields']['rif_commessa_code_c']['labelValue'] = 'Riferiment
 
 
 
- // created: 2017-10-26 12:48:47
+ // created: 2017-12-09 18:38:26
 $dictionary['Case']['fields']['date_close_prg_c']['inline_edit']='1';
 $dictionary['Case']['fields']['date_close_prg_c']['options']='date_range_search_dom';
 $dictionary['Case']['fields']['date_close_prg_c']['labelValue']='Data Chiusura Prevista';

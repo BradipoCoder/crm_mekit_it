@@ -54,9 +54,6 @@ local.properties
 auto-save-list
 tramp
 # IntelliJ Idea
-*.iml
-*.ipr
-*.iws
 .idea/
 .phpstorm.meta.php
 # NetBeans
@@ -80,7 +77,6 @@ SuiteCRM.kdev4
 # IMP/MEKIT CRM CUSTOM STUFF
 vendor/
 public/
-manifest.php
 .SyncConfig/
 config/database.yml
 

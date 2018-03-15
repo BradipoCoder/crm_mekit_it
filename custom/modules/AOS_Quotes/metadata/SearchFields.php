@@ -1,5 +1,5 @@
 <?php
-// created: 2017-11-30 14:46:22
+// created: 2017-12-11 16:42:43
 $searchFields['AOS_Quotes'] = array (
   'name' => 
   array (
@@ -304,6 +304,36 @@ $searchFields['AOS_Quotes'] = array (
     'enable_range_search' => true,
   ),
   'end_range_machine_workhours' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_workhours_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_workhours_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_workhours_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'range_machine_workhours_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'start_range_machine_workhours_c' => 
+  array (
+    'query_type' => 'default',
+    'enable_range_search' => true,
+  ),
+  'end_range_machine_workhours_c' => 
   array (
     'query_type' => 'default',
     'enable_range_search' => true,

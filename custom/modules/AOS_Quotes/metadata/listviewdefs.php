@@ -1,6 +1,13 @@
 <?php
 $listViewDefs ['AOS_Quotes'] = 
 array (
+  'NAME' => 
+  array (
+    'width' => '15%',
+    'label' => 'LBL_ACCOUNT_NAME',
+    'link' => true,
+    'default' => true,
+  ),
   'QUOTE_TYPE' => 
   array (
     'type' => 'enum',
@@ -9,18 +16,28 @@ array (
     'label' => 'LBL_QUOTE_TYPE',
     'width' => '10%',
   ),
-  'NAME' => 
-  array (
-    'width' => '15%',
-    'label' => 'LBL_ACCOUNT_NAME',
-    'link' => true,
-    'default' => true,
-  ),
   'DATA_DOC_C' => 
   array (
     'type' => 'date',
     'default' => true,
     'label' => 'LBL_DATA_DOC',
+    'width' => '10%',
+  ),
+  'CASES_AOS_QUOTES_1_NAME' => 
+  array (
+    'type' => 'relate',
+    'link' => true,
+    'label' => 'LBL_CASES_AOS_QUOTES_1_FROM_CASES_TITLE',
+    'id' => 'CASES_AOS_QUOTES_1CASES_IDA',
+    'width' => '10%',
+    'default' => true,
+  ),
+  'ATTIVITAGENERICA_C' => 
+  array (
+    'type' => 'enum',
+    'default' => true,
+    'studio' => 'visible',
+    'label' => 'LBL_ATTIVITAGENERICA',
     'width' => '10%',
   ),
   'BILLING_ACCOUNT' => 
@@ -36,11 +53,38 @@ array (
       0 => 'billing_account_id',
     ),
   ),
-  'STAGE' => 
+  'WORKHOURS_C' => 
+  array (
+    'type' => 'int',
+    'default' => true,
+    'label' => 'LBL_WORKHOURS',
+    'width' => '10%',
+  ),
+  'DESCRIPTION' => 
+  array (
+    'type' => 'text',
+    'label' => 'LBL_DESCRIPTION',
+    'sortable' => false,
+    'width' => '10%',
+    'default' => true,
+  ),
+  'NOTES_INTERNAL_C' => 
+  array (
+    'type' => 'text',
+    'default' => true,
+    'studio' => 'visible',
+    'label' => 'LBL_NOTES_INTERNAL',
+    'sortable' => false,
+    'width' => '10%',
+  ),
+  'ASSIGNED_USER_NAME' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_STAGE',
+    'label' => 'LBL_ASSIGNED_USER',
     'default' => true,
+    'module' => 'Users',
+    'id' => 'ASSIGNED_USER_ID',
+    'link' => true,
   ),
   'OPPORTUNITY' => 
   array (
@@ -73,14 +117,11 @@ array (
     'label' => 'LBL_EXPIRATION',
     'default' => false,
   ),
-  'ASSIGNED_USER_NAME' => 
+  'STAGE' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_ASSIGNED_USER',
+    'label' => 'LBL_STAGE',
     'default' => false,
-    'module' => 'Users',
-    'id' => 'ASSIGNED_USER_ID',
-    'link' => true,
   ),
   'METODO_ID_HEAD_C' => 
   array (
@@ -111,6 +152,36 @@ array (
     'label' => 'LBL_METODO_DATABASE',
     'width' => '10%',
   ),
+  'MACHINE_PART_NUMBER_C' => 
+  array (
+    'type' => 'varchar',
+    'default' => false,
+    'label' => 'LBL_MACHINE_PART_NUMBER',
+    'width' => '10%',
+  ),
+  'RAS_STATUS_HINT_C' => 
+  array (
+    'type' => 'enum',
+    'default' => false,
+    'studio' => 'visible',
+    'label' => 'LBL_RAS_STATUS_HINT',
+    'width' => '10%',
+  ),
+  'COLLAUDO_C' => 
+  array (
+    'type' => 'enum',
+    'default' => false,
+    'studio' => 'visible',
+    'label' => 'LBL_COLLAUDO',
+    'width' => '10%',
+  ),
+  'MACHINE_NAME_C' => 
+  array (
+    'type' => 'varchar',
+    'default' => false,
+    'label' => 'LBL_MACHINE_NAME',
+    'width' => '10%',
+  ),
   'BILLING_CONTACT' => 
   array (
     'width' => '11%',
@@ -123,6 +194,21 @@ array (
     array (
       0 => 'billing_contact_id',
     ),
+  ),
+  'CONTROLLISICUREZZA_C' => 
+  array (
+    'type' => 'multienum',
+    'default' => false,
+    'studio' => 'visible',
+    'label' => 'LBL_CONTROLLISICUREZZA',
+    'width' => '10%',
+  ),
+  'MACHINE_WORKHOURS_C' => 
+  array (
+    'type' => 'int',
+    'default' => false,
+    'label' => 'LBL_MACHINE_WORKHOURS',
+    'width' => '10%',
   ),
   'IMP_AGENT_CODE_C' => 
   array (

@@ -61,6 +61,15 @@ array (
         array (
           0 => 
           array (
+            'name' => 'image_c',
+            'studio' => 'visible',
+            'label' => 'LBL_IMAGE',
+          ),
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
             'name' => 'description',
             'label' => 'LBL_NOTE_STATUS',
             'displayParams' => 
@@ -70,7 +79,7 @@ array (
             ),
           ),
         ),
-        2 => 
+        3 => 
         array (
           0 => 'parent_name',
         ),
