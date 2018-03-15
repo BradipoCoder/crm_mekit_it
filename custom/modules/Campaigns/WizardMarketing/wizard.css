@@ -4,6 +4,9 @@
 }
 textarea#email_template_editor{
     width:100%;
+    font-family: monospace;
+    font-size: 11px;
+    line-height: 14px;
 }
 
 #step1_uploader{
