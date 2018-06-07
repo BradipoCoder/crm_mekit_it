@@ -100,6 +100,8 @@ class AccountFixer
         {
             $this->log(str_repeat("#", 120));
             $this->log("RUNNING IN DRY MODE! NO CHANGES HAVE BEEN MADE!");
+            $this->log("If you want to make these changes open AccountFixer class: 'src/Mekit/Maintenance/Account/AccountFixer.php' file");
+            $this->log("and change protected 'dryRun' variable to: 'false'.");
             $this->log(str_repeat("#", 120));
         }
     }
