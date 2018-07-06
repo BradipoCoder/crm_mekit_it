@@ -12,7 +12,7 @@ use Mekit\Console\Configuration;
 class AccountFixer
 {
     /** @var bool */
-    protected $dryRun = true;
+    protected $dryRun = false;
 
     /** @var bool */
     protected $verboseLogging = false;
